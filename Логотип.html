@@ -1,0 +1,1533 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<title>Диджитал плюс — Логотип / 6 направлений</title>
+<meta name="viewport" content="width=1320" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0E1117;
+    --ink-2: #1A1E26;
+    --paper: #F4F1EB;
+    --paper-2: #EDE9E1;
+    --line: #DCD6CB;
+    --line-dark: #2A2E37;
+    --muted: #6E6960;
+    --muted-dark: #8B8B92;
+    --accent: #E2553A;
+    --accent-soft: #F6E1DA;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Geist', -apple-system, system-ui, sans-serif;
+    font-feature-settings: "ss01", "cv11";
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .shell {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 56px;
+  }
+  .mono { font-family: 'Geist Mono', ui-monospace, monospace; letter-spacing: 0.02em; }
+  .label {
+    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .label.on-dark { color: var(--muted-dark); }
+  hr.rule { border: 0; border-top: 1px solid var(--line); margin: 0; }
+
+  /* ====== TOP BAR ====== */
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 56px;
+    border-bottom: 1px solid var(--line);
+    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .topbar .crumb { display: flex; gap: 18px; align-items: center; }
+  .topbar .dot { width: 6px; height: 6px; background: var(--accent); display: inline-block; }
+
+  /* ====== COVER ====== */
+  .cover { padding: 80px 0 96px; border-bottom: 1px solid var(--line); }
+  .cover-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 80px;
+    align-items: end;
+  }
+  .cover h1 {
+    font-size: 92px;
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    font-weight: 500;
+    margin: 0 0 28px;
+  }
+  .cover h1 .em { color: var(--accent); }
+  .cover .sub {
+    font-size: 19px;
+    line-height: 1.45;
+    color: var(--ink);
+    max-width: 460px;
+    margin: 0;
+  }
+  .meta-rows { display: grid; gap: 14px; }
+  .meta-rows .row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 24px;
+    padding: 14px 0;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .meta-rows .row:last-child { border-bottom: 1px solid var(--line); }
+  .meta-rows .k { color: var(--muted); font-family: 'Geist Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; padding-top: 2px; }
+
+  /* ====== SYSTEM ====== */
+  .system { padding: 80px 0; border-bottom: 1px solid var(--line); }
+  .system-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px; }
+  .system h2 {
+    grid-column: 1 / -1;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 0 32px;
+    font-family: 'Geist Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+  }
+  .swatch-stack { display: grid; gap: 12px; }
+  .swatch {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 16px;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .swatch .chip { height: 56px; border: 1px solid var(--line); }
+  .swatch .name { font-weight: 500; font-size: 15px; }
+  .swatch .hex { display: block; color: var(--muted); font-family: 'Geist Mono', monospace; font-size: 12px; margin-top: 2px; }
+  .type-card { padding: 8px 0; }
+  .type-card .specimen { font-size: 56px; line-height: 1; letter-spacing: -0.03em; font-weight: 500; margin-bottom: 12px; }
+  .type-card .specimen.mono { font-size: 28px; letter-spacing: 0; }
+  .type-card .meta { display: flex; gap: 18px; flex-wrap: wrap; font-family: 'Geist Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); padding-top: 12px; border-top: 1px solid var(--line); }
+
+  /* ====== OVERVIEW GRID ====== */
+  .overview { padding: 80px 0; border-bottom: 1px solid var(--line); }
+  .overview .head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 40px; }
+  .overview h2 { font-size: 36px; font-weight: 500; letter-spacing: -0.02em; margin: 0; max-width: 640px; line-height: 1.05; }
+  .ov-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .ov-cell {
+    background: var(--paper);
+    padding: 36px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 240px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .ov-cell:hover { background: var(--paper-2); }
+  .ov-cell .num { font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); }
+  .ov-cell .lockup { display: flex; align-items: center; justify-content: center; flex: 1; padding: 24px 0; }
+  .ov-cell .name-row { display: flex; justify-content: space-between; align-items: baseline; }
+  .ov-cell .nm { font-size: 16px; font-weight: 500; }
+  .ov-cell .tg { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* ====== DIRECTION SECTIONS ====== */
+  .direction { padding: 96px 0; border-bottom: 1px solid var(--line); }
+  .dir-head {
+    display: grid;
+    grid-template-columns: 80px 1fr 280px;
+    gap: 48px;
+    align-items: baseline;
+    margin-bottom: 56px;
+  }
+  .dir-num { font-family: 'Geist Mono', monospace; font-size: 56px; color: var(--accent); line-height: 1; }
+  .dir-title { font-size: 56px; line-height: 1; letter-spacing: -0.03em; font-weight: 500; margin: 0; }
+  .dir-title .tag { display: block; font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; font-weight: 400; }
+  .dir-desc { font-size: 14px; color: var(--ink); line-height: 1.55; }
+
+  /* HERO LOCKUP — two stages: paper + ink */
+  .hero-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); margin-bottom: 56px; }
+  .hero-stage { padding: 96px 64px; display: flex; align-items: center; justify-content: center; min-height: 380px; position: relative; }
+  .hero-stage.light { background: var(--paper); color: var(--ink); }
+  .hero-stage.dark { background: var(--ink); color: var(--paper); }
+  .hero-stage .badge { position: absolute; top: 18px; left: 24px; font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .hero-stage.dark .badge { color: var(--muted-dark); }
+
+  /* WORDMARK BASE */
+  .wm {
+    display: inline-flex;
+    align-items: baseline;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .wm-xl { font-size: 110px; }
+  .wm-lg { font-size: 72px; }
+  .wm-md { font-size: 48px; }
+  .wm-sm { font-size: 28px; }
+  .wm-xs { font-size: 18px; }
+  .wm .word { display: inline-block; }
+  .wm .glyph {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .wm-vert { flex-direction: column; align-items: center; gap: 0.18em; }
+  .wm-vert .word { line-height: 0.9; }
+
+  /* CYRILLIC SECONDARY */
+  .cyr {
+    font-family: 'Geist Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .hero-stage.dark .cyr { color: var(--muted-dark); }
+
+  /* LOCKUP STACK (wordmark + descriptor) */
+  .stack { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 22px; }
+  .stack.center { align-items: center; }
+  .stack .desc-row { display: flex; align-items: center; gap: 12px; }
+  .stack .desc-line { width: 28px; height: 1px; background: currentColor; opacity: 0.5; }
+
+  /* VARIANTS ROW (H/V + mono on dark) */
+  .variants { display: grid; grid-template-columns: 1.4fr 0.6fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); margin-bottom: 56px; }
+  .variant {
+    padding: 56px 40px;
+    background: var(--paper);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 280px;
+  }
+  .variant.dark { background: var(--ink); color: var(--paper); }
+  .variant .vlabel { position: absolute; top: 14px; left: 20px; font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .variant.dark .vlabel { color: var(--muted-dark); }
+
+  /* CONSTRUCTION (grid + clear space) */
+  .construction { display: grid; grid-template-columns: 1.3fr 1fr; gap: 56px; margin-bottom: 56px; align-items: stretch; }
+  .constr-stage {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 48px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image:
+      linear-gradient(to right, rgba(14,17,23,0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(14,17,23,0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+    min-height: 320px;
+  }
+  .constr-stage .markline {
+    position: absolute;
+    border-left: 1px dashed var(--accent);
+    top: 0; bottom: 0;
+  }
+  .constr-notes { display: grid; gap: 20px; align-content: start; }
+  .constr-notes .pt { display: grid; grid-template-columns: 28px 1fr; gap: 12px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.5; }
+  .constr-notes .pt .n { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.1em; padding-top: 2px; }
+  .constr-notes .pt .ttl { font-weight: 500; }
+  .constr-notes .pt .desc { color: var(--muted); margin-top: 2px; }
+
+  /* MOCKUPS */
+  .mockups { display: grid; grid-template-columns: 1.1fr 1fr 0.9fr; gap: 24px; }
+  .mock { background: var(--paper); border: 1px solid var(--line); padding: 28px; min-height: 260px; display: flex; flex-direction: column; }
+  .mock .mlabel { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+  .mock .stage { flex: 1; display: flex; align-items: center; justify-content: center; }
+
+  /* avatar mockup */
+  .avatar-row { display: flex; gap: 16px; align-items: center; justify-content: center; }
+  .avatar {
+    width: 72px; height: 72px;
+    border-radius: 18px;
+    background: var(--ink);
+    color: var(--paper);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .avatar.light { background: var(--paper); color: var(--ink); border: 1px solid var(--line); }
+  .avatar.accent { background: var(--accent); color: var(--paper); }
+  .avatar.sm { width: 40px; height: 40px; border-radius: 10px; }
+
+  /* business card */
+  .card {
+    width: 100%;
+    aspect-ratio: 1.7 / 1;
+    background: var(--paper-2);
+    border-radius: 6px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 1px 0 var(--line), 0 18px 30px -28px rgba(14,17,23,0.18);
+    position: relative;
+    overflow: hidden;
+  }
+  .card.dark { background: var(--ink); color: var(--paper); }
+  .card .top-row { display: flex; justify-content: space-between; align-items: flex-start; }
+  .card .pin { width: 6px; height: 6px; background: var(--accent); margin-top: 6px; }
+  .card .info { font-family: 'Geist Mono', monospace; font-size: 9px; letter-spacing: 0.1em; line-height: 1.6; }
+  .card .info .role { text-transform: uppercase; color: var(--muted); }
+  .card.dark .info .role { color: var(--muted-dark); }
+
+  /* browser tab */
+  .browser {
+    width: 100%;
+    background: var(--paper-2);
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .browser .bar { display: flex; align-items: center; gap: 6px; padding: 8px 10px; background: var(--paper); border-bottom: 1px solid var(--line); }
+  .browser .bar .b { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+  .browser .tab { display: inline-flex; align-items: center; gap: 6px; background: var(--paper-2); padding: 6px 10px; border-radius: 6px 6px 0 0; margin-left: 12px; font-family: 'Geist Mono', monospace; font-size: 10px; color: var(--ink); }
+  .browser .tab .favicon { width: 14px; height: 14px; display: inline-flex; align-items: center; justify-content: center; }
+  .browser .url { padding: 8px 14px; font-family: 'Geist Mono', monospace; font-size: 10px; color: var(--muted); border-bottom: 1px solid var(--line); }
+  .browser .url .lock { color: var(--accent); margin-right: 6px; }
+  .browser .body { padding: 22px 18px; min-height: 80px; display: flex; align-items: center; justify-content: flex-start; }
+
+  /* CLOSING */
+  .closing { padding: 96px 0 120px; }
+  .closing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .closing h2 { font-size: 48px; font-weight: 500; letter-spacing: -0.03em; margin: 0 0 24px; line-height: 1.02; }
+  .closing p { font-size: 16px; line-height: 1.6; color: var(--ink); max-width: 480px; }
+  .next-list { display: grid; gap: 0; }
+  .next-list .it { display: grid; grid-template-columns: 32px 1fr auto; gap: 24px; align-items: center; padding: 22px 0; border-top: 1px solid var(--line); font-size: 15px; }
+  .next-list .it:last-child { border-bottom: 1px solid var(--line); }
+  .next-list .it .n { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.1em; }
+  .next-list .it .nm { font-weight: 500; }
+  .next-list .it .when { color: var(--muted); font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* footer */
+  .footer { padding: 32px 56px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- ===== TOPBAR ===== -->
+<div class="topbar">
+  <div class="crumb"><span class="dot"></span><span>Brand identity / proposal v1</span></div>
+  <div>Диджитал плюс · 2021—2026 · 6 направлений</div>
+</div>
+
+<!-- ===== COVER ===== -->
+<section class="shell cover">
+  <div class="cover-grid">
+    <div>
+      <div class="label" style="margin-bottom: 28px;">001 / Cover</div>
+      <h1>Логотип для<br/>«Диджитал<span class="em">+</span>»</h1>
+      <p class="sub">Шесть направлений знака, выстроенных вокруг одной идеи: «+» как цифровая единица — пиксель, узел, курсор, метка версии. Один шрифт, одна палитра, разные характеры.</p>
+    </div>
+    <div class="meta-rows">
+      <div class="row"><div class="k">Клиент</div><div>Диджитал плюс — веб, ФЗ-152, CRM, IT-поддержка</div></div>
+      <div class="row"><div class="k">Опыт</div><div>5 лет на рынке · смешанная B2B-аудитория</div></div>
+      <div class="row"><div class="k">Тон</div><div>Премиальный, серьёзный, спокойно-уверенный</div></div>
+      <div class="row"><div class="k">Объём</div><div>6 направлений · сетки · мокапы · моно/тёмные/светлые версии</div></div>
+      <div class="row"><div class="k">Что искать</div><div>1—2 направления для финальной проработки</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SYSTEM ===== -->
+<section class="shell system">
+  <div class="system-grid">
+    <h2>002 / Базовая система — общая для всех направлений</h2>
+
+    <div>
+      <div class="label" style="margin-bottom: 18px;">Палитра</div>
+      <div class="swatch-stack">
+        <div class="swatch"><div class="chip" style="background: var(--ink);"></div><div><div class="name">Ink</div><span class="hex">#0E1117 · oklch(0.18 0.012 250)</span></div></div>
+        <div class="swatch"><div class="chip" style="background: var(--paper);"></div><div><div class="name">Paper</div><span class="hex">#F4F1EB · тёплая бумага</span></div></div>
+        <div class="swatch"><div class="chip" style="background: var(--accent);"></div><div><div class="name">Signal</div><span class="hex">#E2553A · единственный акцент</span></div></div>
+        <div class="swatch"><div class="chip" style="background: var(--muted);"></div><div><div class="name">Muted</div><span class="hex">#6E6960 · служебный</span></div></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="label" style="margin-bottom: 18px;">Типографика</div>
+      <div class="type-card">
+        <div class="specimen">Geist 500</div>
+        <div style="font-size: 18px; line-height: 1.4; color: var(--muted);">Современный гротеск с поддержкой кириллицы. Используется для логотипа, заголовков и интерфейса.</div>
+        <div class="meta"><span>Sans · Display</span><span>Latin + Cyrillic</span><span>300—700</span></div>
+      </div>
+      <div class="type-card" style="margin-top: 32px;">
+        <div class="specimen mono">Geist Mono · ДИДЖИТАЛ+</div>
+        <div style="font-size: 14px; line-height: 1.4; color: var(--muted); font-family: 'Geist Mono', monospace; letter-spacing: 0.08em;">SUPPORTING / LABELS / TECHNICAL</div>
+        <div class="meta"><span>Mono</span><span>400 / 500</span></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="label" style="margin-bottom: 18px;">Принципы</div>
+      <ol style="padding: 0; margin: 0; list-style: none; counter-reset: pn;">
+        <li style="display: grid; grid-template-columns: 28px 1fr; gap: 12px; padding: 16px 0; border-top: 1px solid var(--line); counter-increment: pn;">
+          <div style="font-family:'Geist Mono',monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.1em;">01</div>
+          <div><strong>«+» — это центр идентичности.</strong> Не декоративный символ, а самостоятельный знак, который может жить отдельно.</div>
+        </li>
+        <li style="display: grid; grid-template-columns: 28px 1fr; gap: 12px; padding: 16px 0; border-top: 1px solid var(--line);">
+          <div style="font-family:'Geist Mono',monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.1em;">02</div>
+          <div><strong>Латиница как основной набор</strong> (digital+), кириллица как равноправный сублокап (ДИДЖИТАЛ ПЛЮС). Обе версии всегда поставляются вместе.</div>
+        </li>
+        <li style="display: grid; grid-template-columns: 28px 1fr; gap: 12px; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+          <div style="font-family:'Geist Mono',monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.1em;">03</div>
+          <div><strong>Никакого декора:</strong> без шестерёнок, кругов как знака, градиентов. Только типографика и одна графическая идея «+».</div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OVERVIEW ===== -->
+<section class="shell overview">
+  <div class="head">
+    <h2>003 / Шесть направлений в одной системе. Один и тот же лейаут, разная трактовка «+».</h2>
+    <div class="label">↓ листайте дальше</div>
+  </div>
+
+  <div class="ov-grid">
+    <a class="ov-cell" href="#d1">
+      <div class="num">01 · PIXEL</div>
+      <div class="lockup">
+        <span class="wm wm-md">
+          <span class="word">digital</span>
+          <span class="glyph" style="width: 0.55em; height: 0.55em; margin-left: 0.12em; background: var(--ink);"></span>
+        </span>
+      </div>
+      <div class="name-row"><div class="nm">Пиксель</div><div class="tg">+ как единица</div></div>
+    </a>
+
+    <a class="ov-cell" href="#d2">
+      <div class="num">02 · CROSSHAIR</div>
+      <div class="lockup">
+        <span class="wm wm-md">
+          <span class="word">digital</span>
+          <svg viewBox="0 0 32 32" width="0.7em" height="0.7em" style="margin-left: 0.14em; transform: translateY(-0.06em);">
+            <g stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="square">
+              <line x1="16" y1="3" x2="16" y2="29"/>
+              <line x1="3" y1="16" x2="29" y2="16"/>
+              <line x1="11" y1="3" x2="21" y2="3"/>
+              <line x1="11" y1="29" x2="21" y2="29"/>
+              <line x1="3" y1="11" x2="3" y2="21"/>
+              <line x1="29" y1="11" x2="29" y2="21"/>
+            </g>
+          </svg>
+        </span>
+      </div>
+      <div class="name-row"><div class="nm">Прицел</div><div class="tg">+ как точность</div></div>
+    </a>
+
+    <a class="ov-cell" href="#d3">
+      <div class="num">03 · NODE</div>
+      <div class="lockup">
+        <span class="wm wm-md">
+          <span class="word">digital</span>
+          <svg viewBox="0 0 32 32" width="0.7em" height="0.7em" style="margin-left: 0.12em; transform: translateY(-0.04em);">
+            <g stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round">
+              <line x1="16" y1="2" x2="16" y2="30"/>
+              <line x1="2" y1="16" x2="30" y2="16"/>
+            </g>
+            <circle cx="16" cy="16" r="3.4" fill="currentColor"/>
+          </svg>
+        </span>
+      </div>
+      <div class="name-row"><div class="nm">Узел</div><div class="tg">+ как связь</div></div>
+    </a>
+
+    <a class="ov-cell" href="#d4">
+      <div class="num">04 · MONOGRAM</div>
+      <div class="lockup">
+        <svg viewBox="0 0 80 80" width="92" height="92">
+          <rect width="80" height="80" rx="14" fill="var(--ink)"/>
+          <g fill="var(--paper)" font-family="Geist, sans-serif" font-weight="600">
+            <text x="40" y="50" text-anchor="middle" font-size="42" letter-spacing="-1">Д</text>
+          </g>
+          <rect x="58" y="14" width="10" height="10" fill="var(--accent)"/>
+        </svg>
+      </div>
+      <div class="name-row"><div class="nm">Монограмма</div><div class="tg">Д+ / D+ плашка</div></div>
+    </a>
+
+    <a class="ov-cell" href="#d5">
+      <div class="num">05 · SUPERSCRIPT</div>
+      <div class="lockup">
+        <span class="wm wm-md" style="align-items: flex-start;">
+          <span class="word">digital</span>
+          <span style="font-size: 0.42em; font-weight: 500; margin-left: 0.08em; line-height: 1; transform: translateY(0.1em);">+</span>
+        </span>
+      </div>
+      <div class="name-row"><div class="nm">Регистр</div><div class="tg">+ как версия / ®-метка</div></div>
+    </a>
+
+    <a class="ov-cell" href="#d6">
+      <div class="num">06 · GLYPH</div>
+      <div class="lockup">
+        <span class="wm wm-md">
+          <span class="word">digital</span>
+          <svg viewBox="0 0 40 40" width="0.78em" height="0.78em" style="margin-left: 0.1em; transform: translateY(-0.04em);">
+            <path d="M16 4 H24 V16 H36 V24 H24 V36 H16 V24 H4 V16 H16 Z" fill="currentColor"/>
+          </svg>
+        </span>
+      </div>
+      <div class="name-row"><div class="nm">Авторский глиф</div><div class="tg">типографический +</div></div>
+    </a>
+  </div>
+</section>
+
+
+<!-- ============================================================= -->
+<!-- DIRECTION 01 — PIXEL                                           -->
+<!-- ============================================================= -->
+<section class="shell direction" id="d1" data-screen-label="01 Pixel">
+  <div class="dir-head">
+    <div class="dir-num">01</div>
+    <h3 class="dir-title"><span class="tag">Направление · Pixel</span>«+» как единичный пиксель</h3>
+    <p class="dir-desc">Самая лаконичная трактовка. Знак «+» заменён на маленький идеально-квадратный пиксель той же высоты, что и x-height. Это знак «один шаг» в digital — премиально-сдержанная подача, легко масштабируется до фавикона.</p>
+  </div>
+
+  <div class="hero-pair">
+    <div class="hero-stage light">
+      <div class="badge">A / На светлом</div>
+      <div class="stack">
+        <span class="wm wm-xl">
+          <span class="word">digital</span>
+          <span class="glyph" style="width: 0.42em; height: 0.42em; margin-left: 0.12em; background: var(--ink);"></span>
+        </span>
+        <div class="desc-row"><div class="desc-line"></div><div class="cyr">ДИДЖИТАЛ ПЛЮС</div></div>
+      </div>
+    </div>
+    <div class="hero-stage dark">
+      <div class="badge">B / На тёмном · акцент</div>
+      <div class="stack">
+        <span class="wm wm-xl">
+          <span class="word">digital</span>
+          <span class="glyph" style="width: 0.42em; height: 0.42em; margin-left: 0.12em; background: var(--accent);"></span>
+        </span>
+        <div class="desc-row"><div class="desc-line"></div><div class="cyr">ДИДЖИТАЛ ПЛЮС</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="variants">
+    <div class="variant">
+      <div class="vlabel">Горизонталь</div>
+      <span class="wm wm-lg">
+        <span class="word">digital</span>
+        <span class="glyph" style="width: 0.42em; height: 0.42em; margin-left: 0.12em; background: currentColor;"></span>
+      </span>
+    </div>
+    <div class="variant">
+      <div class="vlabel">Вертикаль</div>
+      <div class="stack center" style="gap: 12px;">
+        <span class="wm wm-md">
+          <span class="word">d+</span>
+        </span>
+        <div class="cyr">Д·ПЛЮС</div>
+      </div>
+    </div>
+    <div class="variant dark">
+      <div class="vlabel">Моно · инверсия</div>
+      <span class="wm wm-lg">
+        <span class="word">digital</span>
+        <span class="glyph" style="width: 0.42em; height: 0.42em; margin-left: 0.12em; background: currentColor;"></span>
+      </span>
+    </div>
+  </div>
+
+  <div class="construction">
+    <div class="constr-stage">
+      <svg viewBox="0 0 600 220" width="100%" style="max-width: 540px;">
+        <!-- baseline -->
+        <line x1="0" y1="160" x2="600" y2="160" stroke="#E2553A" stroke-dasharray="3 4" stroke-width="1"/>
+        <line x1="0" y1="80" x2="600" y2="80" stroke="#E2553A" stroke-dasharray="3 4" stroke-width="1"/>
+        <line x1="0" y1="40" x2="600" y2="40" stroke="#0E1117" stroke-dasharray="2 4" stroke-width="0.6" opacity="0.3"/>
+        <text x="6" y="36" font-family="Geist Mono" font-size="9" fill="#6E6960">CAP</text>
+        <text x="6" y="76" font-family="Geist Mono" font-size="9" fill="#E2553A">X-HEIGHT</text>
+        <text x="6" y="176" font-family="Geist Mono" font-size="9" fill="#E2553A">BASELINE</text>
+        <!-- word -->
+        <text x="60" y="160" font-family="Geist" font-size="120" font-weight="500" fill="#0E1117" letter-spacing="-5">digital</text>
+        <!-- pixel -->
+        <rect x="430" y="120" width="40" height="40" fill="#0E1117"/>
+        <!-- measurements -->
+        <line x1="430" y1="200" x2="470" y2="200" stroke="#E2553A" stroke-width="0.8"/>
+        <line x1="430" y1="195" x2="430" y2="205" stroke="#E2553A" stroke-width="0.8"/>
+        <line x1="470" y1="195" x2="470" y2="205" stroke="#E2553A" stroke-width="0.8"/>
+        <text x="450" y="214" text-anchor="middle" font-family="Geist Mono" font-size="9" fill="#E2553A">1u</text>
+        <line x1="395" y1="200" x2="430" y2="200" stroke="#0E1117" stroke-width="0.8" opacity="0.4"/>
+        <text x="412" y="214" text-anchor="middle" font-family="Geist Mono" font-size="9" fill="#6E6960">0.85u</text>
+      </svg>
+    </div>
+    <div class="constr-notes">
+      <div class="label" style="margin-bottom: 4px;">Сетка построения</div>
+      <div class="pt"><div class="n">A</div><div><div class="ttl">Размер «+» = x-height шрифта</div><div class="desc">Пиксель совпадает по высоте со строчными буквами — оптически читается как единая глифа.</div></div></div>
+      <div class="pt"><div class="n">B</div><div><div class="ttl">Отступ = 0.85u</div><div class="desc">Между «l» и пикселем — чуть меньше единицы. Это даёт ощущение «прилипания» без слияния.</div></div></div>
+      <div class="pt"><div class="n">C</div><div><div class="ttl">Охранное поле = 2u со всех сторон</div><div class="desc">Где u — сторона пикселя. На фавиконе охранное поле уменьшается до 1u.</div></div></div>
+    </div>
+  </div>
+
+  <div class="mockups">
+    <div class="mock">
+      <div class="mlabel">Аватар · приложения</div>
+      <div class="stage">
+        <div class="avatar-row">
+          <div class="avatar"><span class="wm wm-sm"><span class="word">d</span><span class="glyph" style="width: 0.42em; height: 0.42em; margin-left: 0.1em; background: currentColor;"></span></span></div>
+          <div class="avatar light"><span class="wm wm-sm"><span class="word">d</span><span class="glyph" style="width: 0.42em; height: 0.42em; margin-left: 0.1em; background: currentColor;"></span></span></div>
+          <div class="avatar accent"><span class="wm wm-sm"><span class="word">d</span><span class="glyph" style="width: 0.42em; height: 0.42em; margin-left: 0.1em; background: currentColor;"></span></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mlabel">Визитка</div>
+      <div class="stage">
+        <div class="card">
+          <div class="top-row">
+            <span class="wm" style="font-size: 22px;"><span class="word">digital</span><span class="glyph" style="width: 0.42em; height: 0.42em; margin-left: 0.12em; background: currentColor;"></span></span>
+            <div class="pin"></div>
+          </div>
+          <div class="info">
+            <div>Анна Соколова</div>
+            <div class="role">Founder · CEO</div>
+            <div style="margin-top: 8px;">+7 916 000 00 00 · digitalplus.ru</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mlabel">Сайт · фавикон</div>
+      <div class="stage" style="align-items: stretch;">
+        <div class="browser" style="align-self: stretch;">
+          <div class="bar"><div class="b"></div><div class="b"></div><div class="b"></div>
+            <div class="tab"><div class="favicon"><div style="width: 10px; height: 10px; background: var(--ink); position: relative;"></div></div>digitalplus.ru</div>
+          </div>
+          <div class="url"><span class="lock">●</span>digitalplus.ru</div>
+          <div class="body"><span class="wm" style="font-size: 22px;"><span class="word">digital</span><span class="glyph" style="width: 0.42em; height: 0.42em; margin-left: 0.12em; background: currentColor;"></span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================= -->
+<!-- DIRECTION 02 — CROSSHAIR                                       -->
+<!-- ============================================================= -->
+<section class="shell direction" id="d2" data-screen-label="02 Crosshair">
+  <div class="dir-head">
+    <div class="dir-num">02</div>
+    <h3 class="dir-title"><span class="tag">Направление · Crosshair</span>«+» как инженерный прицел</h3>
+    <p class="dir-desc">«+» нарисован как точностный знак с засечками-каплями на концах — отсылка к CAD, разметке, спецификациям. Подача максимально техничная, серьёзная. Подходит компании, которая делает ФЗ-152 и поддержку IT-проектов.</p>
+  </div>
+
+  <div class="hero-pair">
+    <div class="hero-stage light">
+      <div class="badge">A / На светлом</div>
+      <div class="stack">
+        <span class="wm wm-xl">
+          <span class="word">digital</span>
+          <svg viewBox="0 0 32 32" width="0.72em" height="0.72em" style="margin-left: 0.14em; transform: translateY(-0.06em);">
+            <g stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="square">
+              <line x1="16" y1="3" x2="16" y2="29"/>
+              <line x1="3" y1="16" x2="29" y2="16"/>
+              <line x1="11" y1="3" x2="21" y2="3"/>
+              <line x1="11" y1="29" x2="21" y2="29"/>
+              <line x1="3" y1="11" x2="3" y2="21"/>
+              <line x1="29" y1="11" x2="29" y2="21"/>
+            </g>
+          </svg>
+        </span>
+        <div class="desc-row"><div class="desc-line"></div><div class="cyr">ДИДЖИТАЛ ПЛЮС</div></div>
+      </div>
+    </div>
+    <div class="hero-stage dark">
+      <div class="badge">B / На тёмном · акцент</div>
+      <div class="stack">
+        <span class="wm wm-xl" style="color: var(--paper);">
+          <span class="word">digital</span>
+          <svg viewBox="0 0 32 32" width="0.72em" height="0.72em" style="margin-left: 0.14em; transform: translateY(-0.06em);">
+            <g stroke="#E2553A" stroke-width="2.4" fill="none" stroke-linecap="square">
+              <line x1="16" y1="3" x2="16" y2="29"/>
+              <line x1="3" y1="16" x2="29" y2="16"/>
+              <line x1="11" y1="3" x2="21" y2="3"/>
+              <line x1="11" y1="29" x2="21" y2="29"/>
+              <line x1="3" y1="11" x2="3" y2="21"/>
+              <line x1="29" y1="11" x2="29" y2="21"/>
+            </g>
+          </svg>
+        </span>
+        <div class="desc-row"><div class="desc-line"></div><div class="cyr">ДИДЖИТАЛ ПЛЮС</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="variants">
+    <div class="variant">
+      <div class="vlabel">Горизонталь</div>
+      <span class="wm wm-lg">
+        <span class="word">digital</span>
+        <svg viewBox="0 0 32 32" width="0.72em" height="0.72em" style="margin-left: 0.14em; transform: translateY(-0.06em);">
+          <g stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="square">
+            <line x1="16" y1="3" x2="16" y2="29"/><line x1="3" y1="16" x2="29" y2="16"/>
+            <line x1="11" y1="3" x2="21" y2="3"/><line x1="11" y1="29" x2="21" y2="29"/>
+            <line x1="3" y1="11" x2="3" y2="21"/><line x1="29" y1="11" x2="29" y2="21"/>
+          </g>
+        </svg>
+      </span>
+    </div>
+    <div class="variant">
+      <div class="vlabel">Вертикаль / mark only</div>
+      <svg viewBox="0 0 80 80" width="92" height="92">
+        <g stroke="#0E1117" stroke-width="6" fill="none" stroke-linecap="square">
+          <line x1="40" y1="6" x2="40" y2="74"/><line x1="6" y1="40" x2="74" y2="40"/>
+          <line x1="28" y1="6" x2="52" y2="6"/><line x1="28" y1="74" x2="52" y2="74"/>
+          <line x1="6" y1="28" x2="6" y2="52"/><line x1="74" y1="28" x2="74" y2="52"/>
+        </g>
+      </svg>
+    </div>
+    <div class="variant dark">
+      <div class="vlabel">Моно · инверсия</div>
+      <span class="wm wm-lg">
+        <span class="word">digital</span>
+        <svg viewBox="0 0 32 32" width="0.72em" height="0.72em" style="margin-left: 0.14em; transform: translateY(-0.06em);">
+          <g stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="square">
+            <line x1="16" y1="3" x2="16" y2="29"/><line x1="3" y1="16" x2="29" y2="16"/>
+            <line x1="11" y1="3" x2="21" y2="3"/><line x1="11" y1="29" x2="21" y2="29"/>
+            <line x1="3" y1="11" x2="3" y2="21"/><line x1="29" y1="11" x2="29" y2="21"/>
+          </g>
+        </svg>
+      </span>
+    </div>
+  </div>
+
+  <div class="construction">
+    <div class="constr-stage">
+      <svg viewBox="0 0 400 320" width="100%" style="max-width: 380px;">
+        <!-- center cross -->
+        <g stroke="#0E1117" stroke-width="14" fill="none" stroke-linecap="square">
+          <line x1="200" y1="40" x2="200" y2="280"/>
+          <line x1="80" y1="160" x2="320" y2="160"/>
+          <line x1="170" y1="40" x2="230" y2="40"/>
+          <line x1="170" y1="280" x2="230" y2="280"/>
+          <line x1="80" y1="130" x2="80" y2="190"/>
+          <line x1="320" y1="130" x2="320" y2="190"/>
+        </g>
+        <!-- markers -->
+        <g stroke="#E2553A" stroke-width="0.8" fill="none">
+          <line x1="80" y1="296" x2="320" y2="296"/>
+          <line x1="80" y1="290" x2="80" y2="302"/>
+          <line x1="200" y1="290" x2="200" y2="302"/>
+          <line x1="320" y1="290" x2="320" y2="302"/>
+        </g>
+        <text x="140" y="314" text-anchor="middle" font-family="Geist Mono" font-size="10" fill="#E2553A">3u</text>
+        <text x="260" y="314" text-anchor="middle" font-family="Geist Mono" font-size="10" fill="#E2553A">3u</text>
+        <g stroke="#E2553A" stroke-width="0.8" fill="none">
+          <line x1="340" y1="40" x2="340" y2="280"/>
+          <line x1="334" y1="40" x2="346" y2="40"/>
+          <line x1="334" y1="280" x2="346" y2="280"/>
+          <line x1="334" y1="160" x2="346" y2="160"/>
+        </g>
+        <text x="360" y="106" font-family="Geist Mono" font-size="10" fill="#E2553A">3u</text>
+        <text x="360" y="226" font-family="Geist Mono" font-size="10" fill="#E2553A">3u</text>
+        <text x="200" y="18" text-anchor="middle" font-family="Geist Mono" font-size="10" fill="#6E6960">STROKE = 0.5u</text>
+      </svg>
+    </div>
+    <div class="constr-notes">
+      <div class="label" style="margin-bottom: 4px;">Сетка построения</div>
+      <div class="pt"><div class="n">A</div><div><div class="ttl">Сетка 6u × 6u</div><div class="desc">Знак строится на квадратной сетке, центральный «+» — 3u в каждую сторону.</div></div></div>
+      <div class="pt"><div class="n">B</div><div><div class="ttl">Толщина штриха = 0.5u</div><div class="desc">Засечки имеют ту же толщину — без оптической корректировки.</div></div></div>
+      <div class="pt"><div class="n">C</div><div><div class="ttl">Stroke-cap = square</div><div class="desc">Никаких скруглений — это технический знак, не дружелюбный.</div></div></div>
+    </div>
+  </div>
+
+  <div class="mockups">
+    <div class="mock">
+      <div class="mlabel">Аватар · приложения</div>
+      <div class="stage">
+        <div class="avatar-row">
+          <div class="avatar">
+            <svg viewBox="0 0 32 32" width="36" height="36">
+              <g stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="square">
+                <line x1="16" y1="3" x2="16" y2="29"/><line x1="3" y1="16" x2="29" y2="16"/>
+                <line x1="11" y1="3" x2="21" y2="3"/><line x1="11" y1="29" x2="21" y2="29"/>
+                <line x1="3" y1="11" x2="3" y2="21"/><line x1="29" y1="11" x2="29" y2="21"/>
+              </g>
+            </svg>
+          </div>
+          <div class="avatar light">
+            <svg viewBox="0 0 32 32" width="36" height="36">
+              <g stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="square">
+                <line x1="16" y1="3" x2="16" y2="29"/><line x1="3" y1="16" x2="29" y2="16"/>
+                <line x1="11" y1="3" x2="21" y2="3"/><line x1="11" y1="29" x2="21" y2="29"/>
+                <line x1="3" y1="11" x2="3" y2="21"/><line x1="29" y1="11" x2="29" y2="21"/>
+              </g>
+            </svg>
+          </div>
+          <div class="avatar accent">
+            <svg viewBox="0 0 32 32" width="36" height="36">
+              <g stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="square">
+                <line x1="16" y1="3" x2="16" y2="29"/><line x1="3" y1="16" x2="29" y2="16"/>
+                <line x1="11" y1="3" x2="21" y2="3"/><line x1="11" y1="29" x2="21" y2="29"/>
+                <line x1="3" y1="11" x2="3" y2="21"/><line x1="29" y1="11" x2="29" y2="21"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mlabel">Визитка · тёмная</div>
+      <div class="stage">
+        <div class="card dark">
+          <div class="top-row">
+            <span class="wm" style="font-size: 22px;">
+              <span class="word">digital</span>
+              <svg viewBox="0 0 32 32" width="0.72em" height="0.72em" style="margin-left: 0.14em; transform: translateY(-0.06em);">
+                <g stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="square">
+                  <line x1="16" y1="3" x2="16" y2="29"/><line x1="3" y1="16" x2="29" y2="16"/>
+                  <line x1="11" y1="3" x2="21" y2="3"/><line x1="11" y1="29" x2="21" y2="29"/>
+                  <line x1="3" y1="11" x2="3" y2="21"/><line x1="29" y1="11" x2="29" y2="21"/>
+                </g>
+              </svg>
+            </span>
+            <div class="pin"></div>
+          </div>
+          <div class="info">
+            <div>Михаил Орлов</div>
+            <div class="role">Tech Lead · CRM</div>
+            <div style="margin-top: 8px;">m.orlov@digitalplus.ru</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mlabel">Сайт · фавикон</div>
+      <div class="stage" style="align-items: stretch;">
+        <div class="browser" style="align-self: stretch;">
+          <div class="bar"><div class="b"></div><div class="b"></div><div class="b"></div>
+            <div class="tab"><div class="favicon">
+              <svg viewBox="0 0 32 32" width="14" height="14">
+                <g stroke="#0E1117" stroke-width="3.4" fill="none" stroke-linecap="square">
+                  <line x1="16" y1="3" x2="16" y2="29"/><line x1="3" y1="16" x2="29" y2="16"/>
+                  <line x1="11" y1="3" x2="21" y2="3"/><line x1="11" y1="29" x2="21" y2="29"/>
+                  <line x1="3" y1="11" x2="3" y2="21"/><line x1="29" y1="11" x2="29" y2="21"/>
+                </g>
+              </svg>
+            </div>digitalplus.ru</div>
+          </div>
+          <div class="url"><span class="lock">●</span>digitalplus.ru</div>
+          <div class="body">
+            <span class="wm" style="font-size: 22px;">
+              <span class="word">digital</span>
+              <svg viewBox="0 0 32 32" width="0.72em" height="0.72em" style="margin-left: 0.14em; transform: translateY(-0.06em);">
+                <g stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="square">
+                  <line x1="16" y1="3" x2="16" y2="29"/><line x1="3" y1="16" x2="29" y2="16"/>
+                  <line x1="11" y1="3" x2="21" y2="3"/><line x1="11" y1="29" x2="21" y2="29"/>
+                  <line x1="3" y1="11" x2="3" y2="21"/><line x1="29" y1="11" x2="29" y2="21"/>
+                </g>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================= -->
+<!-- DIRECTION 03 — NODE                                            -->
+<!-- ============================================================= -->
+<section class="shell direction" id="d3" data-screen-label="03 Node">
+  <div class="dir-head">
+    <div class="dir-num">03</div>
+    <h3 class="dir-title"><span class="tag">Направление · Node</span>«+» как сетевой узел</h3>
+    <p class="dir-desc">Тонкие лучи сходятся в плотную точку — метафора «плюс» как точки соединения: систем, интеграций, CRM. Самое «продуктовое» направление, читается как иконка из инженерного UI.</p>
+  </div>
+
+  <div class="hero-pair">
+    <div class="hero-stage light">
+      <div class="badge">A / На светлом</div>
+      <div class="stack">
+        <span class="wm wm-xl">
+          <span class="word">digital</span>
+          <svg viewBox="0 0 32 32" width="0.72em" height="0.72em" style="margin-left: 0.14em; transform: translateY(-0.04em);">
+            <g stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round">
+              <line x1="16" y1="2" x2="16" y2="30"/><line x1="2" y1="16" x2="30" y2="16"/>
+            </g>
+            <circle cx="16" cy="16" r="3.6" fill="currentColor"/>
+          </svg>
+        </span>
+        <div class="desc-row"><div class="desc-line"></div><div class="cyr">ДИДЖИТАЛ ПЛЮС</div></div>
+      </div>
+    </div>
+    <div class="hero-stage dark">
+      <div class="badge">B / На тёмном · акцент</div>
+      <div class="stack">
+        <span class="wm wm-xl" style="color: var(--paper);">
+          <span class="word">digital</span>
+          <svg viewBox="0 0 32 32" width="0.72em" height="0.72em" style="margin-left: 0.14em; transform: translateY(-0.04em);">
+            <g stroke="#E2553A" stroke-width="2.2" fill="none" stroke-linecap="round">
+              <line x1="16" y1="2" x2="16" y2="30"/><line x1="2" y1="16" x2="30" y2="16"/>
+            </g>
+            <circle cx="16" cy="16" r="3.6" fill="#E2553A"/>
+          </svg>
+        </span>
+        <div class="desc-row"><div class="desc-line"></div><div class="cyr">ДИДЖИТАЛ ПЛЮС</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="variants">
+    <div class="variant">
+      <div class="vlabel">Горизонталь</div>
+      <span class="wm wm-lg">
+        <span class="word">digital</span>
+        <svg viewBox="0 0 32 32" width="0.72em" height="0.72em" style="margin-left: 0.14em; transform: translateY(-0.04em);">
+          <g stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round">
+            <line x1="16" y1="2" x2="16" y2="30"/><line x1="2" y1="16" x2="30" y2="16"/>
+          </g>
+          <circle cx="16" cy="16" r="3.6" fill="currentColor"/>
+        </svg>
+      </span>
+    </div>
+    <div class="variant">
+      <div class="vlabel">Mark only</div>
+      <svg viewBox="0 0 80 80" width="92" height="92">
+        <g stroke="#0E1117" stroke-width="5" fill="none" stroke-linecap="round">
+          <line x1="40" y1="6" x2="40" y2="74"/>
+          <line x1="6" y1="40" x2="74" y2="40"/>
+        </g>
+        <circle cx="40" cy="40" r="10" fill="#0E1117"/>
+      </svg>
+    </div>
+    <div class="variant dark">
+      <div class="vlabel">Моно · инверсия</div>
+      <span class="wm wm-lg">
+        <span class="word">digital</span>
+        <svg viewBox="0 0 32 32" width="0.72em" height="0.72em" style="margin-left: 0.14em; transform: translateY(-0.04em);">
+          <g stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round">
+            <line x1="16" y1="2" x2="16" y2="30"/><line x1="2" y1="16" x2="30" y2="16"/>
+          </g>
+          <circle cx="16" cy="16" r="3.6" fill="currentColor"/>
+        </svg>
+      </span>
+    </div>
+  </div>
+
+  <div class="construction">
+    <div class="constr-stage">
+      <svg viewBox="0 0 400 320" width="100%" style="max-width: 380px;">
+        <g stroke="#0E1117" stroke-width="10" fill="none" stroke-linecap="round">
+          <line x1="200" y1="50" x2="200" y2="270"/>
+          <line x1="90" y1="160" x2="310" y2="160"/>
+        </g>
+        <circle cx="200" cy="160" r="22" fill="#0E1117"/>
+        <!-- guides -->
+        <circle cx="200" cy="160" r="22" stroke="#E2553A" stroke-width="0.8" fill="none" stroke-dasharray="2 3"/>
+        <g stroke="#E2553A" stroke-width="0.8" fill="none">
+          <line x1="200" y1="20" x2="200" y2="300"/>
+          <line x1="60" y1="160" x2="340" y2="160"/>
+        </g>
+        <text x="226" y="158" font-family="Geist Mono" font-size="10" fill="#E2553A">node = 1u</text>
+        <text x="200" y="14" text-anchor="middle" font-family="Geist Mono" font-size="10" fill="#6E6960">stroke = 0.4u</text>
+        <text x="106" y="290" font-family="Geist Mono" font-size="10" fill="#6E6960">arm = 5u</text>
+      </svg>
+    </div>
+    <div class="constr-notes">
+      <div class="label" style="margin-bottom: 4px;">Сетка построения</div>
+      <div class="pt"><div class="n">A</div><div><div class="ttl">Узел = 1u (точка)</div><div class="desc">Радиус центрального диска — единица сетки.</div></div></div>
+      <div class="pt"><div class="n">B</div><div><div class="ttl">Лучи = 5u, штрих = 0.4u</div><div class="desc">Тонкие линии не «душат» центральную точку, узел остаётся главным.</div></div></div>
+      <div class="pt"><div class="n">C</div><div><div class="ttl">Lineсap = round</div><div class="desc">Скруглённые концы — связи дотягиваются «мягко», в отличие от технического Crosshair.</div></div></div>
+    </div>
+  </div>
+
+  <div class="mockups">
+    <div class="mock">
+      <div class="mlabel">Аватар · приложения</div>
+      <div class="stage">
+        <div class="avatar-row">
+          <div class="avatar">
+            <svg viewBox="0 0 32 32" width="36" height="36">
+              <g stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round">
+                <line x1="16" y1="2" x2="16" y2="30"/><line x1="2" y1="16" x2="30" y2="16"/>
+              </g>
+              <circle cx="16" cy="16" r="3.6" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="avatar light">
+            <svg viewBox="0 0 32 32" width="36" height="36">
+              <g stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round">
+                <line x1="16" y1="2" x2="16" y2="30"/><line x1="2" y1="16" x2="30" y2="16"/>
+              </g>
+              <circle cx="16" cy="16" r="3.6" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="avatar accent">
+            <svg viewBox="0 0 32 32" width="36" height="36">
+              <g stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round">
+                <line x1="16" y1="2" x2="16" y2="30"/><line x1="2" y1="16" x2="30" y2="16"/>
+              </g>
+              <circle cx="16" cy="16" r="3.6" fill="currentColor"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mlabel">Визитка</div>
+      <div class="stage">
+        <div class="card">
+          <div class="top-row">
+            <span class="wm" style="font-size: 22px;">
+              <span class="word">digital</span>
+              <svg viewBox="0 0 32 32" width="0.72em" height="0.72em" style="margin-left: 0.14em; transform: translateY(-0.04em);">
+                <g stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round">
+                  <line x1="16" y1="2" x2="16" y2="30"/><line x1="2" y1="16" x2="30" y2="16"/>
+                </g>
+                <circle cx="16" cy="16" r="3.6" fill="currentColor"/>
+              </svg>
+            </span>
+            <div class="pin"></div>
+          </div>
+          <div class="info">
+            <div>Елена Зимина</div>
+            <div class="role">Project lead · CRM</div>
+            <div style="margin-top: 8px;">e.zimina@digitalplus.ru</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mlabel">Сайт · хедер</div>
+      <div class="stage" style="align-items: stretch;">
+        <div class="browser" style="align-self: stretch;">
+          <div class="bar"><div class="b"></div><div class="b"></div><div class="b"></div>
+            <div class="tab"><div class="favicon">
+              <svg viewBox="0 0 32 32" width="14" height="14">
+                <g stroke="#0E1117" stroke-width="3" fill="none" stroke-linecap="round">
+                  <line x1="16" y1="3" x2="16" y2="29"/><line x1="3" y1="16" x2="29" y2="16"/>
+                </g>
+                <circle cx="16" cy="16" r="4.5" fill="#0E1117"/>
+              </svg>
+            </div>digitalplus.ru</div>
+          </div>
+          <div class="url"><span class="lock">●</span>digitalplus.ru</div>
+          <div class="body">
+            <span class="wm" style="font-size: 22px;">
+              <span class="word">digital</span>
+              <svg viewBox="0 0 32 32" width="0.72em" height="0.72em" style="margin-left: 0.14em; transform: translateY(-0.04em);">
+                <g stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round">
+                  <line x1="16" y1="2" x2="16" y2="30"/><line x1="2" y1="16" x2="30" y2="16"/>
+                </g>
+                <circle cx="16" cy="16" r="3.6" fill="currentColor"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================= -->
+<!-- DIRECTION 04 — MONOGRAM                                        -->
+<!-- ============================================================= -->
+<section class="shell direction" id="d4" data-screen-label="04 Monogram">
+  <div class="dir-head">
+    <div class="dir-num">04</div>
+    <h3 class="dir-title"><span class="tag">Направление · Monogram</span>Монограмма «Д+» / «D+» в плашке</h3>
+    <p class="dir-desc">Самостоятельный знак-плашка, который живёт без вордмарка. Идеально как аватар, фавикон, иконка приложения. Маленький акцентный квадрат — отсылка к идее «пиксель / шаг плюс».</p>
+  </div>
+
+  <div class="hero-pair">
+    <div class="hero-stage light">
+      <div class="badge">A / Д+ кириллица</div>
+      <div style="display: flex; gap: 64px; align-items: center;">
+        <svg viewBox="0 0 200 200" width="240" height="240">
+          <rect width="200" height="200" rx="32" fill="#0E1117"/>
+          <text x="100" y="128" text-anchor="middle" font-family="Geist" font-size="118" font-weight="600" fill="#F4F1EB" letter-spacing="-3">Д</text>
+          <rect x="148" y="36" width="22" height="22" fill="#E2553A"/>
+        </svg>
+        <div class="stack">
+          <span class="wm wm-md">
+            <span class="word">digital</span>
+            <span style="font-size: 0.78em; font-weight: 500; margin-left: 0.06em; line-height: 1;">+</span>
+          </span>
+          <div class="cyr">ДИДЖИТАЛ ПЛЮС</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-stage dark">
+      <div class="badge">B / D+ латиница · инверсия</div>
+      <div style="display: flex; gap: 64px; align-items: center;">
+        <svg viewBox="0 0 200 200" width="240" height="240">
+          <rect width="200" height="200" rx="32" fill="#F4F1EB"/>
+          <text x="100" y="132" text-anchor="middle" font-family="Geist" font-size="124" font-weight="600" fill="#0E1117" letter-spacing="-4">D</text>
+          <rect x="148" y="36" width="22" height="22" fill="#E2553A"/>
+        </svg>
+        <div class="stack">
+          <span class="wm wm-md" style="color: var(--paper);">
+            <span class="word">digital</span>
+            <span style="font-size: 0.78em; font-weight: 500; margin-left: 0.06em; line-height: 1;">+</span>
+          </span>
+          <div class="cyr">DIGITAL PLUS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="variants">
+    <div class="variant">
+      <div class="vlabel">Лок-ап · горизонталь</div>
+      <div style="display: flex; gap: 22px; align-items: center;">
+        <svg viewBox="0 0 80 80" width="74" height="74">
+          <rect width="80" height="80" rx="12" fill="#0E1117"/>
+          <text x="40" y="52" text-anchor="middle" font-family="Geist" font-size="46" font-weight="600" fill="#F4F1EB" letter-spacing="-1">Д</text>
+          <rect x="58" y="14" width="10" height="10" fill="#E2553A"/>
+        </svg>
+        <span class="wm" style="font-size: 36px;">
+          <span class="word">digital</span>
+          <span style="font-size: 0.78em; font-weight: 500; margin-left: 0.06em;">+</span>
+        </span>
+      </div>
+    </div>
+    <div class="variant">
+      <div class="vlabel">Mark only · Д+</div>
+      <svg viewBox="0 0 120 120" width="120" height="120">
+        <rect width="120" height="120" rx="20" fill="#0E1117"/>
+        <text x="60" y="80" text-anchor="middle" font-family="Geist" font-size="72" font-weight="600" fill="#F4F1EB" letter-spacing="-2">Д</text>
+        <rect x="86" y="22" width="14" height="14" fill="#E2553A"/>
+      </svg>
+    </div>
+    <div class="variant dark">
+      <div class="vlabel">Mark only · D+</div>
+      <svg viewBox="0 0 120 120" width="120" height="120">
+        <rect width="120" height="120" rx="20" fill="#F4F1EB"/>
+        <text x="60" y="82" text-anchor="middle" font-family="Geist" font-size="78" font-weight="600" fill="#0E1117" letter-spacing="-3">D</text>
+        <rect x="86" y="22" width="14" height="14" fill="#E2553A"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="construction">
+    <div class="constr-stage">
+      <svg viewBox="0 0 400 320" width="100%" style="max-width: 380px;">
+        <rect x="60" y="40" width="240" height="240" rx="36" fill="#0E1117"/>
+        <text x="180" y="200" text-anchor="middle" font-family="Geist" font-size="158" font-weight="600" fill="#F4F1EB" letter-spacing="-4">Д</text>
+        <rect x="244" y="68" width="26" height="26" fill="#E2553A"/>
+        <!-- guides -->
+        <g stroke="#E2553A" stroke-width="0.8" fill="none" stroke-dasharray="3 4">
+          <line x1="244" y1="20" x2="244" y2="300"/>
+          <line x1="270" y1="20" x2="270" y2="300"/>
+          <line x1="60" y1="68" x2="340" y2="68"/>
+          <line x1="60" y1="94" x2="340" y2="94"/>
+        </g>
+        <text x="180" y="312" text-anchor="middle" font-family="Geist Mono" font-size="10" fill="#E2553A">PLATE = 12u · RADIUS = 1.8u · PIXEL = 1.3u</text>
+      </svg>
+    </div>
+    <div class="constr-notes">
+      <div class="label" style="margin-bottom: 4px;">Сетка построения</div>
+      <div class="pt"><div class="n">A</div><div><div class="ttl">Плашка 12u · радиус 1.8u</div><div class="desc">Скругление достаточно сильное, чтобы знак работал как иконка приложения, но не «капсула».</div></div></div>
+      <div class="pt"><div class="n">B</div><div><div class="ttl">Буква занимает 70% по высоте</div><div class="desc">Базовая линия буквы — на оптической середине плашки.</div></div></div>
+      <div class="pt"><div class="n">C</div><div><div class="ttl">Акцентный пиксель — 1.3u</div><div class="desc">Сидит в правом верхнем квадранте, отступ от края = 1.3u.</div></div></div>
+    </div>
+  </div>
+
+  <div class="mockups">
+    <div class="mock">
+      <div class="mlabel">Иконка приложения</div>
+      <div class="stage">
+        <div style="display: flex; gap: 14px;">
+          <svg viewBox="0 0 80 80" width="72" height="72">
+            <rect width="80" height="80" rx="18" fill="#0E1117"/>
+            <text x="40" y="54" text-anchor="middle" font-family="Geist" font-size="48" font-weight="600" fill="#F4F1EB" letter-spacing="-1">Д</text>
+            <rect x="58" y="14" width="10" height="10" fill="#E2553A"/>
+          </svg>
+          <svg viewBox="0 0 80 80" width="72" height="72">
+            <rect width="80" height="80" rx="18" fill="#F4F1EB" stroke="#DCD6CB"/>
+            <text x="40" y="56" text-anchor="middle" font-family="Geist" font-size="50" font-weight="600" fill="#0E1117" letter-spacing="-2">D</text>
+            <rect x="58" y="14" width="10" height="10" fill="#E2553A"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mlabel">Визитка с монограммой</div>
+      <div class="stage">
+        <div class="card dark">
+          <div class="top-row">
+            <svg viewBox="0 0 80 80" width="38" height="38">
+              <rect width="80" height="80" rx="14" fill="#F4F1EB"/>
+              <text x="40" y="54" text-anchor="middle" font-family="Geist" font-size="48" font-weight="600" fill="#0E1117" letter-spacing="-1">Д</text>
+              <rect x="58" y="14" width="10" height="10" fill="#E2553A"/>
+            </svg>
+            <div class="pin"></div>
+          </div>
+          <div class="info">
+            <div>Иван Беляев</div>
+            <div class="role">152-ФЗ · аудит</div>
+            <div style="margin-top: 8px;">i.belyaev@digitalplus.ru</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mlabel">Чат · профиль</div>
+      <div class="stage">
+        <div style="display: flex; gap: 12px; align-items: center; width: 100%;">
+          <div style="width: 44px; height: 44px; border-radius: 50%; overflow: hidden; flex-shrink: 0;">
+            <svg viewBox="0 0 80 80" width="44" height="44">
+              <rect width="80" height="80" fill="#0E1117"/>
+              <text x="40" y="56" text-anchor="middle" font-family="Geist" font-size="50" font-weight="600" fill="#F4F1EB" letter-spacing="-2">Д</text>
+              <rect x="60" y="12" width="10" height="10" fill="#E2553A"/>
+            </svg>
+          </div>
+          <div>
+            <div style="font-weight: 600; font-size: 14px;">Диджитал+</div>
+            <div style="font-size: 12px; color: var(--muted); font-family: 'Geist Mono', monospace;">last seen recently</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================= -->
+<!-- DIRECTION 05 — SUPERSCRIPT                                     -->
+<!-- ============================================================= -->
+<section class="shell direction" id="d5" data-screen-label="05 Superscript">
+  <div class="dir-head">
+    <div class="dir-num">05</div>
+    <h3 class="dir-title"><span class="tag">Направление · Superscript</span>«+» как метка версии / ®</h3>
+    <p class="dir-desc">Тонкая премиальная подача: «+» поднят к кэп-линии и уменьшен — как зарегистрированный товарный знак или индикатор версии. Молчаливо подчёркивает «5 лет на рынке, серьёзный продукт».</p>
+  </div>
+
+  <div class="hero-pair">
+    <div class="hero-stage light">
+      <div class="badge">A / На светлом</div>
+      <div class="stack">
+        <span class="wm wm-xl" style="align-items: flex-start;">
+          <span class="word">digital</span>
+          <span style="font-size: 0.34em; font-weight: 500; margin-left: 0.08em; line-height: 1; transform: translateY(0.18em);">+</span>
+        </span>
+        <div class="desc-row"><div class="desc-line"></div><div class="cyr">ДИДЖИТАЛ ПЛЮС · с 2021</div></div>
+      </div>
+    </div>
+    <div class="hero-stage dark">
+      <div class="badge">B / На тёмном · акцент</div>
+      <div class="stack">
+        <span class="wm wm-xl" style="align-items: flex-start; color: var(--paper);">
+          <span class="word">digital</span>
+          <span style="font-size: 0.34em; font-weight: 500; margin-left: 0.08em; line-height: 1; transform: translateY(0.18em); color: var(--accent);">+</span>
+        </span>
+        <div class="desc-row"><div class="desc-line"></div><div class="cyr">ДИДЖИТАЛ ПЛЮС · EST. 2021</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="variants">
+    <div class="variant">
+      <div class="vlabel">Горизонталь</div>
+      <span class="wm wm-lg" style="align-items: flex-start;">
+        <span class="word">digital</span>
+        <span style="font-size: 0.34em; font-weight: 500; margin-left: 0.08em; transform: translateY(0.18em);">+</span>
+      </span>
+    </div>
+    <div class="variant">
+      <div class="vlabel">Кириллица · вертикаль</div>
+      <div class="stack center" style="gap: 14px;">
+        <span class="wm" style="font-size: 38px; align-items: flex-start;">
+          <span class="word">диджитал</span>
+          <span style="font-size: 0.34em; font-weight: 500; margin-left: 0.08em; transform: translateY(0.18em);">+</span>
+        </span>
+        <div class="cyr">DIGITAL+</div>
+      </div>
+    </div>
+    <div class="variant dark">
+      <div class="vlabel">Моно · инверсия</div>
+      <span class="wm wm-lg" style="align-items: flex-start;">
+        <span class="word">digital</span>
+        <span style="font-size: 0.34em; font-weight: 500; margin-left: 0.08em; transform: translateY(0.18em);">+</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="construction">
+    <div class="constr-stage">
+      <svg viewBox="0 0 600 240" width="100%" style="max-width: 540px;">
+        <line x1="0" y1="180" x2="600" y2="180" stroke="#E2553A" stroke-dasharray="3 4" stroke-width="1"/>
+        <line x1="0" y1="60" x2="600" y2="60" stroke="#E2553A" stroke-dasharray="3 4" stroke-width="1"/>
+        <line x1="0" y1="100" x2="600" y2="100" stroke="#0E1117" stroke-dasharray="2 4" stroke-width="0.5" opacity="0.3"/>
+        <text x="6" y="56" font-family="Geist Mono" font-size="9" fill="#E2553A">CAP</text>
+        <text x="6" y="96" font-family="Geist Mono" font-size="9" fill="#6E6960">X</text>
+        <text x="6" y="196" font-family="Geist Mono" font-size="9" fill="#E2553A">BASELINE</text>
+        <text x="60" y="180" font-family="Geist" font-size="140" font-weight="500" fill="#0E1117" letter-spacing="-6">digital</text>
+        <text x="496" y="100" font-family="Geist" font-size="56" font-weight="500" fill="#0E1117">+</text>
+        <line x1="496" y1="116" x2="540" y2="116" stroke="#E2553A" stroke-width="0.8"/>
+        <line x1="496" y1="110" x2="496" y2="122" stroke="#E2553A" stroke-width="0.8"/>
+        <line x1="540" y1="110" x2="540" y2="122" stroke="#E2553A" stroke-width="0.8"/>
+        <text x="518" y="134" text-anchor="middle" font-family="Geist Mono" font-size="9" fill="#E2553A">0.4 × cap</text>
+      </svg>
+    </div>
+    <div class="constr-notes">
+      <div class="label" style="margin-bottom: 4px;">Сетка построения</div>
+      <div class="pt"><div class="n">A</div><div><div class="ttl">«+» = 0.4 × cap-height</div><div class="desc">Маленький, но не миниатюрный — читается на favicon размере.</div></div></div>
+      <div class="pt"><div class="n">B</div><div><div class="ttl">Выравнивание по кэп-линии</div><div class="desc">Верх «+» совпадает с верхом «d» — оптическая стабильность.</div></div></div>
+      <div class="pt"><div class="n">C</div><div><div class="ttl">Кернинг = 0.08em</div><div class="desc">Минимальный воздух — связан с буквой, не отрывается.</div></div></div>
+    </div>
+  </div>
+
+  <div class="mockups">
+    <div class="mock">
+      <div class="mlabel">Аватар</div>
+      <div class="stage">
+        <div class="avatar-row">
+          <div class="avatar"><span style="font-family: Geist; font-weight: 600; font-size: 34px; letter-spacing: -1px;">d<sup style="font-size: 14px; font-weight: 500;">+</sup></span></div>
+          <div class="avatar light"><span style="font-family: Geist; font-weight: 600; font-size: 34px; letter-spacing: -1px;">d<sup style="font-size: 14px; font-weight: 500;">+</sup></span></div>
+          <div class="avatar accent"><span style="font-family: Geist; font-weight: 600; font-size: 34px; letter-spacing: -1px;">d<sup style="font-size: 14px; font-weight: 500;">+</sup></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mlabel">Визитка · премиум</div>
+      <div class="stage">
+        <div class="card">
+          <div class="top-row">
+            <span class="wm" style="font-size: 24px; align-items: flex-start;">
+              <span class="word">digital</span>
+              <span style="font-size: 0.34em; font-weight: 500; margin-left: 0.08em; transform: translateY(0.18em);">+</span>
+            </span>
+            <div class="pin"></div>
+          </div>
+          <div class="info">
+            <div>Алексей Гордеев</div>
+            <div class="role">Managing partner</div>
+            <div style="margin-top: 8px;">a.gordeev@digitalplus.ru</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mlabel">Документ · ФЗ-152</div>
+      <div class="stage" style="align-items: stretch; flex-direction: column; justify-content: flex-start; gap: 8px;">
+        <div style="width: 100%; background: var(--paper); border: 1px solid var(--line); padding: 16px; font-size: 10px; font-family: 'Geist Mono', monospace;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px;">
+            <span style="font-family: Geist; font-weight: 600; font-size: 18px;">digital<sup style="font-size: 7px;">+</sup></span>
+            <span style="color: var(--muted); font-size: 9px;">152-ФЗ / V.05</span>
+          </div>
+          <div style="border-top: 1px solid var(--line); padding-top: 10px; color: var(--muted); line-height: 1.6;">
+            ПОЛИТИКА ОБРАБОТКИ ПЕРСОНАЛЬНЫХ ДАННЫХ<br/>
+            <span style="color: var(--ink);">______________________</span><br/>
+            <span style="color: var(--ink);">______ __________ ______ ___ _______</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================= -->
+<!-- DIRECTION 06 — CUSTOM GLYPH                                    -->
+<!-- ============================================================= -->
+<section class="shell direction" id="d6" data-screen-label="06 Glyph">
+  <div class="dir-head">
+    <div class="dir-num">06</div>
+    <h3 class="dir-title"><span class="tag">Направление · Custom glyph</span>Авторский «+» как фирменный глиф</h3>
+    <p class="dir-desc">Полностью прорисованный «+» с одинаковой шириной штрихов и точно подогнанной геометрией. Знак живёт самостоятельно как mark и как часть лок-апа. Самое узнаваемое и масштабируемое решение.</p>
+  </div>
+
+  <div class="hero-pair">
+    <div class="hero-stage light">
+      <div class="badge">A / На светлом</div>
+      <div class="stack">
+        <span class="wm wm-xl">
+          <span class="word">digital</span>
+          <svg viewBox="0 0 40 40" width="0.82em" height="0.82em" style="margin-left: 0.1em; transform: translateY(-0.02em);">
+            <path d="M16 4 H24 V16 H36 V24 H24 V36 H16 V24 H4 V16 H16 Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <div class="desc-row"><div class="desc-line"></div><div class="cyr">ДИДЖИТАЛ ПЛЮС</div></div>
+      </div>
+    </div>
+    <div class="hero-stage dark">
+      <div class="badge">B / На тёмном · акцент</div>
+      <div class="stack">
+        <span class="wm wm-xl" style="color: var(--paper);">
+          <span class="word">digital</span>
+          <svg viewBox="0 0 40 40" width="0.82em" height="0.82em" style="margin-left: 0.1em; transform: translateY(-0.02em);">
+            <path d="M16 4 H24 V16 H36 V24 H24 V36 H16 V24 H4 V16 H16 Z" fill="#E2553A"/>
+          </svg>
+        </span>
+        <div class="desc-row"><div class="desc-line"></div><div class="cyr">ДИДЖИТАЛ ПЛЮС</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="variants">
+    <div class="variant">
+      <div class="vlabel">Горизонталь</div>
+      <span class="wm wm-lg">
+        <span class="word">digital</span>
+        <svg viewBox="0 0 40 40" width="0.82em" height="0.82em" style="margin-left: 0.1em; transform: translateY(-0.02em);">
+          <path d="M16 4 H24 V16 H36 V24 H24 V36 H16 V24 H4 V16 H16 Z" fill="currentColor"/>
+        </svg>
+      </span>
+    </div>
+    <div class="variant">
+      <div class="vlabel">Mark only</div>
+      <svg viewBox="0 0 80 80" width="92" height="92">
+        <path d="M32 6 H48 V32 H74 V48 H48 V74 H32 V48 H6 V32 H32 Z" fill="#0E1117"/>
+      </svg>
+    </div>
+    <div class="variant dark">
+      <div class="vlabel">Моно · инверсия</div>
+      <span class="wm wm-lg">
+        <span class="word">digital</span>
+        <svg viewBox="0 0 40 40" width="0.82em" height="0.82em" style="margin-left: 0.1em; transform: translateY(-0.02em);">
+          <path d="M16 4 H24 V16 H36 V24 H24 V36 H16 V24 H4 V16 H16 Z" fill="currentColor"/>
+        </svg>
+      </span>
+    </div>
+  </div>
+
+  <div class="construction">
+    <div class="constr-stage">
+      <svg viewBox="0 0 400 320" width="100%" style="max-width: 380px;">
+        <!-- guide grid -->
+        <g stroke="#E2553A" stroke-width="0.6" fill="none" opacity="0.6">
+          <line x1="120" y1="40" x2="120" y2="280"/>
+          <line x1="200" y1="40" x2="200" y2="280"/>
+          <line x1="280" y1="40" x2="280" y2="280"/>
+          <line x1="40" y1="120" x2="360" y2="120"/>
+          <line x1="40" y1="200" x2="360" y2="200"/>
+        </g>
+        <path d="M120 40 H200 V120 H280 V200 H200 V280 H120 V200 H40 V120 H120 Z" fill="#0E1117"/>
+        <g stroke="#E2553A" stroke-width="0.8" fill="none">
+          <line x1="40" y1="296" x2="360" y2="296"/>
+          <line x1="40" y1="290" x2="40" y2="302"/>
+          <line x1="360" y1="290" x2="360" y2="302"/>
+        </g>
+        <text x="200" y="314" text-anchor="middle" font-family="Geist Mono" font-size="10" fill="#E2553A">4u × 4u square grid · arm = 1u</text>
+      </svg>
+    </div>
+    <div class="constr-notes">
+      <div class="label" style="margin-bottom: 4px;">Сетка построения</div>
+      <div class="pt"><div class="n">A</div><div><div class="ttl">Квадратная сетка 4u × 4u</div><div class="desc">«+» полностью вписан в сетку, без сглаживаний и оптических подгонок.</div></div></div>
+      <div class="pt"><div class="n">B</div><div><div class="ttl">Все четыре луча = 1u</div><div class="desc">Симметричный знак — работает в любой ориентации.</div></div></div>
+      <div class="pt"><div class="n">C</div><div><div class="ttl">Толщина = высота вордмарка</div><div class="desc">В лок-апе глиф визуально «весит» столько же, сколько строчная буква.</div></div></div>
+    </div>
+  </div>
+
+  <div class="mockups">
+    <div class="mock">
+      <div class="mlabel">Аватар</div>
+      <div class="stage">
+        <div class="avatar-row">
+          <div class="avatar">
+            <svg viewBox="0 0 40 40" width="38" height="38">
+              <path d="M16 4 H24 V16 H36 V24 H24 V36 H16 V24 H4 V16 H16 Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="avatar light">
+            <svg viewBox="0 0 40 40" width="38" height="38">
+              <path d="M16 4 H24 V16 H36 V24 H24 V36 H16 V24 H4 V16 H16 Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="avatar accent">
+            <svg viewBox="0 0 40 40" width="38" height="38">
+              <path d="M16 4 H24 V16 H36 V24 H24 V36 H16 V24 H4 V16 H16 Z" fill="currentColor"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mlabel">Визитка · знак на обороте</div>
+      <div class="stage">
+        <div class="card" style="background: var(--accent); color: var(--paper); position: relative;">
+          <svg viewBox="0 0 40 40" width="60" height="60" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <path d="M16 4 H24 V16 H36 V24 H24 V36 H16 V24 H4 V16 H16 Z" fill="currentColor"/>
+          </svg>
+          <div style="position: absolute; bottom: 14px; right: 18px; font-family: 'Geist Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85;">digital+ · v2026</div>
+        </div>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mlabel">Сайт · хедер</div>
+      <div class="stage" style="align-items: stretch;">
+        <div class="browser" style="align-self: stretch;">
+          <div class="bar"><div class="b"></div><div class="b"></div><div class="b"></div>
+            <div class="tab"><div class="favicon">
+              <svg viewBox="0 0 40 40" width="14" height="14">
+                <path d="M16 4 H24 V16 H36 V24 H24 V36 H16 V24 H4 V16 H16 Z" fill="#0E1117"/>
+              </svg>
+            </div>digitalplus.ru</div>
+          </div>
+          <div class="url"><span class="lock">●</span>digitalplus.ru</div>
+          <div class="body">
+            <span class="wm" style="font-size: 22px;">
+              <span class="word">digital</span>
+              <svg viewBox="0 0 40 40" width="0.82em" height="0.82em" style="margin-left: 0.1em; transform: translateY(-0.02em);">
+                <path d="M16 4 H24 V16 H36 V24 H24 V36 H16 V24 H4 V16 H16 Z" fill="currentColor"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== CLOSING ===== -->
+<section class="shell closing">
+  <div class="closing-grid">
+    <div>
+      <div class="label" style="margin-bottom: 24px;">004 / Дальше</div>
+      <h2>Куда движемся<br/>от первой подачи</h2>
+      <p>Выберите 1—2 направления, которые ощущаются как «вы» — дальше я доведу выбранное до финального бренд-кита: лок-апы, иконки, документация, шрифты, цвета, готовые исходники для подрядчиков.</p>
+    </div>
+    <div>
+      <div class="next-list">
+        <div class="it"><div class="n">→</div><div><div class="nm">Финализация знака</div><div style="color: var(--muted); font-size: 13px;">Геометрические правки, версии под все носители.</div></div><div class="when">шаг 1</div></div>
+        <div class="it"><div class="n">→</div><div><div class="nm">Лок-апы и охранные поля</div><div style="color: var(--muted); font-size: 13px;">Все официальные комбинации: вертикаль, горизонталь, mark only.</div></div><div class="when">шаг 2</div></div>
+        <div class="it"><div class="n">→</div><div><div class="nm">Цвет и типографика — финальный гайд</div><div style="color: var(--muted); font-size: 13px;">Расширенная палитра, иерархия, примеры применения.</div></div><div class="when">шаг 3</div></div>
+        <div class="it"><div class="n">→</div><div><div class="nm">Носители</div><div style="color: var(--muted); font-size: 13px;">Визитка, шаблон документа ФЗ-152, презентация, шапка письма, фавикон.</div></div><div class="when">шаг 4</div></div>
+        <div class="it"><div class="n">→</div><div><div class="nm">Передача файлов</div><div style="color: var(--muted); font-size: 13px;">SVG, PDF, PNG, исходник Figma. Готовый brand-kit.</div></div><div class="when">шаг 5</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  <div>Диджитал плюс · brand identity proposal</div>
+  <div>v1.0 · 6 / 6 directions</div>
+</div>
+
+</body>
+</html>

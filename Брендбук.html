@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<title>Диджитал плюс — Брендбук</title>
+<meta name="viewport" content="width=1320" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0E1117; --ink-2: #1A1E26;
+    --paper: #F4F1EB; --paper-2: #EDE9E1;
+    --line: #DCD6CB; --line-dark: #2A2E37;
+    --muted: #6E6960; --muted-dark: #8B8B92;
+    --accent: #E2553A; --accent-soft: #F6E1DA;
+    --no: #C0392B;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font-family: 'Geist', -apple-system, system-ui, sans-serif;
+    font-feature-settings: "ss01","cv11";
+    font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  .shell { max-width: 1280px; margin: 0 auto; padding: 0 56px; }
+  .mono { font-family: 'Geist Mono', ui-monospace, monospace; letter-spacing: 0.02em; }
+  .label { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .label.dk { color: var(--muted-dark); }
+  svg { display: block; }
+
+  /* mark inline helper */
+  .mk { display: inline-flex; align-items: center; justify-content: center; line-height: 0; }
+  .wm { display: inline-flex; align-items: center; font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
+  .wm .word { display: inline-block; }
+  .cyr { font-family: 'Geist Mono', monospace; text-transform: uppercase; letter-spacing: 0.22em; font-size: 12px; color: var(--muted); }
+  .stack { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+  .stack.center { align-items: center; }
+  .desc-row { display: flex; align-items: center; gap: 12px; }
+  .desc-line { width: 28px; height: 1px; background: currentColor; opacity: 0.5; }
+
+  /* ===== TOP NAV ===== */
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 56px; background: rgba(244,241,235,0.86); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+    font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+  }
+  .topnav .brand { display: flex; align-items: center; gap: 12px; color: var(--ink); }
+  .topnav .links { display: flex; gap: 22px; }
+  .topnav .links a { color: var(--muted); text-decoration: none; }
+  .topnav .links a:hover { color: var(--accent); }
+
+  /* ===== COVER ===== */
+  .cover { padding: 110px 0 120px; border-bottom: 1px solid var(--line); position: relative; overflow: hidden; }
+  .cover .big-mark { position: absolute; right: -80px; top: 50%; transform: translateY(-50%); opacity: 0.06; pointer-events: none; }
+  .cover .eyebrow { margin-bottom: 36px; }
+  .cover h1 { font-size: 96px; line-height: 0.92; letter-spacing: -0.045em; font-weight: 500; margin: 0 0 32px; }
+  .cover h1 .em { color: var(--accent); }
+  .cover .sub { font-size: 20px; line-height: 1.45; max-width: 520px; margin: 0 0 48px; }
+  .cover .facts { display: flex; gap: 56px; }
+  .cover .facts .f .k { font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .cover .facts .f .v { font-size: 17px; font-weight: 500; }
+
+  /* ===== SECTION SCAFFOLD ===== */
+  .section { padding: 96px 0; border-bottom: 1px solid var(--line); position: relative; }
+  .sec-head { display: grid; grid-template-columns: 92px 1fr 320px; gap: 48px; align-items: baseline; margin-bottom: 60px; }
+  .sec-num { font-family: 'Geist Mono', monospace; font-size: 44px; color: var(--accent); line-height: 1; }
+  .sec-title { font-size: 46px; line-height: 1.02; letter-spacing: -0.03em; font-weight: 500; margin: 0; }
+  .sec-title .tag { display: block; font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; font-weight: 400; }
+  .sec-desc { font-size: 14px; line-height: 1.55; }
+
+  /* ===== HERO PAIR ===== */
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .stage { padding: 96px 64px; display: flex; align-items: center; justify-content: center; min-height: 400px; position: relative; }
+  .stage.light { background: var(--paper); color: var(--ink); }
+  .stage.dark { background: var(--ink); color: var(--paper); }
+  .stage .badge { position: absolute; top: 18px; left: 24px; font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .stage.dark .badge { color: var(--muted-dark); }
+
+  /* ===== CONSTRUCTION ===== */
+  .construction { display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: stretch; }
+  .constr-stage { background: var(--paper); border: 1px solid var(--line); padding: 48px; display: flex; align-items: center; justify-content: center;
+    background-image: linear-gradient(to right, rgba(14,17,23,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(14,17,23,0.05) 1px, transparent 1px);
+    background-size: 24px 24px; min-height: 360px; }
+  .notes { display: grid; gap: 0; align-content: start; }
+  .notes .pt { display: grid; grid-template-columns: 28px 1fr; gap: 12px; padding: 18px 0; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.5; }
+  .notes .pt:last-child { border-bottom: 1px solid var(--line); }
+  .notes .pt .n { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.1em; padding-top: 2px; }
+  .notes .pt .ttl { font-weight: 500; }
+  .notes .pt .desc { color: var(--muted); margin-top: 2px; }
+
+  /* ===== VARIANT GRID ===== */
+  .vgrid { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .vgrid.c3 { grid-template-columns: 1.3fr 1fr 1fr; }
+  .vgrid.c4 { grid-template-columns: repeat(4, 1fr); }
+  .vcell { background: var(--paper); padding: 48px 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; position: relative; min-height: 230px; }
+  .vcell.dark { background: var(--ink); color: var(--paper); }
+  .vcell .vlabel { position: absolute; top: 14px; left: 20px; font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .vcell.dark .vlabel { color: var(--muted-dark); }
+  .vart { flex: 1; display: flex; align-items: center; justify-content: center; }
+
+  /* ===== COLOR ===== */
+  .colorgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .colorcard { border: 1px solid var(--line); overflow: hidden; }
+  .colorcard .chip { height: 150px; }
+  .colorcard .meta { padding: 18px; }
+  .colorcard .meta .nm { font-weight: 500; font-size: 16px; }
+  .colorcard .meta .role { font-size: 12px; color: var(--muted); margin: 2px 0 14px; }
+  .colorcard .meta .val { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--muted); line-height: 1.9; }
+  .colorcard .meta .val span { display: block; }
+
+  /* ===== TYPE ===== */
+  .typegrid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+  .type-spec .big { font-size: 92px; line-height: 1; letter-spacing: -0.04em; font-weight: 500; margin-bottom: 16px; }
+  .type-spec .alpha { font-size: 30px; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 24px; }
+  .type-spec .row { padding: 15px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; gap: 24px; }
+  .type-spec .row:last-child { border-bottom: 1px solid var(--line); }
+  .type-spec .row .lab { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; flex-shrink: 0; }
+  .scale-demo { margin-top: 36px; display: grid; gap: 4px; }
+  .scale-demo .s { display: flex; align-items: baseline; gap: 18px; padding: 6px 0; }
+  .scale-demo .s .tag { width: 64px; flex-shrink: 0; }
+
+  /* ===== MISUSE ===== */
+  .donts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .dont { border: 1px solid var(--line); padding: 24px; min-height: 210px; display: flex; flex-direction: column; }
+  .dont .stg { flex: 1; display: flex; align-items: center; justify-content: center; padding: 12px 0; }
+  .dont .cap { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; line-height: 1.4; }
+  .dont .x { color: var(--no); font-family: 'Geist Mono', monospace; font-weight: 500; flex-shrink: 0; }
+
+  /* ===== PATTERN ===== */
+  .pattern-stage { border: 1px solid var(--line); height: 360px; background: var(--ink); position: relative; overflow: hidden; }
+  .pattern-fill { position: absolute; inset: 0; }
+  .pattern-note { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 24px; }
+  .pattern-note .pn { font-size: 13px; line-height: 1.55; color: var(--muted); padding-top: 16px; border-top: 1px solid var(--line); }
+  .pattern-note .pn b { color: var(--ink); display: block; margin-bottom: 4px; }
+
+  /* ===== MOCKUPS ===== */
+  .mock-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+  .mock { background: var(--paper); border: 1px solid var(--line); padding: 28px; display: flex; flex-direction: column; }
+  .mock .mlabel { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+  .mock .mstage { flex: 1; display: flex; align-items: center; justify-content: center; }
+  .span4 { grid-column: span 4; } .span6 { grid-column: span 6; } .span8 { grid-column: span 8; }
+
+  .card { width: 100%; aspect-ratio: 1.7/1; background: var(--paper-2); border-radius: 6px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 1px 0 var(--line), 0 18px 30px -28px rgba(14,17,23,0.18); position: relative; overflow: hidden; }
+  .card.dark { background: var(--ink); color: var(--paper); }
+  .card .top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .card .pin { width: 6px; height: 6px; background: var(--accent); margin-top: 6px; }
+  .card .info { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.06em; line-height: 1.7; }
+  .card .info .nm { font-family: 'Geist', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0; }
+  .card .info .role { text-transform: uppercase; color: var(--muted); }
+  .card.dark .info .role { color: var(--muted-dark); }
+
+  .tiles { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; justify-content: center; }
+  .tile { border-radius: 22%; display: flex; align-items: center; justify-content: center; }
+  .tile.ink { background: var(--ink); } .tile.signal { background: var(--accent); } .tile.paper { background: var(--paper-2); border: 1px solid var(--line); }
+
+  .browser { width: 100%; background: var(--paper-2); border-radius: 8px; border: 1px solid var(--line); overflow: hidden; }
+  .browser .bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: var(--paper); border-bottom: 1px solid var(--line); }
+  .browser .bar .b { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+  .browser .tab { display: inline-flex; align-items: center; gap: 6px; background: var(--paper-2); padding: 6px 10px; border-radius: 6px 6px 0 0; margin-left: 12px; font-family: 'Geist Mono', monospace; font-size: 10px; }
+  .browser .hero { padding: 40px 32px 48px; background: var(--ink); color: var(--paper); position: relative; overflow: hidden; }
+  .browser .nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 44px; position: relative; z-index: 1; }
+  .browser .nav .links { display: flex; gap: 18px; font-family: 'Geist Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted-dark); }
+  .browser .h { font-size: 30px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.05; max-width: 400px; position: relative; z-index: 1; }
+  .browser .cta { display: inline-flex; margin-top: 24px; background: var(--accent); color: var(--paper); padding: 10px 18px; border-radius: 6px; font-size: 13px; font-weight: 500; position: relative; z-index: 1; }
+
+  .letter { width: 100%; aspect-ratio: 0.72/1; background: var(--paper); border: 1px solid var(--line); padding: 28px; display: flex; flex-direction: column; }
+  .letter .lh { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+  .letter .lb { padding-top: 20px; display: grid; gap: 9px; }
+  .letter .lb .ln { height: 6px; background: var(--paper-2); border-radius: 2px; }
+  .letter .lb .ln.s { width: 42%; }
+  .letter .lf { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line); font-family: 'Geist Mono', monospace; font-size: 8px; letter-spacing: 0.08em; color: var(--muted); display: flex; justify-content: space-between; }
+
+  .signage { width: 100%; min-height: 220px; background: var(--ink); border-radius: 6px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+
+  /* ===== CLOSING ===== */
+  .closing { padding: 96px 0 130px; }
+  .closing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .closing h2 { font-size: 50px; font-weight: 500; letter-spacing: -0.03em; margin: 0 0 24px; line-height: 1.0; }
+  .closing p { font-size: 16px; line-height: 1.6; max-width: 460px; }
+  .dl-list { display: grid; gap: 0; }
+  .dl-list .it { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; padding: 20px 0; border-top: 1px solid var(--line); font-size: 15px; }
+  .dl-list .it:last-child { border-bottom: 1px solid var(--line); }
+  .dl-list .it .nm { font-weight: 500; }
+  .dl-list .it .ext { color: var(--muted); font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .footer { padding: 30px 56px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+  @media print {
+    .topnav { display: none; }
+    .section, .cover { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== TOP NAV ===== -->
+<nav class="topnav">
+  <div class="brand"><span class="mk" data-mark data-s="22" data-c="var(--ink)" data-a="var(--accent)"></span><span>Брендбук · Диджитал плюс</span></div>
+  <div class="links">
+    <a href="#logo">Знак</a>
+    <a href="#lockups">Лок-апы</a>
+    <a href="#clearspace">Поле</a>
+    <a href="#color">Цвет</a>
+    <a href="#type">Шрифт</a>
+    <a href="#misuse">Misuse</a>
+    <a href="#pattern">Паттерн</a>
+    <a href="#media">Носители</a>
+  </div>
+</nav>
+
+<!-- ===== COVER ===== -->
+<header class="shell cover">
+  <div class="big-mark"><span class="mk" data-mark data-s="560" data-c="var(--ink)" data-a="var(--ink)"></span></div>
+  <div class="eyebrow label">Brand book · v1.0 · 2026</div>
+  <h1>Диджитал<span class="em">+</span></h1>
+  <p class="sub">Руководство по фирменному стилю. Знак, цвет, типографика и правила применения — всё, что нужно, чтобы бренд выглядел собранно на любом носителе.</p>
+  <div class="facts">
+    <div class="f"><div class="k">Знак</div><div class="v">Апертура · движение</div></div>
+    <div class="f"><div class="k">С 2022 года</div><div class="v">5-й год работы</div></div>
+    <div class="f"><div class="k">Профиль</div><div class="v">Веб · 152-ФЗ · CRM · Поддержка</div></div>
+  </div>
+</header>
+
+<!-- ===== 01 LOGO + CONSTRUCTION ===== -->
+<section class="shell section" id="logo" data-screen-label="Знак">
+  <div class="sec-head">
+    <div class="sec-num">01</div>
+    <h2 class="sec-title"><span class="tag">Логотип</span>Знак и его построение</h2>
+    <p class="sec-desc">Основа айдентики — динамичный «+» из четырёх смещённых по кругу лучей и фирменного пикселя в центре. Вертушка задаёт энергию и движение: разработка, процесс, рост.</p>
+  </div>
+
+  <div class="pair" style="margin-bottom: 56px;">
+    <div class="stage light">
+      <div class="badge">Primary / на светлом</div>
+      <div class="stack">
+        <span class="wm" style="font-size: 100px;"><span class="word">digital</span><span class="mk" data-mark data-s="74" data-c="var(--ink)" data-a="var(--accent)" style="margin-left: 12px;"></span></span>
+        <div class="desc-row"><div class="desc-line"></div><div class="cyr">ДИДЖИТАЛ ПЛЮС</div></div>
+      </div>
+    </div>
+    <div class="stage dark">
+      <div class="badge">Inverse / на тёмном</div>
+      <div class="stack">
+        <span class="wm" style="font-size: 100px; color: var(--paper);"><span class="word">digital</span><span class="mk" data-mark data-s="74" data-c="var(--paper)" data-a="var(--accent)" style="margin-left: 12px;"></span></span>
+        <div class="desc-row"><div class="desc-line"></div><div class="cyr dk">ДИДЖИТАЛ ПЛЮС</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="construction">
+    <div class="constr-stage">
+      <svg viewBox="0 0 320 320" width="100%" style="max-width: 360px;">
+        <!-- guides -->
+        <g stroke="#E2553A" stroke-width="0.7" fill="none" opacity="0.85">
+          <line x1="160" y1="20" x2="160" y2="300"/>
+          <line x1="20" y1="160" x2="300" y2="160"/>
+          <rect x="120" y="120" width="80" height="80" stroke-dasharray="3 4"/>
+        </g>
+        <!-- mark scaled (orig 100 → 280, offset 20) -->
+        <g transform="translate(20,20) scale(2.8)">
+          <rect x="48" y="8"  width="20" height="30" rx="3" fill="#0E1117"/>
+          <rect x="62" y="48" width="30" height="20" rx="3" fill="#0E1117"/>
+          <rect x="32" y="62" width="20" height="30" rx="3" fill="#0E1117"/>
+          <rect x="8"  y="32" width="30" height="20" rx="3" fill="#0E1117"/>
+          <rect x="42" y="42" width="16" height="16" rx="2" fill="#E2553A"/>
+        </g>
+        <text x="160" y="14" text-anchor="middle" font-family="Geist Mono" font-size="9" fill="#6E6960">6u × 6u grid · arm = 0.5u offset</text>
+        <text x="206" y="166" font-family="Geist Mono" font-size="9" fill="#E2553A">node 2u</text>
+      </svg>
+    </div>
+    <div class="notes">
+      <div class="label" style="margin-bottom: 4px;">Правила построения</div>
+      <div class="pt"><div class="n">A</div><div><div class="ttl">Сетка 6u × 6u</div><div class="desc">Каждый луч — прямоугольник 2u × 3u, смещён на 0.5u по часовой стрелке. Это и создаёт вертушку.</div></div></div>
+      <div class="pt"><div class="n">B</div><div><div class="ttl">Центр — пиксель 2u</div><div class="desc">Единственный элемент в акцентном цвете Signal. Сердце знака — «точка сборки».</div></div></div>
+      <div class="pt"><div class="n">C</div><div><div class="ttl">Радиус скругления 0.3u</div><div class="desc">Лёгкое скругление углов — мягкий, но техничный характер.</div></div></div>
+      <div class="pt"><div class="n">D</div><div><div class="ttl">Направление — всегда по часовой</div><div class="desc">Смещение лучей не зеркалится и не меняет направление.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 02 LOCKUPS ===== -->
+<section class="shell section" id="lockups" data-screen-label="Лок-апы">
+  <div class="sec-head">
+    <div class="sec-num">02</div>
+    <h2 class="sec-title"><span class="tag">Лок-апы</span>Официальные компоновки</h2>
+    <p class="sec-desc">Четыре утверждённых варианта. Горизонталь — по умолчанию; вертикаль — для квадратных пространств; знак и монограмма — где текст нечитаем.</p>
+  </div>
+
+  <div class="vgrid c4">
+    <div class="vcell">
+      <div class="vlabel">01 · Горизонталь</div>
+      <div class="vart">
+        <div class="stack">
+          <span class="wm" style="font-size: 40px;"><span class="word">digital</span><span class="mk" data-mark data-s="30" data-c="var(--ink)" data-a="var(--accent)" style="margin-left: 5px;"></span></span>
+          <div class="cyr" style="font-size: 9px;">ДИДЖИТАЛ ПЛЮС</div>
+        </div>
+      </div>
+    </div>
+    <div class="vcell">
+      <div class="vlabel">02 · Вертикаль</div>
+      <div class="vart">
+        <div class="stack center" style="gap: 16px;">
+          <span class="mk" data-mark data-s="56" data-c="var(--ink)" data-a="var(--accent)"></span>
+          <span class="wm" style="font-size: 28px;"><span class="word">digital+</span></span>
+          <div class="cyr" style="font-size: 9px;">ДИДЖИТАЛ ПЛЮС</div>
+        </div>
+      </div>
+    </div>
+    <div class="vcell">
+      <div class="vlabel">03 · Знак</div>
+      <div class="vart"><span class="mk" data-mark data-s="96" data-c="var(--ink)" data-a="var(--accent)"></span></div>
+    </div>
+    <div class="vcell dark">
+      <div class="vlabel">04 · Иконка</div>
+      <div class="vart">
+        <div class="tile ink" style="width: 110px; height: 110px; border: 1px solid var(--line-dark);"><span class="mk" data-mark data-s="62" data-c="var(--paper)" data-a="var(--accent)"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 03 CLEARSPACE ===== -->
+<section class="shell section" id="clearspace" data-screen-label="Охранное поле">
+  <div class="sec-head">
+    <div class="sec-num">03</div>
+    <h2 class="sec-title"><span class="tag">Охранное поле и размеры</span>Воздух и пределы</h2>
+    <p class="sec-desc">Защитное поле задаётся высотой знака (h). Никакой текст и графика не заходят в эту зону. Минимальные размеры гарантируют читаемость.</p>
+  </div>
+
+  <div class="construction">
+    <div class="constr-stage" style="background-image: none;">
+      <svg viewBox="0 0 560 280" width="100%" style="max-width: 520px;">
+        <rect x="40" y="40" width="480" height="200" fill="none" stroke="#E2553A" stroke-width="1" stroke-dasharray="4 5"/>
+        <rect x="120" y="100" width="320" height="80" fill="none" stroke="#DCD6CB" stroke-width="1"/>
+        <!-- wordmark approx -->
+        <text x="140" y="158" font-family="Geist" font-size="52" font-weight="600" fill="#0E1117" letter-spacing="-2.4">digital</text>
+        <g transform="translate(378,112) scale(0.82)">
+          <rect x="48" y="8"  width="20" height="30" rx="3" fill="#0E1117"/>
+          <rect x="62" y="48" width="30" height="20" rx="3" fill="#0E1117"/>
+          <rect x="32" y="62" width="20" height="30" rx="3" fill="#0E1117"/>
+          <rect x="8"  y="32" width="30" height="20" rx="3" fill="#0E1117"/>
+          <rect x="42" y="42" width="16" height="16" rx="2" fill="#E2553A"/>
+        </g>
+        <g stroke="#E2553A" stroke-width="0.8"><line x1="40" y1="40" x2="120" y2="40"/><line x1="40" y1="36" x2="40" y2="44"/><line x1="120" y1="36" x2="120" y2="44"/></g>
+        <text x="74" y="32" font-family="Geist Mono" font-size="10" fill="#E2553A">h</text>
+        <g stroke="#E2553A" stroke-width="0.8"><line x1="40" y1="100" x2="40" y2="180"/></g>
+        <text x="14" y="144" font-family="Geist Mono" font-size="10" fill="#E2553A">= h</text>
+        <text x="280" y="266" text-anchor="middle" font-family="Geist Mono" font-size="10" fill="#6E6960">CLEARSPACE = h (высота знака) со всех сторон</text>
+      </svg>
+    </div>
+    <div class="notes">
+      <div class="label" style="margin-bottom: 4px;">Минимальные размеры</div>
+      <div class="pt"><div class="n">→</div><div><div class="ttl">Вордмарк — print 18 мм / web 120 px</div><div class="desc">По ширине. Меньше — переходите на знак.</div></div></div>
+      <div class="pt"><div class="n">→</div><div><div class="ttl">Знак — print 7 мм / web 28 px</div><div class="desc">Работает как иконка и печать.</div></div></div>
+      <div class="pt"><div class="n">→</div><div><div class="ttl">Favicon — 16 px</div><div class="desc">Минимально читаемый размер. Центр-пиксель сохраняется.</div></div></div>
+      <div class="pt"><div class="n">→</div><div><div class="ttl">Охранное поле = h</div><div class="desc">Высота знака со всех сторон лок-апа.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 04 COLOR ===== -->
+<section class="shell section" id="color" data-screen-label="Цвет">
+  <div class="sec-head">
+    <div class="sec-num">04</div>
+    <h2 class="sec-title"><span class="tag">Цвет</span>Три цвета, один акцент</h2>
+    <p class="sec-desc">Никаких градиентов. Signal используется точечно — центр знака, ссылки, кнопки, акценты. Не заливайте им большие плоскости.</p>
+  </div>
+
+  <div class="colorgrid">
+    <div class="colorcard">
+      <div class="chip" style="background: var(--ink);"></div>
+      <div class="meta"><div class="nm">Ink</div><div class="role">Основной · текст, плашки</div>
+        <div class="val"><span>HEX #0E1117</span><span>RGB 14 · 17 · 23</span><span>CMYK 80 · 68 · 55 · 70</span></div></div>
+    </div>
+    <div class="colorcard">
+      <div class="chip" style="background: var(--paper); border-bottom: 1px solid var(--line);"></div>
+      <div class="meta"><div class="nm">Paper</div><div class="role">Фон · светлый носитель</div>
+        <div class="val"><span>HEX #F4F1EB</span><span>RGB 244 · 241 · 235</span><span>CMYK 4 · 4 · 9 · 0</span></div></div>
+    </div>
+    <div class="colorcard">
+      <div class="chip" style="background: var(--accent);"></div>
+      <div class="meta"><div class="nm">Signal</div><div class="role">Акцент · центр знака, CTA</div>
+        <div class="val"><span>HEX #E2553A</span><span>RGB 226 · 85 · 58</span><span>CMYK 5 · 75 · 78 · 0</span></div></div>
+    </div>
+    <div class="colorcard">
+      <div class="chip" style="background: var(--muted);"></div>
+      <div class="meta"><div class="nm">Muted</div><div class="role">Служебный · подписи, линии</div>
+        <div class="val"><span>HEX #6E6960</span><span>RGB 110 · 105 · 96</span><span>CMYK 55 · 52 · 60 · 26</span></div></div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 24px;">
+    <div style="border: 1px solid var(--line); padding: 20px; font-size: 13px; line-height: 1.55; color: var(--muted);"><b style="color: var(--ink); display:block; margin-bottom:6px;">Пропорция 60·30·10</b>Paper — фон, Ink — текст и контент, Signal — не более 10% площади.</div>
+    <div style="border: 1px solid var(--line); padding: 20px; font-size: 13px; line-height: 1.55; color: var(--muted);"><b style="color: var(--ink); display:block; margin-bottom:6px;">Контраст</b>Ink на Paper и Paper на Ink — основные пары. Signal только на Ink или Paper.</div>
+    <div style="border: 1px solid var(--line); padding: 20px; font-size: 13px; line-height: 1.55; color: var(--muted);"><b style="color: var(--ink); display:block; margin-bottom:6px;">Печать</b>Для пантона ближайший — оранжево-красный тёплый. Сверяйте по CMYK на бумаге.</div>
+  </div>
+</section>
+
+<!-- ===== 05 TYPE ===== -->
+<section class="shell section" id="type" data-screen-label="Типографика">
+  <div class="sec-head">
+    <div class="sec-num">05</div>
+    <h2 class="sec-title"><span class="tag">Типографика</span>Geist · Geist Mono</h2>
+    <p class="sec-desc">Один гротеск для логотипа, заголовков и текста; моноширинный — для технических подписей, лейблов и данных. Полная поддержка кириллицы.</p>
+  </div>
+
+  <div class="typegrid">
+    <div class="type-spec">
+      <div class="big">Geist</div>
+      <div class="alpha">Аа Бб Вв Гг Дд Ее Жж<br/>Aa Bb Cc Dd · 0123456789 +</div>
+      <div class="row"><div>Логотип / крупные заголовки</div><div class="lab">Medium 500</div></div>
+      <div class="row"><div>Подзаголовки</div><div class="lab">Medium 500</div></div>
+      <div class="row"><div>Основной текст</div><div class="lab">Regular 400</div></div>
+      <div class="row"><div>Тонкие акценты</div><div class="lab">Light 300</div></div>
+    </div>
+    <div class="type-spec">
+      <div class="big" style="font-family: 'Geist Mono', monospace; font-size: 64px;">Mono</div>
+      <div class="alpha" style="font-family: 'Geist Mono', monospace; font-size: 17px; line-height: 1.6; letter-spacing: 0.04em; text-transform: uppercase;">ДИДЖИТАЛ ПЛЮС<br/>152-ФЗ · CRM · SUPPORT<br/>0123456789</div>
+      <div class="row"><div>Лейблы / подписи</div><div class="lab">Mono 400</div></div>
+      <div class="row"><div>Технические данные</div><div class="lab">Mono 500</div></div>
+      <div class="row"><div>Кириллический сублокап</div><div class="lab">tracking 0.22em</div></div>
+    </div>
+  </div>
+
+  <div class="scale-demo">
+    <div class="label" style="margin: 12px 0;">Иерархия</div>
+    <div class="s"><div class="tag label">H1 · 56</div><div style="font-size: 56px; font-weight: 500; letter-spacing: -0.03em;">Заголовок страницы</div></div>
+    <div class="s"><div class="tag label">H2 · 32</div><div style="font-size: 32px; font-weight: 500; letter-spacing: -0.02em;">Подзаголовок раздела</div></div>
+    <div class="s"><div class="tag label">Body · 16</div><div style="font-size: 16px;">Основной текст — комфортная читаемость на экране и в печати.</div></div>
+    <div class="s"><div class="tag label">Caption</div><div class="mono" style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);">Подпись · технический лейбл</div></div>
+  </div>
+</section>
+
+<!-- ===== 06 MISUSE ===== -->
+<section class="shell section" id="misuse" data-screen-label="Misuse">
+  <div class="sec-head">
+    <div class="sec-num">06</div>
+    <h2 class="sec-title"><span class="tag">Чего не делать</span>Защита знака</h2>
+    <p class="sec-desc">Логотип неизменяем. Эти ошибки разрушают систему — особенно цвет центра, пропорции и направление вертушки.</p>
+  </div>
+
+  <div class="donts">
+    <div class="dont">
+      <div class="stg"><span class="mk" data-mark data-s="64" data-c="var(--ink)" data-a="var(--ink)" style="filter: none;"></span></div>
+      <div class="cap"><span class="x">✕</span><span>Не убирать акцентный центр.</span></div>
+    </div>
+    <div class="dont">
+      <div class="stg"><span class="mk" data-mark data-s="64" data-c="var(--ink)" data-a="var(--accent)" style="transform: scaleX(0.6);"></span></div>
+      <div class="cap"><span class="x">✕</span><span>Не сжимать и не растягивать.</span></div>
+    </div>
+    <div class="dont">
+      <div class="stg"><span class="mk" data-mark data-s="64" data-c="#2A6FDB" data-a="#1F8A5B"></span></div>
+      <div class="cap"><span class="x">✕</span><span>Не менять фирменные цвета.</span></div>
+    </div>
+    <div class="dont">
+      <div class="stg"><span class="mk" data-mark data-s="64" data-c="var(--ink)" data-a="var(--accent)" style="transform: scaleX(-1);"></span></div>
+      <div class="cap"><span class="x">✕</span><span>Не зеркалить — вертушка только по часовой.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 07 PATTERN ===== -->
+<section class="shell section" id="pattern" data-screen-label="Паттерн">
+  <div class="sec-head">
+    <div class="sec-num">07</div>
+    <h2 class="sec-title"><span class="tag">Фирменная графика</span>Паттерн из вертушки</h2>
+    <p class="sec-desc">Знак тиражируется в сетку и образует динамичный фон — для обложек, тёмных секций сайта, оборота визиток и презентаций. Акцентные пиксели расставляются редко.</p>
+  </div>
+
+  <div class="pattern-stage"><div class="pattern-fill" id="pattern-fill"></div></div>
+  <div class="pattern-note">
+    <div class="pn"><b>Шаг сетки</b>Знаки выстраиваются в равномерную сетку с шагом 2× размера знака. Без поворотов отдельных модулей.</div>
+    <div class="pn"><b>Акцент</b>Не более 1 из 9 центров — в цвете Signal. Остальные приглушены до 8–12% контраста.</div>
+    <div class="pn"><b>Применение</b>Только как фон под контент с достаточным затемнением. Не накладывать на сам логотип.</div>
+  </div>
+</section>
+
+<!-- ===== 08 MEDIA ===== -->
+<section class="shell section" id="media" data-screen-label="Носители">
+  <div class="sec-head">
+    <div class="sec-num">08</div>
+    <h2 class="sec-title"><span class="tag">Носители</span>Система в деле</h2>
+    <p class="sec-desc">Как айдентика живёт на реальных носителях — от favicon до фасадной вывески. Реквизиты — заглушки, замените на свои.</p>
+  </div>
+
+  <div class="mock-grid">
+    <div class="mock span8">
+      <div class="mlabel">Сайт · главная</div>
+      <div class="mstage" style="align-items: stretch;">
+        <div class="browser" style="align-self: stretch;">
+          <div class="bar"><div class="b"></div><div class="b"></div><div class="b"></div>
+            <div class="tab"><span class="mk" data-mark data-s="14" data-c="var(--ink)" data-a="var(--accent)"></span>prodigitalplus.ru</div>
+          </div>
+          <div class="hero">
+            <div class="pattern-fill" id="hero-pattern" style="position:absolute; inset:0; opacity:0.5;"></div>
+            <div class="nav">
+              <span class="wm" style="font-size: 22px; color: var(--paper);"><span class="word">digital</span><span class="mk" data-mark data-s="16" data-c="var(--paper)" data-a="var(--accent)" style="margin-left:4px;"></span></span>
+              <div class="links"><span>Услуги</span><span>152-ФЗ</span><span>CRM</span><span>Контакты</span></div>
+            </div>
+            <div class="h">Разработка, CRM и поддержка IT-проектов с 2022 года.</div>
+            <div class="cta">Обсудить проект</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mock span4">
+      <div class="mlabel">Иконки и фавиконы</div>
+      <div class="mstage">
+        <div class="tiles">
+          <div class="tile ink" style="width:72px;height:72px;"><span class="mk" data-mark data-s="42" data-c="var(--paper)" data-a="var(--accent)"></span></div>
+          <div class="tile signal" style="width:56px;height:56px;"><span class="mk" data-mark data-s="32" data-c="var(--paper)" data-a="var(--ink)"></span></div>
+          <div class="tile paper" style="width:44px;height:44px;"><span class="mk" data-mark data-s="26" data-c="var(--ink)" data-a="var(--accent)"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mock span4">
+      <div class="mlabel">Визитка · лицо</div>
+      <div class="mstage">
+        <div class="card">
+          <div class="top">
+            <span class="wm" style="font-size: 20px;"><span class="word">digital</span><span class="mk" data-mark data-s="15" data-c="var(--ink)" data-a="var(--accent)" style="margin-left:4px;"></span></span>
+            <div class="pin"></div>
+          </div>
+          <div class="info">
+            <div class="nm">Тамби Мерза</div>
+            <div class="role">Генеральный директор</div>
+            <div style="margin-top: 8px;">8 928 010 40 08<br/>info@prodigitalplus.ru</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mock span4">
+      <div class="mlabel">Визитка · оборот</div>
+      <div class="mstage">
+        <div class="card dark" style="align-items: center; justify-content: center; padding: 0;">
+          <div class="pattern-fill" id="card-pattern" style="position:absolute; inset:0; opacity:0.55;"></div>
+          <span class="mk" data-mark data-s="52" data-c="var(--paper)" data-a="var(--accent)" style="position: relative; z-index: 1;"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mock span4">
+      <div class="mlabel">Бланк · 152-ФЗ</div>
+      <div class="mstage">
+        <div class="letter">
+          <div class="lh">
+            <span class="wm" style="font-size: 15px;"><span class="word">digital</span><span class="mk" data-mark data-s="12" data-c="var(--ink)" data-a="var(--accent)" style="margin-left:3px;"></span></span>
+            <span class="mono" style="font-size: 8px; color: var(--muted); text-align: right; line-height: 1.5;">152-ФЗ<br/>v.2026</span>
+          </div>
+          <div class="mono" style="font-size: 8px; letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase; margin-top: 16px;">Политика обработки<br/>персональных данных</div>
+          <div class="lb" style="margin-top: 14px;">
+            <div class="ln"></div><div class="ln"></div><div class="ln s"></div>
+            <div class="ln" style="margin-top:8px;"></div><div class="ln"></div><div class="ln s"></div>
+          </div>
+          <div class="lf" style="display:block; line-height:1.7;"><span>ООО «Диджитал плюс» · г. Нальчик</span><br/><span>ИНН 0700001458 · ОГРН 1220700000014</span><br/><span>prodigitalplus.ru · info@prodigitalplus.ru · 8 928 010 40 08</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mock span8">
+      <div class="mlabel">Вывеска / экран</div>
+      <div class="mstage">
+        <div class="signage">
+          <div class="pattern-fill" id="sign-pattern" style="position:absolute; inset:0; opacity:0.4;"></div>
+          <div class="stack center" style="position: relative; z-index: 1; gap: 16px;">
+            <span class="wm" style="font-size: 52px; color: var(--paper);"><span class="word">digital</span><span class="mk" data-mark data-s="40" data-c="var(--paper)" data-a="var(--accent)" style="margin-left:8px;"></span></span>
+            <div class="cyr dk">ДИДЖИТАЛ ПЛЮС</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLOSING ===== -->
+<section class="shell closing">
+  <div class="closing-grid">
+    <div>
+      <div class="label" style="margin-bottom: 24px;">Передача</div>
+      <h2>Готово к<br/>использованию</h2>
+      <p>Система собрана и единообразна. Скажите, что доработать — реквизиты, дополнительные носители, расширенная палитра — и я подготовлю финальный набор исходников для подрядчиков и типографии.</p>
+    </div>
+    <div>
+      <div class="label" style="margin-bottom: 12px;">Состав пакета (по запросу)</div>
+      <div class="dl-list">
+        <div class="it"><div class="nm">Знак — все версии и цвета</div><div class="ext">SVG · PDF · PNG</div></div>
+        <div class="it"><div class="nm">Иконки и фавиконы 16–512 px</div><div class="ext">ICO · PNG</div></div>
+        <div class="it"><div class="nm">Лок-апы — гориз / верт / знак</div><div class="ext">SVG · PDF</div></div>
+        <div class="it"><div class="nm">Паттерн — тайл</div><div class="ext">SVG · PNG</div></div>
+        <div class="it"><div class="nm">Шаблоны: визитка, бланк, письмо</div><div class="ext">PDF · DOCX</div></div>
+        <div class="it"><div class="nm">Этот брендбук</div><div class="ext">HTML · PDF</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  <div>Диджитал плюс · brand book · знак «Апертура · движение»</div>
+  <div>v1.0 · 2026</div>
+</div>
+
+<script>
+  // ----- mark injector -----
+  function markHTML(s, c, a) {
+    return '<svg viewBox="0 0 100 100" width="' + s + '" height="' + s + '" aria-hidden="true">' +
+      '<rect x="48" y="8" width="20" height="30" rx="3" fill="' + c + '"/>' +
+      '<rect x="62" y="48" width="30" height="20" rx="3" fill="' + c + '"/>' +
+      '<rect x="32" y="62" width="20" height="30" rx="3" fill="' + c + '"/>' +
+      '<rect x="8" y="32" width="30" height="20" rx="3" fill="' + c + '"/>' +
+      '<rect x="42" y="42" width="16" height="16" rx="2" fill="' + a + '"/>' +
+    '</svg>';
+  }
+  document.querySelectorAll('[data-mark]').forEach(function (el) {
+    el.innerHTML = markHTML(el.dataset.s || 100, el.dataset.c || 'var(--ink)', el.dataset.a || 'var(--accent)');
+  });
+
+  // ----- pattern builder -----
+  function buildPattern(el, opts) {
+    opts = opts || {};
+    var size = opts.size || 36;
+    var gap = opts.gap || size;
+    var base = opts.base || 'rgba(244,241,235,0.10)';
+    var accent = opts.accent || '#E2553A';
+    var rect = el.getBoundingClientRect();
+    var w = rect.width || el.parentElement.offsetWidth || 800;
+    var h = rect.height || el.parentElement.offsetHeight || 360;
+    var step = size + gap;
+    var cols = Math.ceil(w / step) + 1;
+    var rows = Math.ceil(h / step) + 1;
+    var html = '';
+    var i = 0;
+    for (var r = 0; r < rows; r++) {
+      for (var c = 0; c < cols; c++) {
+        var isAccent = (i % 9 === 4);
+        html += '<span style="position:absolute; left:' + (c * step) + 'px; top:' + (r * step) + 'px;">' +
+          markHTML(size, base, isAccent ? accent : base) + '</span>';
+        i++;
+      }
+    }
+    el.innerHTML = html;
+  }
+  function rebuildPatterns() {
+    var main = document.getElementById('pattern-fill');
+    if (main) buildPattern(main, { size: 40, gap: 40, base: 'rgba(244,241,235,0.10)', accent: '#E2553A' });
+    ['hero-pattern', 'card-pattern', 'sign-pattern'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) buildPattern(el, { size: 22, gap: 22, base: 'rgba(244,241,235,0.10)', accent: '#E2553A' });
+    });
+  }
+  rebuildPatterns();
+  window.addEventListener('resize', rebuildPatterns);
+</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<title>Диджитал плюс — Финалисты · Апертура и d+</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0E1117; --paper: #F4F1EB; --paper-2: #EDE9E1;
+    --line: #DCD6CB; --muted: #6E6960; --muted-dark: #8B8B92;
+    --accent: #E2553A;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: 'Geist', system-ui, sans-serif; background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; }
+  .wm { display: inline-flex; align-items: baseline; font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
+  .lbl { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+
+  .ab { display: flex; flex-direction: column; height: 100%; background: var(--paper); }
+  .ab .hero { flex: 0 0 auto; padding: 40px 32px 30px; display: flex; align-items: center; justify-content: center; min-height: 196px; border-bottom: 1px solid var(--line); }
+  .ab .idea { padding: 18px 26px; border-bottom: 1px solid var(--line); font-size: 12.5px; line-height: 1.5; color: var(--muted); min-height: 80px; }
+  .ab .idea b { color: var(--ink); font-weight: 600; }
+  .ab .row { display: flex; align-items: center; gap: 14px; padding: 20px 26px; border-bottom: 1px solid var(--line); }
+  .ab .row:last-child { border-bottom: none; }
+  .ab .row .rl { width: 64px; flex-shrink: 0; }
+  .ab .row .rc { flex: 1; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .tile { width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .tile.ink { background: var(--ink); }
+  .tile.signal { background: var(--accent); }
+  .tile.paper { background: var(--paper-2); border: 1px solid var(--line); }
+  .fav { display: flex; align-items: center; gap: 10px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="marks2.jsx"></script>
+<script type="text/babel">
+  const { DesignCanvas, DCSection, DCArtboard } = window;
+
+  // Aperture: mark replaces the "+" in the wordmark
+  function LockupSuffix({ Mark }) {
+    return (
+      <span className="wm" style={{ fontSize: 38, color: 'var(--ink)' }}>
+        <span>digital</span>
+        <Mark size={28} color="var(--ink)" style={{ marginLeft: 4 }} />
+      </span>
+    );
+  }
+  // d-fuse marks are standalone monograms → pair beside the wordmark
+  function LockupMark({ Mark }) {
+    return (
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 12 }}>
+        <Mark size={40} color="var(--ink)" />
+        <span className="wm" style={{ fontSize: 34, color: 'var(--ink)' }}>digital+</span>
+      </span>
+    );
+  }
+
+  function IconRow({ Mark }) {
+    return (
+      <div className="rc">
+        <div className="tile ink"><Mark size={30} color="var(--paper)" accent="var(--accent)" /></div>
+        <div className="tile signal"><Mark size={30} color="var(--paper)" accent="var(--ink)" /></div>
+        <div className="tile paper"><Mark size={30} color="var(--ink)" accent="var(--accent)" /></div>
+      </div>
+    );
+  }
+  function FavRow({ Mark }) {
+    return (
+      <div className="rc">
+        {[32, 20, 14].map((s) => (
+          <div className="fav" key={s}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Mark size={s} color="var(--ink)" accent="var(--accent)" />
+            </div>
+            <span className="lbl">{s === 14 ? 16 : s}</span>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  function body({ name, idea, Mark, lock }) {
+    const Lock = lock === 'mark' ? LockupMark : LockupSuffix;
+    return (
+      <div className="ab">
+        <div className="hero"><Mark size={104} color="var(--ink)" accent="var(--accent)" /></div>
+        <div className="idea"><b>{name}.</b> {idea}</div>
+        <div className="row"><div className="rl lbl">Лок-ап</div><div className="rc"><Lock Mark={Mark} /></div></div>
+        <div className="row"><div className="rl lbl">Иконка</div><IconRow Mark={Mark} /></div>
+        <div className="row"><div className="rl lbl">Favicon</div><FavRow Mark={Mark} /></div>
+      </div>
+    );
+  }
+
+  function App() {
+    return (
+      <DesignCanvas>
+        <DCSection id="aperture" title="Семейство · Апертура" subtitle="База B — четыре луча и центр. Меняется характер центра и движение лучей">
+          <DCArtboard id="ap-pixel" label="B1 · Pixel" width={360} height={560}>
+            {body({ name: "Пиксель", Mark: window.ApPixel, idea: "Лучи + сплошной фирменный пиксель в центре. Самый чёткий и спокойный — узел как «точка сборки»." })}
+          </DCArtboard>
+          <DCArtboard id="ap-open" label="B2 · Open" width={360} height={560}>
+            {body({ name: "Апертура", Mark: window.ApOpen, idea: "Центр пустой — рамка-квадрат как диафрагма камеры / окно. Плюс читается негативом, очень «цифровой» характер." })}
+          </DCArtboard>
+          <DCArtboard id="ap-motion" label="B3 · Motion" width={360} height={560}>
+            {body({ name: "Движение", Mark: window.ApMotion, idea: "Лучи смещены по кругу — вертушка. Даёт ощущение процесса, обработки, динамики. Самый энергичный вариант." })}
+          </DCArtboard>
+          <DCArtboard id="ap-data" label="B4 · Data" width={360} height={560}>
+            {body({ name: "Данные", Mark: window.ApData, idea: "Каждый луч разбит на сегменты — пиксели / модули / поток данных. Самый «инженерный» и системный." })}
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection id="fuse" title="Семейство · d+" subtitle="База D — буква и плюс как один знак. Меняется способ их сращивания">
+          <DCArtboard id="d-cross" label="D1 · Cross-stem" width={360} height={560}>
+            {body({ name: "Стойка-крест", lock: 'mark', Mark: window.DCross, idea: "Стойка строчной d одновременно служит вертикалью плюса. Органичная буквенная форма, акцентная перекладина." })}
+          </DCArtboard>
+          <DCArtboard id="d-counter" label="D2 · Counter" width={360} height={560}>
+            {body({ name: "Плюс в очке", lock: 'mark', Mark: window.DCounter, idea: "Плюс живёт негативом внутри чаши буквы. Плотный, печатный знак — отлично работает как иконка и печать." })}
+          </DCArtboard>
+          <DCArtboard id="d-bowl" label="D3 · Plus-bowl" width={360} height={560}>
+            {body({ name: "Плюс-чаша", lock: 'mark', Mark: window.DPlusBowl, idea: "Сама чаша буквы построена из плюса — «+ собирает букву». Самый абстрактный и концептуальный вариант." })}
+          </DCArtboard>
+          <DCArtboard id="d-block" label="D4 · Block" width={360} height={560}>
+            {body({ name: "Блок-d", lock: 'mark', Mark: window.DBlock, idea: "Геометрическая, моноширинная d со скруглённой чашей и крестом. Софтверный, «продуктовый» характер." })}
+          </DCArtboard>
+        </DCSection>
+      </DesignCanvas>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

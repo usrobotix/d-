@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<title>Кейс: CRM для агентства недвижимости — Диджитал плюс</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="site.css" />
+<link rel="stylesheet" href="pages.css" />
+</head>
+<body>
+
+<header class="header">
+  <div class="shell bar">
+    <a href="Сайт.html#top" class="logo"><span class="wm" data-mark data-s="24" data-c="#F4F1EB" data-a="#E2553A"></span>digital+</a>
+    <nav class="nav">
+      <a href="Услуги.html">Услуги</a>
+      <a href="Кейсы.html">Кейсы</a>
+      <a href="Отзывы.html">Отзывы</a>
+      <a href="FAQ.html">FAQ</a>
+      <a href="Контакты.html">Контакты</a>
+    </nav>
+    <div class="actions">
+      <a href="tel:+79280104008" class="tel">8 928 010 40 08</a>
+      <a href="Контакты.html" class="btn btn-primary">Обсудить проект</a>
+      <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="Услуги.html">Услуги</a><a href="Кейсы.html">Кейсы</a><a href="Отзывы.html">Отзывы</a><a href="FAQ.html">FAQ</a><a href="Контакты.html">Контакты</a>
+  <div class="m-actions"><a href="tel:+79280104008" class="btn btn-ghost">8 928 010 40 08</a><a href="Контакты.html" class="btn btn-primary">Обсудить проект</a></div>
+</div>
+
+<main id="top">
+
+  <section class="cd-hero">
+    <div class="pattern-fill" data-psize="30" data-pgap="34"></div>
+    <div class="shell">
+      <div class="crumbs"><a href="Сайт.html#top">Главная</a><span class="sep">/</span><a href="Кейсы.html">Кейсы</a><span class="sep">/</span><span>CRM недвижимость</span></div>
+      <div class="tags"><span class="t">CRM</span><span class="t">Карта</span><span class="t">React</span></div>
+      <h1>CRM для агентства недвижимости с картой объектов и карточками</h1>
+      <p class="sub">Собрали разрозненные таблицы и папки с фото в единую систему: объекты на карте, карточки со статусами и воронки сделок по агентам.</p>
+      <div class="cd-cover">
+        <image-slot id="crm-cover" shape="rounded" radius="14" placeholder="Обложка — интерфейс CRM с картой объектов"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <section class="cd-body">
+    <div class="shell cd-grid">
+      <aside class="cd-aside">
+        <div class="row"><div class="k">Клиент</div><div class="v">Агентство недвижимости</div></div>
+        <div class="row"><div class="k">Направление</div><div class="v">Разработка CRM</div></div>
+        <div class="row"><div class="k">Год</div><div class="v">2024</div></div>
+        <div class="row"><div class="k">Срок</div><div class="v">≈ 10 недель</div></div>
+        <div class="row"><div class="k">Стек</div><div class="v"><div class="stack"><span>React</span><span>Map API</span><span>PostgreSQL</span><span>Node</span></div></div></div>
+      </aside>
+
+      <div class="cd-content">
+        <h2>Задача</h2>
+        <p>База объектов жила в таблицах и папках с фотографиями. Агенты теряли время на поиск, не было общей картины по статусам, а руководитель не видел воронку сделок. Особенно не хватало визуализации объектов на карте.</p>
+        <p>Нужна была единая CRM с картой, удобными карточками объектов и распределением сделок по агентам.</p>
+
+        <h2>Что сделали</h2>
+        <ul>
+          <li>Реализовали карту объектов с кластеризацией и фильтрами по параметрам</li>
+          <li>Сделали карточки с фото, характеристиками, статусами и историей изменений</li>
+          <li>Настроили воронки сделок и распределение объектов по агентам</li>
+          <li>Добавили роли и разграничение доступа</li>
+          <li>Перенесли существующую базу объектов без потерь</li>
+        </ul>
+
+        <div class="cd-gallery">
+          <image-slot id="crm-1" class="wide" placeholder="Карта объектов"></image-slot>
+          <image-slot id="crm-2" placeholder="Карточка объекта"></image-slot>
+          <image-slot id="crm-3" placeholder="Воронка сделок"></image-slot>
+        </div>
+
+        <h2>Результат</h2>
+        <div class="cd-result">
+          <div class="m"><div class="mv">1 база</div><div class="mk">вместо таблиц и папок</div></div>
+          <div class="m"><div class="mv">Карта</div><div class="mk">всех объектов сразу</div></div>
+          <div class="m"><div class="mv">Роли</div><div class="mk">доступ по агентам</div></div>
+        </div>
+        <p>Агенты работают в одном окне, руководитель видит воронку и загрузку по людям, а объекты на карте помогают быстро подбирать варианты под запрос клиента.</p>
+      </div>
+    </div>
+
+    <div class="shell">
+      <div class="cd-nav">
+        <a href="kase-mg-ceramic.html" class="prev"><div class="d">← Предыдущий кейс</div><div class="nm">Сайт mg-ceramic.ru</div></a>
+        <a href="kase-kurort.html" class="next"><div class="d">Следующий кейс →</div><div class="nm">Сайт АО «Курорт Нальчик»</div></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cases-cta">
+    <div class="pattern-fill" data-psize="26" data-pgap="30"></div>
+    <div class="shell inner">
+      <div class="eyebrow center">Похожая задача?</div>
+      <h2>Сделаем сайт, который приносит заявки</h2>
+      <p>Расскажите о продукте — предложим структуру, интеграции и смету.</p>
+      <div class="cta-row"><a href="Контакты.html" class="btn btn-primary">Обсудить проект <span class="arr">→</span></a><a href="Кейсы.html" class="btn btn-ghost">Все кейсы</a></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="shell">
+    <div class="footer-top">
+      <div class="f-brand"><a href="Сайт.html#top" class="logo"><span class="wm" data-mark data-s="22" data-c="#F4F1EB" data-a="#E2553A"></span>digital+</a><p>Разработка сайтов и CRM, документация 152-ФЗ и поддержка IT-проектов. С 2021 года.</p></div>
+      <div class="col"><h5>Услуги</h5><a href="Услуги.html#web">Разработка сайтов</a><a href="Услуги.html#crm">Разработка CRM</a><a href="Услуги.html#fz152">Документация 152-ФЗ</a><a href="Услуги.html#support">IT-поддержка</a></div>
+      <div class="col"><h5>Компания</h5><a href="Кейсы.html">Кейсы</a><a href="Отзывы.html">Отзывы</a><a href="FAQ.html">FAQ</a><a href="Контакты.html">Контакты</a></div>
+      <div class="col"><h5>Реквизиты</h5><div class="req">ООО «Диджитал плюс»<br/>ИНН 0700001458<br/>ОГРН 1220700000014<br/>г. Нальчик, ул. Чернышевского, 272<br/>info@prodigitalplus.ru<br/>8 928 010 40 08</div></div>
+    </div>
+    <div class="footer-bottom"><div class="cp">© 2021–2026 Диджитал плюс</div><div class="socials"><a href="#">tg</a><a href="#">wa</a><a href="#">vk</a></div></div>
+  </div>
+</footer>
+
+<script src="image-slot.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

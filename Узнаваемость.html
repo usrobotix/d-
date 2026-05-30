@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<title>Диджитал плюс — Узнаваемый знак · варианты</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0E1117; --paper: #F4F1EB; --paper-2: #EDE9E1;
+    --line: #DCD6CB; --muted: #6E6960; --muted-dark: #8B8B92;
+    --accent: #E2553A;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: 'Geist', system-ui, sans-serif; background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; }
+  .wm { display: inline-flex; align-items: baseline; font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
+  .mono { font-family: 'Geist Mono', monospace; }
+  .lbl { font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+
+  /* artboard internal layout */
+  .ab { display: flex; flex-direction: column; height: 100%; background: var(--paper); }
+  .ab .hero { flex: 0 0 auto; padding: 40px 32px 28px; display: flex; align-items: center; justify-content: center; min-height: 200px; border-bottom: 1px solid var(--line); }
+  .ab .hero.dark { background: var(--ink); }
+  .ab .idea { padding: 18px 26px; border-bottom: 1px solid var(--line); font-size: 12.5px; line-height: 1.5; color: var(--muted); min-height: 78px; }
+  .ab .idea b { color: var(--ink); font-weight: 600; }
+  .ab .row { display: flex; align-items: center; gap: 14px; padding: 20px 26px; border-bottom: 1px solid var(--line); }
+  .ab .row:last-child { border-bottom: none; }
+  .ab .row .rl { width: 64px; flex-shrink: 0; }
+  .ab .row .rc { flex: 1; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .tile { width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .tile.ink { background: var(--ink); }
+  .tile.signal { background: var(--accent); }
+  .tile.paper { background: var(--paper-2); border: 1px solid var(--line); }
+  .fav { display: flex; align-items: center; gap: 10px; }
+  .favbox { display: flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="marks.jsx"></script>
+<script type="text/babel">
+  const { DesignCanvas, DCSection, DCArtboard } = window;
+
+  function Hero({ dark, children }) {
+    return <div className={"hero" + (dark ? " dark" : "")}>{children}</div>;
+  }
+  function Lockup({ Mark, color, size = 38 }) {
+    return (
+      <span className="wm" style={{ fontSize: size, color }}>
+        <span>digital</span>
+        <Mark size={size * 0.74} color={color} style={{ marginLeft: size * 0.12 }} />
+      </span>
+    );
+  }
+
+  function boardBody({ name, idea, Mark }) {
+    return (
+      <div className="ab">
+        <Hero><Mark size={104} color="var(--ink)" /></Hero>
+        <div className="idea"><b>{name}.</b> {idea}</div>
+        <div className="row">
+          <div className="rl lbl">Лок-ап</div>
+          <div className="rc"><Lockup Mark={Mark} color="var(--ink)" /></div>
+        </div>
+        <div className="row">
+          <div className="rl lbl">Иконка</div>
+          <div className="rc">
+            <div className="tile ink"><Mark size={30} color="var(--paper)" /></div>
+            <div className="tile signal"><Mark size={30} color="var(--paper)" accent="var(--paper)" /></div>
+            <div className="tile paper"><Mark size={30} color="var(--ink)" /></div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="rl lbl">Favicon</div>
+          <div className="rc">
+            <div className="fav"><div className="favbox"><Mark size={32} color="var(--ink)" /></div><span className="lbl">32</span></div>
+            <div className="fav"><div className="favbox"><Mark size={20} color="var(--ink)" /></div><span className="lbl">20</span></div>
+            <div className="fav"><div className="favbox"><Mark size={14} color="var(--ink)" /></div><span className="lbl">16</span></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  function App() {
+    return (
+      <DesignCanvas>
+        <DCSection id="bold" title="Узнаваемый «+»" subtitle="Знак как герой — бери смелую, цепкую форму плюса, которую видно в favicon и помнишь наизусть">
+          <DCArtboard id="split" label="A · Split" width={360} height={560}>
+            {boardBody({ name: "Сплит-плюс", Mark: window.MarkSplit, idea: "Жирный плюс из двух блоков — вертикаль Ink, горизонталь Signal. Двухцветный центр читается мгновенно и держит фирменный акцент." })}
+          </DCArtboard>
+          <DCArtboard id="aperture" label="B · Aperture" width={360} height={560}>
+            {boardBody({ name: "Апертура", Mark: window.MarkAperture, idea: "Четыре толстых луча не сходятся — в центре фирменный квадрат-пиксель. Техно-характер, отлично масштабируется." })}
+          </DCArtboard>
+          <DCArtboard id="forward" label="C · Forward" width={360} height={560}>
+            {boardBody({ name: "Форвард", Mark: window.MarkForward, idea: "Жирный плюс со срезом верхнего угла — даёт движение и «вперёд». Силуэт ни на что не похож — максимально ownable." })}
+          </DCArtboard>
+          <DCArtboard id="fuse" label="D · d-fuse" width={360} height={560}>
+            {boardBody({ name: "Сращивание d+", Mark: window.MarkFuse, idea: "Стойка строчной d превращается в вертикаль плюса — буква и знак сливаются в одну форму. Самый «умный» вариант." })}
+          </DCArtboard>
+        </DCSection>
+      </DesignCanvas>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
