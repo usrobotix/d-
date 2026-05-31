@@ -1,0 +1,91 @@
+/* ============================================================
+   Диджитал плюс — страница «Кейсы» (наследует site.css)
+============================================================ */
+
+/* hero */
+.cases-hero { position: relative; overflow: hidden; padding-top: clamp(48px, 6vw, 88px); padding-bottom: clamp(40px, 5vw, 64px); }
+.cases-hero .pattern-fill { opacity: .42; mask-image: radial-gradient(120% 100% at 75% 0%, #000, transparent 68%); -webkit-mask-image: radial-gradient(120% 100% at 75% 0%, #000, transparent 68%); }
+.cases-hero .hero-glow { position: absolute; top: -30%; right: -8%; width: 640px; height: 640px; background: radial-gradient(circle, rgba(226,85,58,0.14), transparent 62%); pointer-events: none; }
+.cases-hero .inner { position: relative; z-index: 2; max-width: 820px; }
+.cases-hero h1 { font-size: clamp(38px, 6vw, 76px); font-weight: 500; letter-spacing: -0.045em; line-height: 1.0; margin: 24px 0 0; }
+.cases-hero h1 .accent { color: var(--accent); }
+.cases-hero .lead { font-size: clamp(16px, 1.9vw, 20px); color: var(--paper-dim); margin: 24px 0 0; max-width: 560px; }
+.cases-hero .stat-strip { display: flex; flex-wrap: wrap; gap: clamp(22px, 4vw, 52px); margin-top: 52px; padding-top: 32px; border-top: 1px solid var(--line); }
+.cases-hero .stat-strip .s .v { font-size: clamp(26px, 3.2vw, 38px); font-weight: 600; letter-spacing: -0.03em; }
+.cases-hero .stat-strip .s .v .accent { color: var(--accent); }
+.cases-hero .stat-strip .s .k { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-top: 6px; }
+
+/* filter bar */
+.filterbar { position: sticky; top: 72px; z-index: 40; background: rgba(14,17,23,0.82); backdrop-filter: blur(14px); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.filterbar .row { display: flex; gap: 10px; padding: 16px 0; flex-wrap: wrap; align-items: center; overflow-x: auto; }
+.chip {
+  display: inline-flex; align-items: center; gap: 9px; padding: 9px 16px; border-radius: 999px;
+  border: 1px solid var(--line-2); background: transparent; color: var(--paper-dim);
+  font-size: 13.5px; font-weight: 500; white-space: nowrap; transition: all .15s ease;
+}
+.chip:hover { border-color: var(--paper-dim); color: var(--paper); }
+.chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.chip .cnt { font-family: var(--mono); font-size: 11px; opacity: .7; }
+.chip.active .cnt { opacity: .9; }
+
+/* cases grid */
+.kases { padding: clamp(40px, 6vw, 72px) 0 clamp(64px, 9vw, 110px); }
+.kases-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+.kase {
+  grid-column: span 4; background: var(--ink-2); border: 1px solid var(--line); border-radius: var(--radius);
+  overflow: hidden; display: flex; flex-direction: column; transition: border-color .18s ease, transform .18s ease, opacity .25s ease;
+}
+.kase:hover { border-color: var(--line-2); transform: translateY(-3px); }
+.kase.feat { grid-column: span 6; }
+.kase.hide { display: none; }
+
+/* card pattern header band */
+.kase .band { position: relative; height: 92px; background: var(--ink-3); overflow: hidden; border-bottom: 1px solid var(--line); }
+.kase.feat .band { height: 132px; }
+.kase .band .pattern-fill { opacity: .5; }
+.kase .band .big-mark { position: absolute; right: -22px; bottom: -26px; opacity: .14; }
+.kase .band .tags { position: absolute; top: 16px; left: 18px; display: flex; gap: 6px; flex-wrap: wrap; z-index: 2; }
+.kase .band .tags .t { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--paper); background: rgba(10,13,18,0.72); padding: 5px 9px; border-radius: 6px; backdrop-filter: blur(4px); }
+.kase .band .yr { position: absolute; top: 16px; right: 18px; font-family: var(--mono); font-size: 11px; color: var(--paper-dim); z-index: 2; }
+
+.kase .body { padding: 24px 26px 26px; display: flex; flex-direction: column; flex: 1; }
+.kase h3 { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 18px; }
+.kase.feat h3 { font-size: 24px; }
+.kase .blk { margin-bottom: 16px; }
+.kase .blk .bl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 6px; }
+.kase .blk p { margin: 0; font-size: 14px; color: var(--paper-dim); line-height: 1.5; }
+.kase .blk ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.kase .blk ul li { font-size: 13.5px; color: var(--paper-dim); padding-left: 18px; position: relative; line-height: 1.45; }
+.kase .blk ul li::before { content: "+"; position: absolute; left: 0; color: var(--accent); font-family: var(--mono); }
+
+.kase .result { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--line); display: flex; gap: 26px; flex-wrap: wrap; }
+.kase .result .m .mv { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; line-height: 1; }
+.kase .result .m .mv .accent { color: var(--accent); }
+.kase .result .m .mk { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-top: 6px; }
+
+.kase .stack { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 18px; }
+.kase .stack span { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.04em; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; }
+
+/* feat layout: two-column body on wide */
+.kase.feat .body { }
+.kase.feat .blk-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 28px; }
+
+/* closing CTA reuse contact styles from site.css */
+.cases-cta { background: var(--ink-1); border-top: 1px solid var(--line); position: relative; overflow: hidden; }
+.cases-cta .pattern-fill { opacity: .4; }
+.cases-cta .inner { position: relative; z-index: 2; text-align: center; max-width: 640px; margin: 0 auto; }
+.cases-cta h2 { font-size: clamp(28px, 4vw, 46px); font-weight: 500; letter-spacing: -0.03em; margin: 18px 0 0; line-height: 1.04; }
+.cases-cta p { color: var(--paper-dim); font-size: 17px; margin: 20px 0 32px; }
+.cases-cta .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+.empty-state { display: none; text-align: center; padding: 60px 20px; color: var(--muted); font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; }
+.empty-state.show { display: block; }
+
+@media (max-width: 1080px) {
+  .kase, .kase.feat { grid-column: span 6; }
+  .kase.feat .blk-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .kase, .kase.feat { grid-column: span 12; }
+  .filterbar { top: 0; }
+}
