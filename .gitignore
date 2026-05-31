@@ -28,3 +28,18 @@ Thumbs.db
 .idea/
 
 # Prisma
+
+# Next.js build
+apps/web/.next/
+
+# TypeScript build
+apps/api/dist/
+
+# pnpm
+pnpm-lock.yaml
+
+# Turbo cache
+.turbo/
+
+# PM2
+ecosystem.config.js
