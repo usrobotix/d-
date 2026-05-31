@@ -111,7 +111,7 @@ router.get('/', requireAuth, async (req: Request, res: Response) => {
 // DELETE /:id — delete (requireAuth)
 router.delete('/:id', requireAuth, async (req: Request, res: Response) => {
   try {
-    const id = parseInt(req.params.id, 10);
+    const id = parseInt(req.params.id as string, 10);
     const media = await prisma.media.findUnique({ where: { id } });
     if (!media) {
       res.status(404).json({ error: 'Not found' });

@@ -20,7 +20,7 @@ router.get('/', async (_req: Request, res: Response) => {
 // GET /:id
 router.get('/:id', async (req: Request, res: Response) => {
   try {
-    const id = parseInt(req.params.id, 10);
+    const id = parseInt(req.params.id as string, 10);
     const t = await prisma.testimonial.findUnique({ where: { id } });
     if (!t) {
       res.status(404).json({ error: 'Not found' });
@@ -45,8 +45,9 @@ router.post('/', requireAuth, requireRole(['admin', 'editor']), async (req: Requ
 // PUT /:id — update (requireAuth, requireRole)
 router.put('/:id', requireAuth, requireRole(['admin', 'editor']), async (req: Request, res: Response) => {
   try {
-    const id = parseInt(req.params.id, 10);
-    const t = await prisma.testimonial.update({ where: { id }, data: req.body });
+    const id = parseInt(req.params.id as string, 10);
+    const { id: _id, ...data } = req.body;
+    const t = await prisma.testimonial.update({ where: { id }, data });
     res.json(t);
   } catch (err: any) {
     res.status(400).json({ error: err.message });
@@ -56,7 +57,7 @@ router.put('/:id', requireAuth, requireRole(['admin', 'editor']), async (req: Re
 // DELETE /:id — delete (requireAuth admin)
 router.delete('/:id', requireAuth, requireRole(['admin']), async (req: Request, res: Response) => {
   try {
-    const id = parseInt(req.params.id, 10);
+    const id = parseInt(req.params.id as string, 10);
     await prisma.testimonial.delete({ where: { id } });
     res.json({ ok: true });
   } catch (err: any) {

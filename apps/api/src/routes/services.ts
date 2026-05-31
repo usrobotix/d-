@@ -17,11 +17,20 @@ router.get('/', async (_req: Request, res: Response) => {
   }
 });
 
+// GET /by-id/:id
+router.get("/by-id/:id", requireAuth, async (req: Request, res: Response) => {
+  try {
+    const s = await prisma.service.findUnique({ where: { id: parseInt(req.params.id as string, 10) } });
+    if (!s) { res.status(404).json({ error: "Not found" }); return; }
+    res.json(s);
+  } catch (err) { res.status(500).json({ error: "Internal server error" }); }
+});
+
 // GET /:slug — get one by slug (public)
 router.get('/:slug', async (req: Request, res: Response) => {
   try {
     const service = await prisma.service.findUnique({
-      where: { slug: req.params.slug },
+      where: { slug: req.params.slug as string },
     });
     if (!service) {
       res.status(404).json({ error: 'Not found' });
@@ -46,10 +55,10 @@ router.post('/', requireAuth, requireRole(['admin', 'editor']), async (req: Requ
 // PUT /:id — update (requireAuth, requireRole)
 router.put('/:id', requireAuth, requireRole(['admin', 'editor']), async (req: Request, res: Response) => {
   try {
-    const id = parseInt(req.params.id, 10);
+    const id = parseInt(req.params.id as string, 10);
     const service = await prisma.service.update({
       where: { id },
-      data: req.body,
+      data: req.body,// TODO fix
     });
     res.json(service);
   } catch (err: any) {
@@ -60,7 +69,7 @@ router.put('/:id', requireAuth, requireRole(['admin', 'editor']), async (req: Re
 // DELETE /:id — delete (requireAuth admin)
 router.delete('/:id', requireAuth, requireRole(['admin']), async (req: Request, res: Response) => {
   try {
-    const id = parseInt(req.params.id, 10);
+    const id = parseInt(req.params.id as string, 10);
     await prisma.service.delete({ where: { id } });
     res.json({ ok: true });
   } catch (err: any) {

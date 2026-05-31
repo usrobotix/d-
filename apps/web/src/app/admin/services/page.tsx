@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
-const tok = () => typeof window !== 'undefined' ? localStorage.getItem('token') || '' : '';
+const tok = () => typeof window !== 'undefined' ? localStorage.getItem('dp_token') || '' : '';
 const h = () => ({ 'Content-Type': 'application/json', Authorization: `Bearer ${tok()}` });
 
 type Service = { id: number; title: string; slug: string; published: boolean };

@@ -17,7 +17,7 @@ router.get('/', async (_req: Request, res: Response) => {
 // GET /:id
 router.get('/:id', async (req: Request, res: Response) => {
   try {
-    const id = parseInt(req.params.id, 10);
+    const id = parseInt(req.params.id as string, 10);
     const r = await prisma.redirect.findUnique({ where: { id } });
     if (!r) {
       res.status(404).json({ error: 'Not found' });
@@ -43,7 +43,7 @@ router.post('/', requireAuth, async (req: Request, res: Response) => {
 // PUT /:id — update (requireAuth)
 router.put('/:id', requireAuth, async (req: Request, res: Response) => {
   try {
-    const id = parseInt(req.params.id, 10);
+    const id = parseInt(req.params.id as string, 10);
     const { from, to, code } = req.body;
     const r = await prisma.redirect.update({ where: { id }, data: { from, to, code } });
     res.json(r);
@@ -55,7 +55,7 @@ router.put('/:id', requireAuth, async (req: Request, res: Response) => {
 // DELETE /:id — delete (requireAuth)
 router.delete('/:id', requireAuth, async (req: Request, res: Response) => {
   try {
-    const id = parseInt(req.params.id, 10);
+    const id = parseInt(req.params.id as string, 10);
     await prisma.redirect.delete({ where: { id } });
     res.json({ ok: true });
   } catch (err: any) {

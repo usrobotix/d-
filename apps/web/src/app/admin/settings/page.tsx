@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
-const tok = () => typeof window !== 'undefined' ? localStorage.getItem('token') || '' : '';
+const tok = () => typeof window !== 'undefined' ? localStorage.getItem('dp_token') || '' : '';
 const h = () => ({ 'Content-Type': 'application/json', Authorization: `Bearer ${tok()}` });
 
 const KEYS = [
@@ -30,9 +30,9 @@ export default function SettingsPage() {
   useEffect(() => {
     fetch(`${API}/api/settings`, { headers: h() })
       .then(r => r.json())
-      .then((d: { key: string; value: string }[]) => {
+      .then((d: any) => {
         const m: Record<string, string> = {};
-        (Array.isArray(d) ? d : []).forEach(({ key, value }) => { m[key] = value; });
+        if (Array.isArray(d)) { d.forEach(({ key, value }: any) => { m[key] = value; }); } else { Object.entries(d).forEach(([k, v]) => { m[k] = String(v); }); }
         setVals(m);
       }).catch(() => {});
   }, []);
@@ -41,7 +41,7 @@ export default function SettingsPage() {
     setSaving(true);
     await Promise.all(
       KEYS.map(({ key }) =>
-        fetch(`${API}/api/settings/${key}`, { method: 'PATCH', headers: h(), body: JSON.stringify({ value: vals[key] || '' }) })
+        fetch(`${API}/api/settings/${key}`, { method: 'PUT', headers: h(), body: JSON.stringify({ value: vals[key] || '' }) })
       )
     );
     setSaving(false); setOk(true);

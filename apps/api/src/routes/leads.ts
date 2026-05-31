@@ -128,7 +128,7 @@ router.get('/export', requireAuth, async (_req: Request, res: Response) => {
 // PUT /:id — update status/notes (requireAuth)
 router.put('/:id', requireAuth, async (req: Request, res: Response) => {
   try {
-    const id = parseInt(req.params.id, 10);
+    const id = parseInt(req.params.id as string, 10);
     const { status, notes } = req.body;
     const lead = await prisma.lead.update({
       where: { id },

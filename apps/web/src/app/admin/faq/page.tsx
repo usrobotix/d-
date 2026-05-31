@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
-const tok = () => typeof window !== 'undefined' ? localStorage.getItem('token') || '' : '';
+const tok = () => typeof window !== 'undefined' ? localStorage.getItem('dp_token') || '' : '';
 const h = () => ({ 'Content-Type': 'application/json', Authorization: `Bearer ${tok()}` });
 
 type FaqItem = { id: number; question: string; answer: string; categoryId: number };
@@ -30,7 +30,7 @@ export default function FaqPage() {
 
   const saveCat = async () => {
     if (!editCat) return;
-    await fetch(`${API}/api/faq/categories/${editCat.id}`, { method: 'PATCH', headers: h(), body: JSON.stringify({ name: editCat.name }) });
+    await fetch(`${API}/api/faq/categories/${editCat.id}`, { method: 'PUT', headers: h(), body: JSON.stringify({ name: editCat.name }) });
     setEditCat(null); load();
   };
 
@@ -48,7 +48,7 @@ export default function FaqPage() {
 
   const saveItem = async () => {
     if (!editItem) return;
-    await fetch(`${API}/api/faq/items/${editItem.id}`, { method: 'PATCH', headers: h(), body: JSON.stringify({ question: editItem.question, answer: editItem.answer }) });
+    await fetch(`${API}/api/faq/items/${editItem.id}`, { method: 'PUT', headers: h(), body: JSON.stringify({ question: editItem.question, answer: editItem.answer }) });
     setEditItem(null); load();
   };
 

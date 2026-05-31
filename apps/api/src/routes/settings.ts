@@ -33,9 +33,9 @@ router.put('/:id', requireAuth, requireRole(['admin']), async (req: Request, res
   try {
     const { value } = req.body;
     const setting = await prisma.settings.upsert({
-      where: { id: req.params.id },
+      where: { id: req.params.id as string },
       update: { value },
-      create: { id: req.params.id, value },
+      create: { id: req.params.id as string, value },
     });
     res.json(setting);
   } catch (err: any) {

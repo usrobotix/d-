@@ -12,6 +12,7 @@ import mediaRouter from './routes/media';
 import settingsRouter from './routes/settings';
 import redirectsRouter from './routes/redirects';
 import auditRouter from './routes/audit';
+import usersRouter from './routes/users';
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use('/api/media', mediaRouter);
 app.use('/api/settings', settingsRouter);
 app.use('/api/redirects', redirectsRouter);
 app.use('/api/audit', auditRouter);
+app.use('/api/users', usersRouter);
 
 // Health check
 app.get('/health', (_req: Request, res: Response) => {

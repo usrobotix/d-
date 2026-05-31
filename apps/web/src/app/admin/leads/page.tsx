@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
-const tok = () => typeof window !== 'undefined' ? localStorage.getItem('token') || '' : '';
+const tok = () => typeof window !== 'undefined' ? localStorage.getItem('dp_token') || '' : '';
 const h = () => ({ 'Content-Type': 'application/json', Authorization: `Bearer ${tok()}` });
 
 const STATUS_COLORS: Record<string, string> = {
@@ -22,7 +22,7 @@ export default function LeadsPage() {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [expanded, setExpanded] = useState<number | null>(null);
 
-  const load = () => fetch(`${API}/api/leads`, { headers: h() }).then(r => r.json()).then(setLeads).catch(() => {});
+  const load = () => fetch(`${API}/api/leads`, { headers: h() }).then(r => r.json()).then(d => setLeads(d.leads || d)).catch(() => {});
   useEffect(() => { load(); }, []);
 
   const patch = async (id: number, status: string) => {

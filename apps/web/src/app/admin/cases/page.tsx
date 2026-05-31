@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
-const tok = () => typeof window !== 'undefined' ? localStorage.getItem('token') || '' : '';
+const tok = () => typeof window !== 'undefined' ? localStorage.getItem('dp_token') || '' : '';
 const h = () => ({ 'Content-Type': 'application/json', Authorization: `Bearer ${tok()}` });
 
 type Case = { id: number; title: string; direction: string; slug: string; published: boolean };
@@ -15,7 +15,7 @@ export default function CasesPage() {
   useEffect(() => { load(); }, []);
 
   const togglePublished = async (c: Case) => {
-    await fetch(`${API}/api/cases/${c.id}`, { method: 'PATCH', headers: h(), body: JSON.stringify({ published: !c.published }) });
+    await fetch(`${API}/api/cases/${c.id}`, { method: 'PUT', headers: h(), body: JSON.stringify({ published: !c.published }) });
     setCases(cs => cs.map(x => x.id === c.id ? { ...x, published: !x.published } : x));
   };
 

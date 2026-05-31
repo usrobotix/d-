@@ -2,7 +2,7 @@
 import { useEffect, useState, useRef } from 'react';
 
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
-const tok = () => typeof window !== 'undefined' ? localStorage.getItem('token') || '' : '';
+const tok = () => typeof window !== 'undefined' ? localStorage.getItem('dp_token') || '' : '';
 
 type Media = { id: number; filename: string; size: number; url: string; createdAt: string };
 
@@ -15,7 +15,7 @@ export default function MediaPage() {
   const fileRef = useRef<HTMLInputElement>(null);
 
   const load = () => fetch(`${API}/api/media`, { headers: { Authorization: `Bearer ${tok()}` } })
-    .then(r => r.json()).then(d => setItems(Array.isArray(d) ? d : [])).catch(() => {});
+    .then(r => r.json()).then(d => setItems(Array.isArray(d) ? d : (d.items || []))).catch(() => {});
   useEffect(() => { load(); }, []);
 
   const upload = async (e: React.ChangeEvent<HTMLInputElement>) => {

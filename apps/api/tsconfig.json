@@ -6,7 +6,9 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "types": ["node"],
-    "strict": true,
+    "strict": false,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true

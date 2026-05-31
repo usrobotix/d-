@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
-const tok = () => typeof window !== 'undefined' ? localStorage.getItem('token') || '' : '';
+const tok = () => typeof window !== 'undefined' ? localStorage.getItem('dp_token') || '' : '';
 const h = () => ({ 'Content-Type': 'application/json', Authorization: `Bearer ${tok()}` });
 
 type Redirect = { id: number; from: string; to: string; code: number; active: boolean };
@@ -29,7 +29,7 @@ export default function RedirectsPage() {
 
   const save = async () => {
     if (!editForm) return;
-    await fetch(`${API}/api/redirects/${editForm.id}`, { method: 'PATCH', headers: h(), body: JSON.stringify(editForm) });
+    await fetch(`${API}/api/redirects/${editForm.id}`, { method: 'PUT', headers: h(), body: JSON.stringify(editForm) });
     setEditId(null); setEditForm(null); load();
   };
 

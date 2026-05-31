@@ -35,7 +35,7 @@ router.post('/categories', requireAuth, async (req: Request, res: Response) => {
 // PUT /categories/:id — update (auth)
 router.put('/categories/:id', requireAuth, async (req: Request, res: Response) => {
   try {
-    const id = parseInt(req.params.id, 10);
+    const id = parseInt(req.params.id as string, 10);
     const cat = await prisma.faqCategory.update({ where: { id }, data: req.body });
     res.json(cat);
   } catch (err: any) {
@@ -56,7 +56,7 @@ router.post('/items', requireAuth, async (req: Request, res: Response) => {
 // PUT /items/:id — update (auth)
 router.put('/items/:id', requireAuth, async (req: Request, res: Response) => {
   try {
-    const id = parseInt(req.params.id, 10);
+    const id = parseInt(req.params.id as string, 10);
     const item = await prisma.faqItem.update({ where: { id }, data: req.body });
     res.json(item);
   } catch (err: any) {
@@ -67,7 +67,7 @@ router.put('/items/:id', requireAuth, async (req: Request, res: Response) => {
 // DELETE /items/:id — delete (auth)
 router.delete('/items/:id', requireAuth, async (req: Request, res: Response) => {
   try {
-    const id = parseInt(req.params.id, 10);
+    const id = parseInt(req.params.id as string, 10);
     await prisma.faqItem.delete({ where: { id } });
     res.json({ ok: true });
   } catch (err: any) {
