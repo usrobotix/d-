@@ -56,7 +56,7 @@ export function CaseFilter({ cases }: { cases: CaseItem[] }) {
         <div className="shell">
           <div className="kases-grid">
             {filtered.map((c, i) => (
-              <article key={c.id ?? i} className={`kase reveal${c.isFeatured ? ' feat' : ''}`} data-cat={c.direction ?? ''}>
+              <article key={c.id ?? i} className={`kase${c.isFeatured ? ' feat' : ''}`} data-cat={c.direction ?? ''}>
                 <div className="band">
                   <PatternField psize={c.isFeatured ? 22 : 20} pgap={c.isFeatured ? 26 : 24} pbase="rgba(244,241,235,0.07)" paccent="#E2553A" />
                   <div className="tags">

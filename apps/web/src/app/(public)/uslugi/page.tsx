@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { PatternField } from '@/components/ui/PatternField';
 import { Pinwheel } from '@/components/ui/Pinwheel';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
+import { fetchServices } from '@/lib/api';
 
 export const metadata: Metadata = {
   title: 'Услуги',
@@ -125,7 +126,27 @@ const SERVICES = [
   },
 ];
 
-export default function UslugiPage() {
+export const dynamic = 'force-dynamic';
+export default async function UslugiPage() {
+  let apiServices: any[] = [];
+  try { apiServices = await fetchServices(); } catch {}
+  const services = apiServices.length > 0 ? apiServices.map((s: any) => ({
+    id: s.slug,
+    eyebrow: s.eyebrow,
+    title: s.title,
+    desc: s.description,
+    forWho: s.forWho,
+    includes: (s.includes ?? []).map((it: any) => ({ t: it.title, d: it.desc })),
+    steps: (s.steps ?? []).map((st: any) => ({ n: st.n, t: st.title, d: st.desc })),
+    tiers: (s.tiers ?? []).map((tier: any) => ({
+      name: tier.name,
+      price: tier.priceLabel,
+      desc: tier.desc,
+      items: tier.features ?? [],
+      pop: tier.isPopular ?? false,
+    })),
+    priceNote: s.priceNote,
+  })) : SERVICES;
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
@@ -146,7 +167,7 @@ export default function UslugiPage() {
         </div>
       </section>
 
-      {SERVICES.map((svc, idx) => (
+      {services.map((svc, idx) => (
         <section key={svc.id} className="svc-block" id={svc.id}>
           <div className="shell grid">
             <div className="left">
@@ -162,7 +183,7 @@ export default function UslugiPage() {
             <div className="right">
               <div className="svc-sub">Что входит</div>
               <div className="incl">
-                {svc.includes.map((it, i) => (
+                {svc.includes.map((it: any, i: number) => (
                   <div key={i} className="it">
                     <div className="t">{it.t}</div>
                     <div className="d">{it.d}</div>
@@ -171,7 +192,7 @@ export default function UslugiPage() {
               </div>
               <div className="svc-sub">Этапы</div>
               <div className="svc-steps">
-                {svc.steps.map((st, i) => (
+                {svc.steps.map((st: any, i: number) => (
                   <div key={i} className="st">
                     <div className="n">{st.n}</div>
                     <div><div className="t">{st.t}</div><div className="d">{st.d}</div></div>
@@ -180,12 +201,12 @@ export default function UslugiPage() {
               </div>
               <div className="svc-sub">Пакеты</div>
               <div className="tiers">
-                {svc.tiers.map((tier, i) => (
+                {svc.tiers.map((tier: any, i: number) => (
                   <div key={i} className={`tier${tier.pop ? ' pop' : ''}`}>
                     <div className="tn">{tier.name}</div>
                     <div className="tp">{tier.price}</div>
                     <div className="td">{tier.desc}</div>
-                    <ul>{tier.items.map((li, li_i) => <li key={li_i}>{li}</li>)}</ul>
+                    <ul>{tier.items.map((li: any, li_i: number) => <li key={li_i}>{li}</li>)}</ul>
                     <Link href="/kontakty" className={`btn ${tier.pop ? 'btn-primary' : 'btn-ghost'}`}>Обсудить</Link>
                   </div>
                 ))}

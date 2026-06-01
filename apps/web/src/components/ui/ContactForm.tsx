@@ -1,9 +1,12 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { SmartCaptcha } from '@yandex/smart-captcha';
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [captchaToken, setCaptchaToken] = useState('');
   const [utmParams, setUtmParams] = useState<Record<string, string>>({});
 
   useEffect(() => {
@@ -23,28 +26,36 @@ export function ContactForm() {
     const form = e.currentTarget;
     const honeypot = (form.elements.namedItem('_hp') as HTMLInputElement)?.value;
     if (honeypot) return;
-
+    if (!captchaToken) {
+      setError('Подтвердите, что вы не робот');
+      return;
+    }
+    setError('');
     setLoading(true);
     const data = {
       name: (form.elements.namedItem('name') as HTMLInputElement).value,
       contact: (form.elements.namedItem('contact') as HTMLInputElement).value,
       service: (form.elements.namedItem('service') as HTMLSelectElement).value,
       message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
+      captchaToken,
       ...utmParams,
     };
-
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
-      await fetch(`${apiUrl}/api/leads`, {
+      const resp = await fetch(`${apiUrl}/api/leads`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
-    } catch {
-      // continue anyway
+      if (!resp.ok) {
+        const j = await resp.json().catch(() => ({}));
+        throw new Error(j.error || 'Ошибка отправки');
+      }
+      setSubmitted(true);
+    } catch (err: any) {
+      setError(err.message || 'Не удалось отправить заявку. Попробуйте позже.');
     } finally {
       setLoading(false);
-      setSubmitted(true);
     }
   }
 
@@ -64,7 +75,6 @@ export function ContactForm() {
 
   return (
     <form className="form" onSubmit={handleSubmit}>
-      {/* honeypot */}
       <input type="text" name="_hp" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
       <div className="row2">
         <div className="field">
@@ -90,7 +100,14 @@ export function ContactForm() {
         <label>Коротко о задаче</label>
         <textarea name="message" placeholder="Что нужно сделать?"></textarea>
       </div>
-      <button type="submit" className="btn btn-primary" disabled={loading}>
+      <div className="field captcha-wrapper">
+        <SmartCaptcha
+          sitekey={process.env.NEXT_PUBLIC_YANDEX_CAPTCHA_CLIENT_KEY || ''}
+          onSuccess={setCaptchaToken}
+        />
+      </div>
+      {error && <p className="form-error" style={{ color: '#E2553A', marginTop: 4 }}>{error}</p>}
+      <button type="submit" className="btn btn-primary" disabled={loading || !captchaToken}>
         {loading ? 'Отправка...' : 'Отправить заявку'} <span className="arr">→</span>
       </button>
       <p className="consent">

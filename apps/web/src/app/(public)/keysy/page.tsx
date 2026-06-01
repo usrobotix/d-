@@ -110,7 +110,22 @@ const FALLBACK_CASES = [
 
 export default async function KesyPage() {
   const apiCases = await fetchCases();
-  const cases = apiCases.length > 0 ? apiCases : FALLBACK_CASES;
+  const mapped = apiCases.map((c: any) => ({
+    id: c.id,
+    slug: c.slug,
+    title: c.title,
+    direction: c.direction,
+    tags: Array.isArray(c.tags) ? c.tags : [],
+    year: c.year,
+    isFeatured: c.isFeatured,
+    task: c.taskText || '',
+    solution: Array.isArray(c.solutionItems) ? c.solutionItems : [],
+    results: Array.isArray(c.resultMetrics)
+      ? c.resultMetrics
+      : [],
+    stack: Array.isArray(c.stack) ? c.stack : [],
+  }));
+  const cases = mapped.length > 0 ? mapped : FALLBACK_CASES;
 
   return (
     <>

@@ -39,13 +39,87 @@ async function sendEmailNotification(lead: {
   });
 }
 
+
+async function sendTelegramNotification(lead: {
+  name: string;
+  contact: string;
+  service?: string | null;
+  message?: string | null;
+  sourcePage?: string | null;
+}): Promise<void> {
+  const { TG_BOT_TOKEN, TG_CHAT_ID } = process.env;
+  if (!TG_BOT_TOKEN || !TG_CHAT_ID) return;
+
+  const text = [
+    '🔔 Новая заявка',
+    `Имя: ${lead.name}`,
+    `Контакт: ${lead.contact}`,
+    lead.service ? `Услуга: ${lead.service}` : '',
+    lead.message ? `Сообщение: ${lead.message}` : '',
+    lead.sourcePage ? `Страница: ${lead.sourcePage}` : '',
+  ]
+    .filter(Boolean)
+    .join('\n');
+
+  const url = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`;
+  const MAX_ATTEMPTS = 4;
+  let lastErr: unknown = null;
+
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    try {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 8000);
+      const resp = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: TG_CHAT_ID, text }),
+        signal: controller.signal,
+      });
+      clearTimeout(timer);
+      if (!resp.ok) {
+        throw new Error(`Telegram API responded ${resp.status}`);
+      }
+      return; // success
+    } catch (err) {
+      lastErr = err;
+      if (attempt < MAX_ATTEMPTS) {
+        await new Promise((r) => setTimeout(r, attempt * 200));
+      }
+    }
+  }
+  throw lastErr instanceof Error ? lastErr : new Error('Telegram send failed after retries');
+}
+
+async function verifyYandexCaptcha(token: string): Promise<boolean> {
+  const secret = process.env.YANDEX_CAPTCHA_SERVER_KEY;
+  if (!secret) return true; // если ключ не задан — не блокируем
+  try {
+    const resp = await fetch('https://smartcaptcha.yandexcloud.net/validate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `secret=${secret}&token=${token}`,
+    });
+    const data = await resp.json() as { status?: string };
+    return data.status === 'ok';
+  } catch (err) {
+    console.error('Captcha verification failed:', err);
+    return false;
+  }
+}
+
 // POST / — create lead
 router.post('/', antispam, async (req: Request, res: Response) => {
   try {
-    const { name, contact, service, message, sourcePage, utm } = req.body;
+    const { name, contact, service, message, sourcePage, utm, captchaToken } = req.body;
 
     if (!name || !contact) {
       res.status(400).json({ error: 'name and contact are required' });
+      return;
+    }
+
+    const captchaOk = await verifyYandexCaptcha(captchaToken || '');
+    if (!captchaOk) {
+      res.status(400).json({ error: 'Не пройдена проверка капчи' });
       return;
     }
 
@@ -62,8 +136,12 @@ router.post('/', antispam, async (req: Request, res: Response) => {
     });
 
     // Fire-and-forget email
-    sendEmailNotification(lead).catch((err) =>
+    sendEmailNotification(lead).then(() => console.log("Email sent OK")).catch((err) =>
       console.error('Email notification failed:', err)
+    );
+
+    sendTelegramNotification(lead).then(() => console.log("Telegram sent OK")).catch((err) =>
+      console.error('Telegram notification failed:', err)
     );
 
     res.status(201).json({ ok: true, id: lead.id });
@@ -119,7 +197,7 @@ router.get('/export', requireAuth, async (_req: Request, res: Response) => {
 
     res.setHeader('Content-Type', 'text/csv; charset=utf-8');
     res.setHeader('Content-Disposition', 'attachment; filename="leads.csv"');
-    res.send('﻿' + header + rows);
+    res.send('\uFEFF' + header + rows);
   } catch (err) {
     res.status(500).json({ error: 'Internal server error' });
   }
