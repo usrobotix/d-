@@ -26,6 +26,13 @@ pm2 restart dplus-web
 pm2 save
 ```
 
+Прод-переменные окружения хранятся в `ecosystem.config.js` (env-блок), а не в `.env`.
+После их изменения перезапускать процессы нужно с флагом `--update-env`:
+
+```bash
+pm2 restart ecosystem.config.js --update-env
+```
+
 ## Деплой новой версии
 
 ```bash
@@ -36,8 +43,15 @@ cd apps/api && pnpm prisma migrate deploy
 cd ../..
 rm -rf apps/web/.next .turbo
 pnpm build
-pm2 restart dplus-api dplus-web
+pm2 restart ecosystem.config.js --update-env
 ```
+
+> Примечание: путь на сервере исторически `/var/www/dplus.seoservice.su`
+> (не переименовывался), хотя домен проекта — `prodigitalplus.ru`.
+
+> Важно: `NEXT_PUBLIC_*` переменные вшиваются в бандл на этапе `pnpm build`.
+> После изменения публичных переменных (например, ключа капчи) нужна полная
+> пересборка: `rm -rf apps/web/.next && pnpm build`.
 
 ## База данных
 
@@ -69,6 +83,27 @@ sudo -u postgres psql digitalplus < backup_20260531.sql
 ```bash
 nginx -t
 systemctl reload nginx
-tail -100 /var/log/nginx/dplus.seoservice.su.error.log
-cat /etc/nginx/sites-available/dplus.seoservice.su
+tail -100 /var/log/nginx/prodigitalplus.ru.error.log
+cat /etc/nginx/sites-available/prodigitalplus.ru
+```
+
+## SSL (Let's Encrypt)
+
+```bash
+# Выпуск/перевыпуск сертификата
+certbot --nginx -d prodigitalplus.ru -d www.prodigitalplus.ru
+
+# Проверка автообновления
+certbot renew --dry-run
+```
+
+## Уведомления (диагностика)
+
+```bash
+# Логи отправки email/telegram
+pm2 logs dplus-api --lines 20 --nostream
+
+# Тест доставки в Telegram напрямую
+curl -s -X POST "https://api.telegram.org/bot<TG_BOT_TOKEN>/sendMessage" \
+  -d "chat_id=<TG_CHAT_ID>" -d "text=test" -o /dev/null -w "%{http_code}\n"
 ```

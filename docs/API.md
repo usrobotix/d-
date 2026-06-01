@@ -1,6 +1,6 @@
 # API Reference
 
-Base URL: `https://dplus.seoservice.su/api`
+Base URL: `https://prodigitalplus.ru/api`
 
 ## Публичные эндпоинты
 
@@ -15,6 +15,35 @@ Base URL: `https://dplus.seoservice.su/api`
 | GET | /api/testimonials | Отзывы |
 | GET | /api/settings | Глобальные настройки |
 | POST | /api/leads | Создать заявку |
+
+### POST /api/leads
+
+Создание заявки с сайта. Защищено rate-limit и капчей.
+
+```
+POST /api/leads
+{
+  "name": "...",            // обязательно
+  "contact": "...",         // обязательно
+  "service": "...",         // опционально
+  "message": "...",         // опционально
+  "sourcePage": "...",      // опционально
+  "utm": "...",             // опционально
+  "captchaToken": "...",    // токен Yandex SmartCaptcha
+  "website": ""             // honeypot: должно быть пустым
+}
+→ 201 { "ok": true, "id": <number> }
+```
+
+Возможные ошибки:
+
+- `400 { "error": "name and contact are required" }` — нет обязательных полей.
+- `400 { "error": "Не пройдена проверка капчи" }` — невалидный/отсутствующий `captchaToken`
+  (проверка активна, только если задан серверный ключ капчи).
+- `429 { "error": "Too many requests. Try again later." }` — превышен лимит
+  (3 запроса / 10 минут с одного IP).
+
+При успешном создании заявки сервер асинхронно шлёт email- и Telegram-уведомления.
 
 ## Авторизация
 
@@ -41,6 +70,7 @@ Header: Authorization: Bearer <token>
 | GET | /api/leads | Список заявок |
 | PUT | /api/leads/:id | Обновить заявку |
 | DELETE | /api/leads/:id | Удалить заявку |
+| GET | /api/leads/export | Экспорт заявок в CSV |
 | GET | /api/media | Список файлов |
 | POST | /api/media | Загрузить файл |
 | DELETE | /api/media/:id | Удалить файл |

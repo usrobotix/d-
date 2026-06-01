@@ -6,8 +6,14 @@
 
 ## Сайт
 
-- Dev/Prod: https://dplus.seoservice.su
-- Админка: https://dplus.seoservice.su/admin
+- Прод: https://prodigitalplus.ru
+- Админка: https://prodigitalplus.ru/admin
+
+## Инфраструктура
+
+- Сервер: Timeweb VPS (путь `/var/www/dplus.seoservice.su`)
+- SSL: Let's Encrypt (Certbot), домены `prodigitalplus.ru`, `www.prodigitalplus.ru`
+- Yandex SmartCaptcha — консоль Yandex Cloud (капча привязана к домену prodigitalplus.ru)
 
 ## Внутренние документы
 
