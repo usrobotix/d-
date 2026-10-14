@@ -156,13 +156,31 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 export default async function CasePage({ params }: { params: { slug: string } }) {
   const apiCase = await fetchCase(params.slug);
+
+  const directionLabels: Record<string, string> = {
+    web: 'Веб-разработка',
+    crm: 'CRM и автоматизация',
+    integration: 'Интеграция',
+    mobile: 'Мобильная разработка',
+    fz152: 'Персональные данные и 152-ФЗ',
+    support: 'Техническая поддержка',
+  };
+
   const normalized = apiCase ? {
     ...apiCase,
+    title: apiCase.h1 || apiCase.title,
+    direction: directionLabels[apiCase.direction] || apiCase.direction,
     task: apiCase.taskText,
     taskExtra: undefined,
-    solution: apiCase.solutionItems,
-    results: apiCase.resultMetrics,
+    solution: Array.isArray(apiCase.solutionItems)
+      ? apiCase.solutionItems
+      : [],
+    results: Array.isArray(apiCase.resultMetrics)
+      ? apiCase.resultMetrics
+      : [],
     closing: apiCase.closingText,
+    ctaTitle: 'Разберём вашу задачу и предложим следующий шаг',
+    ctaDesc: 'Изучим текущий проект, ограничения и желаемый результат. Предложим аудит, отдельный этап работ или полноценную разработку.',
   } : null;
   const c = normalized ?? FALLBACK_CASES[params.slug];
 
@@ -242,7 +260,7 @@ export default async function CasePage({ params }: { params: { slug: string } })
                 </div>
               ))}
             </div>
-            <p>{caseData.closing}</p>
+            {caseData.closing && <p>{caseData.closing}</p>}
           </div>
         </div>
 
