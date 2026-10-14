@@ -49,6 +49,9 @@ model Case {
   solutionItems  String[]
   resultMetrics  Json
   closingText    String?   @db.Text
+  videoUrl         String?
+  testimonialText  String?   @db.Text
+  testimonialImage String?
   sortOrder      Int       @default(0)
   status         String    @default("published")
   seoTitle       String?

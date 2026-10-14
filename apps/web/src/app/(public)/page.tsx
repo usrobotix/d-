@@ -59,7 +59,8 @@ const faqSchema = {
 export default async function HomePage() {
   const [casesData, faqData] = await Promise.all([fetchCases(), fetchFaq()]);
   const cases = casesData.length > 0 ? casesData.slice(0, 4) : FALLBACK_CASES;
-  const faqItems = faqData.length > 0 ? faqData.slice(0, 5) : FALLBACK_FAQ;
+  const flatFaq = faqData.flatMap((cat: { items?: { id: number; question: string; answer: string }[] }) => cat.items || []);
+  const faqItems = flatFaq.length > 0 ? flatFaq.slice(0, 5) : FALLBACK_FAQ;
 
   return (
     <>
@@ -261,7 +262,7 @@ export default async function HomePage() {
             <div className="contacts-list">
               <a href="tel:+79280104008"><span className="k">Телефон</span>8 928 010 40 08</a>
               <a href="mailto:info@prodigitalplus.ru"><span className="k">Почта</span>info@prodigitalplus.ru</a>
-              <div className="ci"><span className="k">Адрес</span>г. Нальчик, ул. Чернышевского, 272</div>
+              <div className="ci"><span className="k">Адрес</span>г. Нальчик, просп. Шогенцукова, 22</div>
               <div className="ci"><span className="k">Часы</span>Пн–Пт · 9:00–18:00</div>
             </div>
           </div>

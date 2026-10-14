@@ -19,6 +19,7 @@ type Form = {
   resultMetrics: string; closingText: string; sortOrder: string;
   status: string; seoTitle: string; seoDesc: string; ogImage: string;
   noindex: boolean;
+  videoUrl: string; testimonialText: string; testimonialImage: string;
 };
 
 const empty: Form = {
@@ -26,6 +27,7 @@ const empty: Form = {
   year: String(new Date().getFullYear()), isFeatured: false, stack: '', tags: '',
   taskText: '', solutionItems: '', resultMetrics: '{}', closingText: '',
   sortOrder: '0', status: 'published', seoTitle: '', seoDesc: '', ogImage: '', noindex: false,
+  videoUrl: '', testimonialText: '', testimonialImage: '',
 };
 
 export default function CaseEditPage() {
@@ -51,6 +53,7 @@ export default function CaseEditPage() {
           closingText: d.closingText || '', sortOrder: String(d.sortOrder || 0),
           status: d.status || 'published', seoTitle: d.seoTitle || '',
           seoDesc: d.seoDesc || '', ogImage: d.ogImage || '', noindex: !!d.noindex,
+          videoUrl: d.videoUrl || '', testimonialText: d.testimonialText || '', testimonialImage: d.testimonialImage || '',
         });
       }).catch(() => {});
     }
@@ -76,6 +79,7 @@ export default function CaseEditPage() {
         sortOrder: parseInt(form.sortOrder) || 0, status: form.status,
         seoTitle: form.seoTitle || null, seoDesc: form.seoDesc || null,
         ogImage: form.ogImage || null, noindex: form.noindex,
+        videoUrl: form.videoUrl || null, testimonialText: form.testimonialText || null, testimonialImage: form.testimonialImage || null,
       };
       const url = isNew ? `${API}/api/cases` : `${API}/api/cases/${id}`;
       const method = isNew ? 'POST' : 'PUT';
