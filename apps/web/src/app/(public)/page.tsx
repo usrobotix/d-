@@ -58,7 +58,14 @@ const faqSchema = {
 
 export default async function HomePage() {
   const [casesData, faqData] = await Promise.all([fetchCases(), fetchFaq()]);
-  const cases = casesData.length > 0 ? casesData.slice(0, 4) : FALLBACK_CASES;
+  const cases = casesData.length > 0
+    ? casesData.slice(0, 4).map((item: any, index: number) => ({
+        ...item,
+        desc: item.sub || item.taskText || '',
+        metrics: Array.isArray(item.resultMetrics) ? item.resultMetrics : [],
+        big: index === 0 || index === 3,
+      }))
+    : FALLBACK_CASES;
   const flatFaq = faqData.flatMap((cat: { items?: { id: number; question: string; answer: string }[] }) => cat.items || []);
   const faqItems = flatFaq.length > 0 ? flatFaq.slice(0, 5) : FALLBACK_FAQ;
 
@@ -104,23 +111,66 @@ export default async function HomePage() {
         <div className="shell">
           <div className="section-head reveal">
             <div className="eyebrow">Услуги</div>
-            <h2>Четыре направления — один подрядчик на весь цикл</h2>
-            <p>От первой строчки кода до сопровождения в проде. Не нужно собирать команду из разрозненных фрилансеров.</p>
+            <h2>От диагностики и плана до запуска и поддержки</h2>
+            <p>Подключаемся к существующим проектам или разрабатываем новые. Не предлагаем переделывать систему с нуля, если задачу можно решить доработкой.</p>
           </div>
+
           <div className="services-grid">
             {[
-              { num: '01', title: 'Разработка сайтов', desc: 'Корпоративные сайты, лендинги, интернет-магазины и порталы. Быстрые, адаптивные, готовые к нагрузке и SEO.', items: ['Дизайн и вёрстка под ключ', 'Интеграции с 1С, оплатами, CRM', 'Производительность и SEO-база'], href: '/uslugi#web' },
-              { num: '02', title: 'Разработка CRM', desc: 'Внедряем и дорабатываем CRM под реальные процессы продаж и сервиса. Автоматизируем рутину и отчётность.', items: ['Настройка воронок и автоматизаций', 'Кастомные модули и интеграции', 'Миграция данных без потерь'], href: '/uslugi#crm' },
-              { num: '03', title: 'Документация 152-ФЗ', desc: 'Приводим обработку персональных данных в соответствие закону. Полный пакет документов и уведомление РКН.', items: ['Политики и согласия на обработку', 'Аудит сайта и процессов', 'Подготовка к проверкам'], href: '/uslugi#fz152' },
-              { num: '04', title: 'Поддержка IT-проектов', desc: 'Берём на сопровождение сайты, CRM и инфраструктуру. SLA, мониторинг, обновления и развитие по плану.', items: ['Реакция по SLA, дежурная линия', 'Мониторинг и резервные копии', 'Доработки и развитие'], href: '/uslugi#support' },
+              {
+                num: '01',
+                title: 'Поддержка чужих проектов',
+                desc: 'Принимаем сайты, магазины, CRM и личные кабинеты после других разработчиков. Восстанавливаем контроль и организуем дальнейшее развитие.',
+                items: [
+                  'Техническая диагностика проекта',
+                  'Доступы, резервные копии и документация',
+                  'Исправления и регулярные доработки'
+                ],
+                href: '/uslugi#support'
+              },
+              {
+                num: '02',
+                title: 'Сайты и интернет-магазины',
+                desc: 'Разрабатываем корпоративные сайты, каталоги, интернет-магазины, порталы и личные кабинеты под реальные процессы бизнеса.',
+                items: [
+                  'Аналитика, прототипирование и дизайн',
+                  'Frontend, backend и административная часть',
+                  'SEO-база, аналитика и запуск'
+                ],
+                href: '/uslugi#web'
+              },
+              {
+                num: '03',
+                title: 'CRM, интеграции и автоматизация',
+                desc: 'Объединяем сайт, CRM и внешние сервисы. Автоматизируем передачу заявок, обработку данных, отчётность и рутинные операции.',
+                items: [
+                  'CRM и внутренние системы',
+                  'API и обмен данными',
+                  'Автоматизация с применением ИИ'
+                ],
+                href: '/uslugi#crm'
+              },
+              {
+                num: '04',
+                title: 'Персональные данные и 152-ФЗ',
+                desc: 'Совместно с профильным специалистом проверяем сайт и процессы обработки данных, готовим документы и внедряем необходимые технические изменения.',
+                items: [
+                  'Аудит сайта и процессов',
+                  'Политики и согласия',
+                  'Доработка форм и пользовательских сценариев'
+                ],
+                href: '/uslugi#fz152'
+              }
             ].map((svc) => (
               <article key={svc.num} className="svc reveal">
                 <span className="num">{svc.num}</span>
                 <div className="ic"><Pinwheel size={28} /></div>
                 <h3>{svc.title}</h3>
                 <p>{svc.desc}</p>
-                <ul>{svc.items.map((it, i) => <li key={i}>{it}</li>)}</ul>
-                <Link href={svc.href} className="more">Подробнее <span className="arr">→</span></Link>
+                <ul>{svc.items.map((item, index) => <li key={index}>{item}</li>)}</ul>
+                <Link href={svc.href} className="more">
+                  Подробнее <span className="arr">→</span>
+                </Link>
               </article>
             ))}
           </div>
@@ -166,15 +216,40 @@ export default async function HomePage() {
         <div className="shell">
           <div className="section-head reveal">
             <div className="eyebrow">Как мы работаем</div>
-            <h2>Прозрачный процесс из пяти шагов</h2>
-            <p>Вы всегда понимаете, на каком этапе проект и что будет дальше.</p>
+            <h2>Сначала разбираемся в задаче — затем предлагаем решение</h2>
+            <p>Каждый этап имеет понятный результат. Вы знаете, что происходит с проектом и за что платите.</p>
           </div>
+
           <div className="process-grid reveal">
-            <div className="step"><div className="dot">01</div><h4>Заявка</h4><p>Обсуждаем задачу, цели и бюджет. Бесплатная консультация.</p></div>
-            <div className="step"><div className="dot">02</div><h4>Анализ</h4><p>Изучаем процессы, готовим ТЗ и смету с фиксированными сроками.</p></div>
-            <div className="step is-accent"><div className="dot">03</div><h4>Разработка</h4><p>Дизайн, код, демо по спринтам. Показываем прогресс еженедельно.</p></div>
-            <div className="step"><div className="dot">04</div><h4>Запуск</h4><p>Тестирование, перенос на прод, обучение вашей команды.</p></div>
-            <div className="step"><div className="dot">05</div><h4>Поддержка</h4><p>Сопровождаем, мониторим и развиваем продукт по SLA.</p></div>
+            <div className="step">
+              <div className="dot">01</div>
+              <h4>Диагностика</h4>
+              <p>Изучаем задачу, текущий проект, ограничения, доступы и риски.</p>
+            </div>
+
+            <div className="step">
+              <div className="dot">02</div>
+              <h4>План</h4>
+              <p>Разделяем критические работы, обязательные исправления и дальнейшее развитие.</p>
+            </div>
+
+            <div className="step is-accent">
+              <div className="dot">03</div>
+              <h4>Реализация</h4>
+              <p>Работаем последовательными этапами и показываем промежуточный результат.</p>
+            </div>
+
+            <div className="step">
+              <div className="dot">04</div>
+              <h4>Проверка и запуск</h4>
+              <p>Тестируем, переносим изменения и контролируем работу основных сценариев.</p>
+            </div>
+
+            <div className="step">
+              <div className="dot">05</div>
+              <h4>Развитие</h4>
+              <p>Поддерживаем проект, исправляем проблемы и планируем следующие улучшения.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -185,7 +260,7 @@ export default async function HomePage() {
           <div className="section-head reveal">
             <div className="eyebrow">Кейсы</div>
             <h2>Проекты, которые принесли результат</h2>
-            <p>12 проектов в портфолио — сайты, CRM, мобильные приложения, интеграции и 152-ФЗ. Ниже несколько примеров.</p>
+            <p>Сайты, интернет-магазины, CRM, личные кабинеты, интеграции и внутренние системы. Ниже несколько примеров.</p>
           </div>
           <div className="cases-grid">
             {(cases as typeof FALLBACK_CASES).map((c) => {
@@ -225,27 +300,47 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="section" id="testimonials">
+      {/* ADVANTAGES */}
+      <section className="section" id="advantages">
         <div className="shell">
           <div className="section-head center reveal">
-            <div className="eyebrow center">Отзывы</div>
-            <h2>Что говорят клиенты</h2>
+            <div className="eyebrow center">Наш подход</div>
+            <h2>Почему с нами удобно работать</h2>
           </div>
+
           <div className="tst-grid">
-            {[
-              { q: 'Сделали CRM ровно под наши процессы, а не наоборот. Спустя год — стабильно работает и развивается.', name: 'Артур Б.', role: 'Дир. торговой сети', initial: 'А' },
-              { q: 'По 152-ФЗ закрыли вопрос полностью: документы, сайт, уведомление. Проверку прошли без единого замечания.', name: 'Марина К.', role: 'Управляющая клиники', initial: 'М' },
-              { q: 'Главное — отвечают и чинят быстро. На поддержке у них спим спокойно, мониторинг ловит всё раньше нас.', name: 'Денис Р.', role: 'CTO, SaaS-платформа', initial: 'Д' },
-            ].map((t, i) => (
-              <div key={i} className="tst reveal">
-                <p className="quote">{t.q}</p>
-                <div className="who">
-                  <div className="ava">{t.initial}</div>
-                  <div><div className="nm">{t.name}</div><div className="rl">{t.role}</div></div>
+            <div className="tst reveal">
+              <p className="quote">Основатели лично участвуют в аналитике, разработке и контроле качества. Проект не передаётся между случайными исполнителями.</p>
+              <div className="who">
+                <div className="ava">01</div>
+                <div>
+                  <div className="nm">Личное участие</div>
+                  <div className="rl">Сохраняем контекст проекта</div>
                 </div>
               </div>
-            ))}
+            </div>
+
+            <div className="tst reveal">
+              <p className="quote">Можем разобраться в существующем коде, восстановить доступы, найти критические проблемы и продолжить развитие после другого подрядчика.</p>
+              <div className="who">
+                <div className="ava">02</div>
+                <div>
+                  <div className="nm">Работаем с чужими проектами</div>
+                  <div className="rl">Не навязываем разработку с нуля</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="tst reveal">
+              <p className="quote">Используем ИИ и автоматизацию для ускорения рутинных операций, но результат проверяется специалистом, а ответственность остаётся на нас.</p>
+              <div className="who">
+                <div className="ava">03</div>
+                <div>
+                  <div className="nm">ИИ под контролем человека</div>
+                  <div className="rl">Скорость без потери ответственности</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -271,8 +366,8 @@ export default async function HomePage() {
         <div className="shell contact-grid">
           <div className="lead-col reveal">
             <div className="eyebrow">Заявка</div>
-            <h2>Обсудим ваш проект</h2>
-            <p>Оставьте заявку — ответим в течение рабочего дня, зададим уточняющие вопросы и предложим план. Без обязательств.</p>
+            <h2>Расскажите, что сейчас не работает</h2>
+            <p>Обычно отвечаем в течение часа в рабочее время. Если потребуется изучить сайт или описание задачи, вернёмся с содержательным ответом в течение рабочего дня.</p>
             <div className="contacts-list">
               <a href="tel:+79280104008"><span className="k">Телефон</span>8 928 010 40 08</a>
               <a href="mailto:info@prodigitalplus.ru"><span className="k">Почта</span>info@prodigitalplus.ru</a>
