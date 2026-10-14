@@ -7,8 +7,8 @@ import { Accordion } from '@/components/ui/Accordion';
 import { ContactForm } from '@/components/ui/ContactForm';
 
 export const metadata: Metadata = {
-  title: 'Диджитал плюс — Веб, CRM, 152-ФЗ и IT-поддержка',
-  description: 'ООО «Диджитал плюс» — разработка сайтов и CRM, оформление документации по 152-ФЗ, сопровождение IT-проектов. Нальчик, с 2021 года.',
+  title: 'Разработка, доработка и поддержка сайтов и CRM — Диджитал плюс',
+  description: 'Разрабатываем и сопровождаем сайты, интернет-магазины, CRM, личные кабинеты и интеграции. Принимаем проекты после других подрядчиков. Работаем по всей России.',
 };
 
 const FALLBACK_CASES = [
@@ -71,18 +71,18 @@ export default async function HomePage() {
         <PatternField psize={30} pgap={34} pbase="rgba(244,241,235,0.07)" paccent="#E2553A" />
         <div className="hero-glow"></div>
         <div className="shell hero-inner">
-          <div className="eyebrow">Веб · CRM · 152-ФЗ · Поддержка</div>
-          <h1>Цифровые продукты,<br/>которые <span className="accent">работают</span><br/>на ваш бизнес.</h1>
-          <p className="lead">Разрабатываем сайты и CRM, приводим документы в соответствие 152-ФЗ и сопровождаем IT-проекты. Пятый год собираем системы, которые не разваливаются после сдачи.</p>
+          <div className="eyebrow">Разработка · Доработка · Автоматизация · Поддержка</div>
+          <h1>Сайты и цифровые системы,<br/>за которые <span className="accent">есть кому отвечать.</span></h1>
+          <p className="lead">Разрабатываем, дорабатываем и сопровождаем сайты, интернет-магазины, CRM, личные кабинеты и интеграции. Принимаем проекты после других подрядчиков и помогаем бизнесу автоматизировать ручные процессы.</p>
           <div className="cta-row">
-            <Link href="/kontakty" className="btn btn-primary">Обсудить проект <span className="arr">→</span></Link>
-            <Link href="/keysy" className="btn btn-ghost">Смотреть кейсы</Link>
+            <Link href="/kontakty" className="btn btn-primary">Обсудить задачу <span className="arr">→</span></Link>
+            <Link href="/uslugi#support" className="btn btn-ghost">Передать проект на поддержку</Link>
           </div>
           <div className="hero-meta">
-            <div className="m"><div className="v">5 <span className="accent">лет</span></div><div className="k">на рынке</div></div>
-            <div className="m"><div className="v">120<span className="accent">+</span></div><div className="k">проектов</div></div>
-            <div className="m"><div className="v">40<span className="accent">+</span></div><div className="k">клиентов на поддержке</div></div>
-            <div className="m"><div className="v">99.9<span className="accent">%</span></div><div className="k">аптайм проектов</div></div>
+            <div className="m"><div className="v">с <span className="accent">2014</span></div><div className="k">команда в разработке</div></div>
+            <div className="m"><div className="v">15 000<span className="accent">+</span></div><div className="k">выполненных задач</div></div>
+            <div className="m"><div className="v">10</div><div className="k">проектов на поддержке</div></div>
+            <div className="m"><div className="v">вся <span className="accent">РФ</span></div><div className="k">работаем удалённо</div></div>
           </div>
         </div>
       </section>
@@ -90,13 +90,11 @@ export default async function HomePage() {
       {/* TRUST */}
       <section className="trust">
         <div className="shell row">
-          <div className="lab">Нам доверяют</div>
+          <div className="lab">Некоторые проекты</div>
           <div className="clients">
-            <span className="c">Альфа-Ритейл</span>
-            <span className="c">МедЦентр+</span>
-            <span className="c">ЛогистПро</span>
-            <span className="c">ЭкоСтрой</span>
-            <span className="c">ФинГрупп</span>
+            <span className="c">MG Ceramic</span>
+            <span className="c">Международный юридический клуб</span>
+            <span className="c">Liumi</span>
           </div>
         </div>
       </section>
@@ -135,14 +133,30 @@ export default async function HomePage() {
         <div className="shell">
           <div className="section-head reveal">
             <div className="eyebrow">О компании</div>
-            <h2>Пять лет, измеримых в цифрах</h2>
-            <p>«Диджитал плюс» — команда из Нальчика, которая строит цифровые продукты для бизнеса по всей России.</p>
+            <h2>Опыт с 2014 года — в конкретных цифрах</h2>
+            <p>«Диджитал плюс» — компактная команда с личным участием основателей. Компания зарегистрирована в Нальчике, работаем с бизнесом по всей России.</p>
           </div>
           <div className="num-grid reveal">
-            <div className="num-cell"><div className="v">2021</div><div className="k">год основания</div><div className="d">Пятый год на рынке цифровой разработки.</div></div>
-            <div className="num-cell"><div className="v">120<span className="accent">+</span></div><div className="k">проектов</div><div className="d">Сайты, CRM и комплексные системы.</div></div>
-            <div className="num-cell"><div className="v">40<span className="accent">+</span></div><div className="k">на поддержке</div><div className="d">Клиентов на постоянном сопровождении.</div></div>
-            <div className="num-cell"><div className="v">8</div><div className="k">специалистов</div><div className="d">Разработка, дизайн, юристы по 152-ФЗ.</div></div>
+            <div className="num-cell">
+              <div className="v">2014</div>
+              <div className="k">начало работы команды</div>
+              <div className="d">Практический опыт в разработке, доработке и сопровождении цифровых проектов.</div>
+            </div>
+            <div className="num-cell">
+              <div className="v">15 000<span className="accent">+</span></div>
+              <div className="k">выполненных задач</div>
+              <div className="d">Разработка, вёрстка, наполнение, интеграции, исправления и техническая поддержка.</div>
+            </div>
+            <div className="num-cell">
+              <div className="v">10</div>
+              <div className="k">проектов на поддержке</div>
+              <div className="d">Регулярные доработки, контроль работоспособности и дальнейшее развитие.</div>
+            </div>
+            <div className="num-cell">
+              <div className="v">2021</div>
+              <div className="k">регистрация ООО</div>
+              <div className="d">Работаем официально, заключаем договоры и принимаем проекты из любых регионов России.</div>
+            </div>
           </div>
         </div>
       </section>
