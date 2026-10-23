@@ -37,7 +37,7 @@ export default function KontaktyPage() {
               </a>
               <div className="cp-card">
                 <div className="k">Адрес</div>
-                <div className="v sm">г. Нальчик,<br/>ул. Чернышевского, 272</div>
+                <div className="v sm">г. Нальчик,<br/>просп. Шогенцукова, 22</div>
               </div>
               <div className="cp-card">
                 <div className="k">Часы работы</div>
@@ -58,7 +58,7 @@ export default function KontaktyPage() {
                 <div className="lbl">Диджитал плюс · Нальчик</div>
               </div>
               <a
-                href="https://yandex.ru/maps/?text=%D0%9D%D0%B0%D0%BB%D1%8C%D1%87%D0%B8%D0%BA%2C+%D1%83%D0%BB%D0%B8%D1%86%D0%B0+%D0%A7%D0%B5%D1%80%D0%BD%D1%8B%D1%88%D0%B5%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE+272"
+                href="https://yandex.ru/profile/124549558378?lang=ru"
                 target="_blank"
                 rel="noopener"
                 className="btn btn-ghost open-map"
@@ -74,7 +74,7 @@ export default function KontaktyPage() {
               <div className="req-row"><span className="k">КПП</span><span>070001001</span></div>
               <div className="req-row"><span className="k">ОГРН</span><span>1220700000014</span></div>
               <div className="req-row"><span className="k">Директор</span><span>Мерза Тамби Янал</span></div>
-              <div className="req-row"><span className="k">Адрес</span><span>360004, г. Нальчик, ул. Чернышевского, д. 272</span></div>
+              <div className="req-row"><span className="k">Адрес</span><span>360004, г. Нальчик, просп. Шогенцукова, 22</span></div>
             </div>
           </div>
 

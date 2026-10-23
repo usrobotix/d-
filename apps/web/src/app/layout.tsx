@@ -22,7 +22,7 @@ const orgSchema = {
   email: 'info@prodigitalplus.ru',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'ул. Чернышевского, 272',
+    streetAddress: 'просп. Шогенцукова, 22',
     addressLocality: 'Нальчик',
     postalCode: '360004',
     addressCountry: 'RU',

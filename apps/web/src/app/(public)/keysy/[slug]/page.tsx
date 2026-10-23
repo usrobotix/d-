@@ -156,7 +156,15 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 export default async function CasePage({ params }: { params: { slug: string } }) {
   const apiCase = await fetchCase(params.slug);
-  const c = apiCase ?? FALLBACK_CASES[params.slug];
+  const normalized = apiCase ? {
+    ...apiCase,
+    task: apiCase.taskText,
+    taskExtra: undefined,
+    solution: apiCase.solutionItems,
+    results: apiCase.resultMetrics,
+    closing: apiCase.closingText,
+  } : null;
+  const c = normalized ?? FALLBACK_CASES[params.slug];
 
   if (!c) {
     return (
@@ -167,7 +175,7 @@ export default async function CasePage({ params }: { params: { slug: string } })
     );
   }
 
-  const caseData = c as typeof FALLBACK_CASES['mg-ceramic'];
+  const caseData = c as typeof FALLBACK_CASES['mg-ceramic'] & { cover?: string };
 
   return (
     <>
@@ -183,10 +191,17 @@ export default async function CasePage({ params }: { params: { slug: string } })
           <h1>{caseData.title}</h1>
           <p className="sub">{caseData.sub}</p>
           <div className="cd-cover" style={{ height: 'clamp(280px, 42vw, 560px)', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
-            <PatternField psize={28} pgap={32} pbase="rgba(244,241,235,0.08)" paccent="#E2553A" />
-            <div style={{ position: 'relative', zIndex: 2, opacity: 0.3 }}>
-              <Pinwheel size={200} color="#F4F1EB" accent="#E2553A" />
-            </div>
+            {caseData.cover ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={caseData.cover} alt={caseData.title} style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'relative', zIndex: 2 }} />
+            ) : (
+              <>
+                <PatternField psize={28} pgap={32} pbase="rgba(244,241,235,0.08)" paccent="#E2553A" />
+                <div style={{ position: 'relative', zIndex: 2, opacity: 0.3 }}>
+                  <Pinwheel size={200} color="#F4F1EB" accent="#E2553A" />
+                </div>
+              </>
+            )}
           </div>
         </div>
       </section>

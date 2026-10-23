@@ -18,7 +18,7 @@
   --accent-soft: rgba(226,85,58,0.14);
   --ok: #4BA876;
 
-  --maxw: 1240px;
+  --maxw: 1440px;
   --pad: clamp(20px, 5vw, 56px);
   --radius: 14px;
   --radius-sm: 9px;
@@ -124,7 +124,7 @@ button { font: inherit; cursor: pointer; }
 .hero { position: relative; overflow: hidden; padding-top: clamp(60px, 8vw, 110px); padding-bottom: clamp(60px, 8vw, 120px); }
 .hero .pattern-fill { opacity: .5; mask-image: radial-gradient(120% 90% at 70% 10%, #000 0%, transparent 65%); -webkit-mask-image: radial-gradient(120% 90% at 70% 10%, #000 0%, transparent 65%); }
 .hero-glow { position: absolute; top: -20%; right: -10%; width: 720px; height: 720px; background: radial-gradient(circle, rgba(226,85,58,0.16), transparent 62%); pointer-events: none; filter: blur(8px); }
-.hero-inner { position: relative; z-index: 2; max-width: 880px; }
+.hero-inner { position: relative; z-index: 2; max-width: var(--maxw); }
 .hero h1 { font-size: clamp(40px, 7vw, 86px); font-weight: 500; letter-spacing: -0.045em; line-height: 0.98; margin: 26px 0 0; }
 .hero h1 .accent { color: var(--accent); }
 .hero .lead { font-size: clamp(17px, 2.1vw, 22px); color: var(--paper-dim); margin: 28px 0 0; max-width: 600px; line-height: 1.5; }
