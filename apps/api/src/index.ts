@@ -54,9 +54,11 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   res.status(err.status || 500).json({ error: err.message || 'Internal server error' });
 });
 
+const HOST = process.env.HOST || '127.0.0.1';
 const PORT = parseInt(process.env.PORT || '4000', 10);
-app.listen(PORT, () => {
-  console.log(`API server running on http://localhost:${PORT}`);
+
+app.listen(PORT, HOST, () => {
+  console.log(`API server running on http://${HOST}:${PORT}`);
   console.log(`CORS origin: ${corsOrigin}`);
 });
 
