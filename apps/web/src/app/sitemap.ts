@@ -13,6 +13,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/uslugi/web`, priority: 0.8, changeFrequency: 'monthly' as const },
     { url: `${base}/uslugi/crm`, priority: 0.8, changeFrequency: 'monthly' as const },
     { url: `${base}/uslugi/fz152`, priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: `${base}/uslugi/tekhnicheskiy-audit`, priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: `${base}/uslugi/integraciya-1s`, priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: `${base}/uslugi/ii-avtomatizaciya`, priority: 0.8, changeFrequency: 'monthly' as const },
   ];
   let caseSlugs: string[] = [];
   try {

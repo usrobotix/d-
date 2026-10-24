@@ -159,7 +159,7 @@ export default async function HomePage() {
                   'Доступы, резервные копии и документация',
                   'Исправления и регулярные доработки',
                 ],
-                href: '/uslugi#support',
+                href: '/uslugi/support',
               },
               {
                 num: '02',
@@ -170,7 +170,7 @@ export default async function HomePage() {
                   'Проверка безопасности и 152-ФЗ',
                   'Дорожная карта улучшений',
                 ],
-                href: '/uslugi#support',
+                href: '/uslugi/tekhnicheskiy-audit',
               },
               {
                 num: '03',
@@ -181,7 +181,7 @@ export default async function HomePage() {
                   'Frontend, backend и CMS',
                   'SEO-база, аналитика и запуск',
                 ],
-                href: '/uslugi#web',
+                href: '/uslugi/web',
               },
               {
                 num: '04',
@@ -192,7 +192,7 @@ export default async function HomePage() {
                   'Интеграция с 1С, amoCRM, Битрикс24',
                   'Автоматизация процессов',
                 ],
-                href: '/uslugi#crm',
+                href: '/uslugi/crm',
               },
               {
                 num: '05',
@@ -203,7 +203,7 @@ export default async function HomePage() {
                   'Политики, согласия и уведомление в РКН',
                   'Доработка форм и пользовательских сценариев',
                 ],
-                href: '/uslugi#fz152',
+                href: '/uslugi/fz152',
               },
               {
                 num: '06',
@@ -214,7 +214,7 @@ export default async function HomePage() {
                   'Обработка документов и выгрузок',
                   'Внутренний поиск и базы знаний',
                 ],
-                href: '/uslugi#crm',
+                href: '/uslugi/ii-avtomatizaciya',
               },
             ].map((svc) => (
               <article key={svc.num} className="svc reveal">
