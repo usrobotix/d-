@@ -8,6 +8,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/faq`, priority: 0.7, changeFrequency: 'monthly' as const },
     { url: `${base}/otzyvy`, priority: 0.6, changeFrequency: 'monthly' as const },
     { url: `${base}/kontakty`, priority: 0.5, changeFrequency: 'yearly' as const },
+    { url: `${base}/partneram`, priority: 0.6, changeFrequency: 'monthly' as const },
+    { url: `${base}/uslugi/support`, priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: `${base}/uslugi/web`, priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: `${base}/uslugi/crm`, priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: `${base}/uslugi/fz152`, priority: 0.8, changeFrequency: 'monthly' as const },
   ];
   let caseSlugs: string[] = [];
   try {

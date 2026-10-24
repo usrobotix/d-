@@ -14,16 +14,17 @@ export default function Footer() {
           </div>
           <div className="col">
             <h5>Услуги</h5>
-            <Link href="/uslugi#web">Разработка сайтов</Link>
-            <Link href="/uslugi#crm">Разработка CRM</Link>
-            <Link href="/uslugi#fz152">Документация 152-ФЗ</Link>
-            <Link href="/uslugi#support">IT-поддержка</Link>
+            <Link href="/uslugi/web">Разработка сайтов</Link>
+            <Link href="/uslugi/crm">Разработка CRM</Link>
+            <Link href="/uslugi/fz152">Документация 152-ФЗ</Link>
+            <Link href="/uslugi/support">IT-поддержка</Link>
           </div>
           <div className="col">
             <h5>Компания</h5>
             <Link href="/keysy">Кейсы</Link>
             <Link href="/otzyvy">Отзывы</Link>
             <Link href="/faq">FAQ</Link>
+            <Link href="/partneram">Партнёрам</Link>
             <Link href="/kontakty">Контакты</Link>
           </div>
           <div className="col">

@@ -11,7 +11,7 @@ export async function fetchSettings(): Promise<Record<string, string>> {
 
 export async function fetchServices() {
   try {
-    const res = await fetch(`${API_URL}/api/services`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${API_URL}/api/services`, { cache: 'no-store' });
     if (!res.ok) return [];
     return res.json();
   } catch { return []; }
@@ -52,7 +52,7 @@ export async function fetchFaq() {
 
 export async function fetchTestimonials() {
   try {
-    const res = await fetch(`${API_URL}/api/testimonials`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${API_URL}/api/testimonials`, { cache: 'no-store' });
     if (!res.ok) return [];
     return res.json();
   } catch { return []; }

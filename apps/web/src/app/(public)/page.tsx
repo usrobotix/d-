@@ -7,8 +7,8 @@ import { Accordion } from '@/components/ui/Accordion';
 import { ContactForm } from '@/components/ui/ContactForm';
 
 export const metadata: Metadata = {
-  title: 'Разработка, доработка и поддержка сайтов и CRM — Диджитал плюс',
-  description: 'Разрабатываем и сопровождаем сайты, интернет-магазины, CRM, личные кабинеты и интеграции. Принимаем проекты после других подрядчиков. Работаем по всей России.',
+  title: 'Цифровой партнёр для юридического и медицинского бизнеса — Диджитал плюс',
+  description: 'Разрабатываем и сопровождаем сайты, CRM, личные кабинеты и интеграции для юридических фирм и медицинских организаций. Принимаем проекты после других подрядчиков.',
 };
 
 const FALLBACK_CASES = [
@@ -56,6 +56,16 @@ const faqSchema = {
   })),
 };
 
+const PROBLEMS = [
+  { icon: '📂', title: 'Всё в Excel и мессенджерах', desc: 'Нет единой системы — данные теряются, менеджеры работают по-своему, руководитель не видит картины.' },
+  { icon: '😬', title: 'Сайт, который стыдно показать', desc: 'Устаревший дизайн, медленная загрузка, не работает мобильная версия — клиенты уходят до первого контакта.' },
+  { icon: '🔄', title: 'Интеграция с 1С тормозит работу', desc: 'Данные обновляются вручную или не обновляются вовсе. Менеджеры сверяют цены и остатки перед каждой сделкой.' },
+  { icon: '🔐', title: 'Риски по 152-ФЗ', desc: 'Формы без согласий, политика скопирована из интернета, уведомление в РКН не подано — до проверки это незаметно.' },
+  { icon: '🗂', title: 'CRM стоит, но не работает', desc: 'Систему внедрили, но сотрудники ведут клиентов в блокнотах. Нет понятного процесса, никто не обучен.' },
+  { icon: '👻', title: 'Предыдущий разработчик исчез', desc: 'Нет доступов, нет документации, непонятно на чём написано. Любая правка — квест с неизвестным финалом.' },
+  { icon: '📩', title: 'Нет личного кабинета для клиентов', desc: 'Статусы заявок, документы и счета — всё по почте и мессенджерам. Клиенты звонят, чтобы узнать, как идут дела.' },
+];
+
 export default async function HomePage() {
   const [casesData, faqData] = await Promise.all([fetchCases(), fetchFaq()]);
   const cases = casesData.length > 0
@@ -78,12 +88,12 @@ export default async function HomePage() {
         <PatternField psize={30} pgap={34} pbase="rgba(244,241,235,0.07)" paccent="#E2553A" />
         <div className="hero-glow"></div>
         <div className="shell hero-inner">
-          <div className="eyebrow">Разработка · Доработка · Автоматизация · Поддержка</div>
-          <h1>Сайты и цифровые системы,<br/>за которые <span className="accent">есть кому отвечать.</span></h1>
-          <p className="lead">Разрабатываем, дорабатываем и сопровождаем сайты, интернет-магазины, CRM, личные кабинеты и интеграции. Принимаем проекты после других подрядчиков и помогаем бизнесу автоматизировать ручные процессы.</p>
+          <div className="eyebrow">Юридический и медицинский бизнес · Разработка · Автоматизация · Поддержка</div>
+          <h1>Цифровой партнёр,<br/>за которым <span className="accent">есть кому отвечать.</span></h1>
+          <p className="lead">Разрабатываем, дорабатываем и сопровождаем сайты, CRM, личные кабинеты и интеграции для юридических фирм и медицинских организаций. Понимаем специфику регулируемых отраслей: 152-ФЗ, 1С, клиентские порталы.</p>
           <div className="cta-row">
             <Link href="/kontakty" className="btn btn-primary">Обсудить задачу <span className="arr">→</span></Link>
-            <Link href="/uslugi#support" className="btn btn-ghost">Передать проект на поддержку</Link>
+            <Link href="/uslugi" className="btn btn-ghost">Все услуги</Link>
           </div>
           <div className="hero-meta">
             <div className="m"><div className="v">с <span className="accent">2014</span></div><div className="k">команда в разработке</div></div>
@@ -106,13 +116,36 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* PROBLEMS */}
+      <section className="section" id="problems">
+        <div className="shell">
+          <div className="section-head reveal">
+            <div className="eyebrow">С чем приходят</div>
+            <h2>Узнаёте свою ситуацию?</h2>
+            <p>Большинство обращений начинаются с одной из этих проблем. Мы не предлагаем переписать всё с нуля — разбираемся в задаче и предлагаем подходящий следующий шаг.</p>
+          </div>
+          <div className="problems-grid reveal">
+            {PROBLEMS.map((p, i) => (
+              <div key={i} className="problem-card">
+                <div className="problem-icon">{p.icon}</div>
+                <div className="problem-title">{p.title}</div>
+                <div className="problem-desc">{p.desc}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: 'center', marginTop: 36 }}>
+            <Link href="/kontakty" className="btn btn-primary">Разобраться с моей задачей <span className="arr">→</span></Link>
+          </div>
+        </div>
+      </section>
+
       {/* SERVICES */}
       <section className="section" id="services">
         <div className="shell">
           <div className="section-head reveal">
             <div className="eyebrow">Услуги</div>
-            <h2>От диагностики и плана до запуска и поддержки</h2>
-            <p>Подключаемся к существующим проектам или разрабатываем новые. Не предлагаем переделывать систему с нуля, если задачу можно решить доработкой.</p>
+            <h2>От диагностики до полного цифрового партнёрства</h2>
+            <p>Работаем поэтапно: начинаем с того, что нужно прямо сейчас, и развиваем проект по мере роста задач.</p>
           </div>
 
           <div className="services-grid">
@@ -124,43 +157,65 @@ export default async function HomePage() {
                 items: [
                   'Техническая диагностика проекта',
                   'Доступы, резервные копии и документация',
-                  'Исправления и регулярные доработки'
+                  'Исправления и регулярные доработки',
                 ],
-                href: '/uslugi#support'
+                href: '/uslugi#support',
               },
               {
                 num: '02',
-                title: 'Сайты и интернет-магазины',
-                desc: 'Разрабатываем корпоративные сайты, каталоги, интернет-магазины, порталы и личные кабинеты под реальные процессы бизнеса.',
+                title: 'Технический аудит',
+                desc: 'Изучаем текущий проект: код, инфраструктуру, безопасность и производительность. Получаете понятный отчёт с приоритетами.',
                 items: [
-                  'Аналитика, прототипирование и дизайн',
-                  'Frontend, backend и административная часть',
-                  'SEO-база, аналитика и запуск'
+                  'Аудит кода и архитектуры',
+                  'Проверка безопасности и 152-ФЗ',
+                  'Дорожная карта улучшений',
                 ],
-                href: '/uslugi#web'
+                href: '/uslugi#support',
               },
               {
                 num: '03',
-                title: 'CRM, интеграции и автоматизация',
-                desc: 'Объединяем сайт, CRM и внешние сервисы. Автоматизируем передачу заявок, обработку данных, отчётность и рутинные операции.',
+                title: 'Сайты и личные кабинеты',
+                desc: 'Разрабатываем корпоративные сайты, каталоги, порталы и личные кабинеты под реальные процессы юридических и медицинских организаций.',
                 items: [
-                  'CRM и внутренние системы',
-                  'API и обмен данными',
-                  'Автоматизация с применением ИИ'
+                  'Аналитика, прототипирование и дизайн',
+                  'Frontend, backend и CMS',
+                  'SEO-база, аналитика и запуск',
                 ],
-                href: '/uslugi#crm'
+                href: '/uslugi#web',
               },
               {
                 num: '04',
+                title: 'CRM и интеграции',
+                desc: 'Объединяем сайт, CRM, 1С и внешние сервисы. Автоматизируем передачу заявок, документооборот и рутинные операции.',
+                items: [
+                  'CRM и внутренние системы',
+                  'Интеграция с 1С, amoCRM, Битрикс24',
+                  'Автоматизация процессов',
+                ],
+                href: '/uslugi#crm',
+              },
+              {
+                num: '05',
                 title: 'Персональные данные и 152-ФЗ',
-                desc: 'Совместно с профильным специалистом проверяем сайт и процессы обработки данных, готовим документы и внедряем необходимые технические изменения.',
+                desc: 'Совместно с профильным специалистом проверяем сайт и процессы обработки данных, готовим документы и внедряем необходимые изменения.',
                 items: [
                   'Аудит сайта и процессов',
-                  'Политики и согласия',
-                  'Доработка форм и пользовательских сценариев'
+                  'Политики, согласия и уведомление в РКН',
+                  'Доработка форм и пользовательских сценариев',
                 ],
-                href: '/uslugi#fz152'
-              }
+                href: '/uslugi#fz152',
+              },
+              {
+                num: '06',
+                title: 'ИИ-автоматизация',
+                desc: 'Используем ИИ для классификации заявок, обработки документов, подготовки отчётов и поиска по внутренней базе знаний.',
+                items: [
+                  'Классификация и маршрутизация заявок',
+                  'Обработка документов и выгрузок',
+                  'Внутренний поиск и базы знаний',
+                ],
+                href: '/uslugi#crm',
+              },
             ].map((svc) => (
               <article key={svc.num} className="svc reveal">
                 <span className="num">{svc.num}</span>
@@ -173,6 +228,49 @@ export default async function HomePage() {
                 </Link>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* HOW WE START */}
+      <section className="section" id="process">
+        <div className="shell">
+          <div className="section-head reveal">
+            <div className="eyebrow">Как начинаем работу</div>
+            <h2>Пять шагов от звонка до результата</h2>
+            <p>Без длинных брифов и долгих согласований на старте. Разбираемся в задаче быстро и предлагаем конкретный план.</p>
+          </div>
+
+          <div className="process-grid reveal">
+            <div className="step">
+              <div className="dot">01</div>
+              <h4>Звонок 30 минут</h4>
+              <p>Разбираемся в задаче, текущей ситуации и ограничениях. Без продающих скриптов — только по делу.</p>
+            </div>
+
+            <div className="step">
+              <div className="dot">02</div>
+              <h4>Предложение за 2 дня</h4>
+              <p>Готовим конкретное предложение: что делаем, за сколько, в какой срок. Фиксированная цена без «зависит от».</p>
+            </div>
+
+            <div className="step is-accent">
+              <div className="dot">03</div>
+              <h4>Договор и старт</h4>
+              <p>Подписываем договор с фиксированными этапами. Не берём предоплату 100% — оплата по этапам.</p>
+            </div>
+
+            <div className="step">
+              <div className="dot">04</div>
+              <h4>Работа итерациями</h4>
+              <p>Показываем результат каждые 1–2 недели. Вы видите прогресс и можете корректировать направление.</p>
+            </div>
+
+            <div className="step">
+              <div className="dot">05</div>
+              <h4>Сдача и поддержка</h4>
+              <p>Передаём все доступы и документацию. Продолжаем сопровождение — не исчезаем после запуска.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -211,67 +309,24 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* PROCESS */}
-      <section className="section" id="process">
-        <div className="shell">
-          <div className="section-head reveal">
-            <div className="eyebrow">Как мы работаем</div>
-            <h2>Сначала разбираемся в задаче — затем предлагаем решение</h2>
-            <p>Каждый этап имеет понятный результат. Вы знаете, что происходит с проектом и за что платите.</p>
-          </div>
-
-          <div className="process-grid reveal">
-            <div className="step">
-              <div className="dot">01</div>
-              <h4>Диагностика</h4>
-              <p>Изучаем задачу, текущий проект, ограничения, доступы и риски.</p>
-            </div>
-
-            <div className="step">
-              <div className="dot">02</div>
-              <h4>План</h4>
-              <p>Разделяем критические работы, обязательные исправления и дальнейшее развитие.</p>
-            </div>
-
-            <div className="step is-accent">
-              <div className="dot">03</div>
-              <h4>Реализация</h4>
-              <p>Работаем последовательными этапами и показываем промежуточный результат.</p>
-            </div>
-
-            <div className="step">
-              <div className="dot">04</div>
-              <h4>Проверка и запуск</h4>
-              <p>Тестируем, переносим изменения и контролируем работу основных сценариев.</p>
-            </div>
-
-            <div className="step">
-              <div className="dot">05</div>
-              <h4>Развитие</h4>
-              <p>Поддерживаем проект, исправляем проблемы и планируем следующие улучшения.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CASES */}
       <section className="section divider" id="cases">
         <div className="shell">
           <div className="section-head reveal">
             <div className="eyebrow">Кейсы</div>
             <h2>Проекты, которые принесли результат</h2>
-            <p>Сайты, интернет-магазины, CRM, личные кабинеты, интеграции и внутренние системы. Ниже несколько примеров.</p>
+            <p>Сайты, CRM, личные кабинеты, интеграции для юридических и медицинских организаций. Ниже несколько примеров.</p>
           </div>
           <div className="cases-grid">
             {(cases as typeof FALLBACK_CASES).map((c) => {
               const isBig = (c as typeof FALLBACK_CASES[0]).big;
-              const tags = (c as typeof FALLBACK_CASES[0]).tags ?? [];
+              const tags = Array.isArray((c as any).tags) ? (c as any).tags : [];
               const metrics = (c as typeof FALLBACK_CASES[0]).metrics ?? [];
               return (
                 <article key={c.id} className={`case ${isBig ? 'big' : 'small'} reveal`}>
                   <div className="thumb">
                     <PatternField psize={isBig ? 22 : 20} pgap={isBig ? 26 : 24} pbase="rgba(244,241,235,0.07)" paccent="#E2553A" />
-                    <span className="tag">{tags.join(' · ')}</span>
+                    <span className="tag">{Array.isArray(tags) ? tags.join(' · ') : ''}</span>
                     {isBig && (
                       <div className="big-mark">
                         <Pinwheel size={180} color="rgba(244,241,235,0.12)" accent="rgba(226,85,58,0.12)" />
@@ -284,7 +339,7 @@ export default async function HomePage() {
                     <div className="metrics">
                       {metrics.map((m, mi) => (
                         <div key={mi} className="m">
-                          <div className="mv" dangerouslySetInnerHTML={{ __html: m.mv }} />
+                          <div className="mv" dangerouslySetInnerHTML={{ __html: typeof m.mv === 'string' ? m.mv : String(m.mv) }} />
                           <div className="mk">{m.mk}</div>
                         </div>
                       ))}
@@ -321,23 +376,23 @@ export default async function HomePage() {
             </div>
 
             <div className="tst reveal">
-              <p className="quote">Можем разобраться в существующем коде, восстановить доступы, найти критические проблемы и продолжить развитие после другого подрядчика.</p>
+              <p className="quote">Понимаем специфику юридического и медицинского бизнеса: персональные данные, 1С, клиентские кабинеты и регуляторные требования.</p>
               <div className="who">
                 <div className="ava">02</div>
                 <div>
-                  <div className="nm">Работаем с чужими проектами</div>
-                  <div className="rl">Не навязываем разработку с нуля</div>
+                  <div className="nm">Отраслевой опыт</div>
+                  <div className="rl">Не объясняем с нуля</div>
                 </div>
               </div>
             </div>
 
             <div className="tst reveal">
-              <p className="quote">Используем ИИ и автоматизацию для ускорения рутинных операций, но результат проверяется специалистом, а ответственность остаётся на нас.</p>
+              <p className="quote">Можем разобраться в существующем коде, восстановить доступы и продолжить развитие после другого подрядчика. Не навязываем переписку с нуля.</p>
               <div className="who">
                 <div className="ava">03</div>
                 <div>
-                  <div className="nm">ИИ под контролем человека</div>
-                  <div className="rl">Скорость без потери ответственности</div>
+                  <div className="nm">Принимаем чужие проекты</div>
+                  <div className="rl">Без потери истории</div>
                 </div>
               </div>
             </div>

@@ -20,6 +20,7 @@ export default function Header() {
             <Link href="/keysy">Кейсы</Link>
             <Link href="/otzyvy">Отзывы</Link>
             <Link href="/faq">FAQ</Link>
+            <Link href="/partneram">Партнёрам</Link>
             <Link href="/kontakty">Контакты</Link>
           </nav>
           <div className="actions">

@@ -40,7 +40,7 @@ const FALLBACK_CASES: Record<string, {
       { mv: '1С', mk: 'остатки в реальном времени' },
       { mv: 'Опт + розница', mk: 'разведены по сценариям' },
     ],
-    closing: 'Сайт стал точкой входа для клиентов: заявки собираются в одном месте, менеджеры не тратят время на сверку наличия, а каталог работает на продвижение в поиске. Позже на этой базе мы сделали личный кабинет для отдела продаж и настроили синхронизацию с Яндексом.',
+    closing: 'Сайт стал точкой входа для клиентов: заявки собираются в одном месте, менеджеры не тратят время на сверку наличия, а каталог работает на продвижение в поиске.',
     prev: { slug: '1c-sync', title: 'Синхронизация 1С ↔ Яндекс ↔ сайты' },
     next: { slug: 'crm-realty', title: 'CRM для агентства недвижимости' },
     ctaTitle: 'Сделаем сайт, который приносит заявки',
@@ -154,6 +154,20 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
+function getYoutubeEmbedUrl(url: string): string | null {
+  if (!url) return null;
+  // already an embed url
+  if (url.includes('youtube.com/embed/')) return url;
+  // youtu.be/ID
+  const short = url.match(/youtu\.be\/([a-zA-Z0-9_-]+)/);
+  if (short) return `https://www.youtube.com/embed/${short[1]}`;
+  // youtube.com/watch?v=ID
+  const watch = url.match(/[?&]v=([a-zA-Z0-9_-]+)/);
+  if (watch) return `https://www.youtube.com/embed/${watch[1]}`;
+  // direct video file — return as-is for <video> tag
+  return url;
+}
+
 export default async function CasePage({ params }: { params: { slug: string } }) {
   const apiCase = await fetchCase(params.slug);
 
@@ -172,13 +186,13 @@ export default async function CasePage({ params }: { params: { slug: string } })
     direction: directionLabels[apiCase.direction] || apiCase.direction,
     task: apiCase.taskText,
     taskExtra: undefined,
-    solution: Array.isArray(apiCase.solutionItems)
-      ? apiCase.solutionItems
-      : [],
-    results: Array.isArray(apiCase.resultMetrics)
-      ? apiCase.resultMetrics
-      : [],
+    solution: Array.isArray(apiCase.solutionItems) ? apiCase.solutionItems : [],
+    results: Array.isArray(apiCase.resultMetrics) ? apiCase.resultMetrics : [],
     closing: apiCase.closingText,
+    videoUrl: apiCase.videoUrl || null,
+    testimonialText: apiCase.testimonialText || null,
+    testimonialImage: apiCase.testimonialImage || null,
+    gallery: Array.isArray(apiCase.gallery) ? apiCase.gallery : [],
     ctaTitle: 'Разберём вашу задачу и предложим следующий шаг',
     ctaDesc: 'Изучим текущий проект, ограничения и желаемый результат. Предложим аудит, отдельный этап работ или полноценную разработку.',
   } : null;
@@ -193,14 +207,23 @@ export default async function CasePage({ params }: { params: { slug: string } })
     );
   }
 
-  const caseData = c as typeof FALLBACK_CASES['mg-ceramic'] & { cover?: string };
+  const caseData = c as typeof FALLBACK_CASES['mg-ceramic'] & {
+    cover?: string;
+    videoUrl?: string | null;
+    testimonialText?: string | null;
+    testimonialImage?: string | null;
+    gallery?: string[];
+  };
+
+  const videoEmbed = caseData.videoUrl ? getYoutubeEmbedUrl(caseData.videoUrl) : null;
+  const isYoutube = videoEmbed && videoEmbed.includes('youtube.com/embed/');
 
   return (
     <>
       <section className="cd-hero">
         <PatternField psize={30} pgap={34} pbase="rgba(244,241,235,0.07)" paccent="#E2553A" />
         <div className="shell">
-          <Breadcrumb items={[{ label: 'Главная', href: '/' }, { label: 'Кейсы', href: '/keysy' }, { label: caseData.client ?? caseData.title }]} />
+          <Breadcrumb items={[{ label: 'Главная', href: '/' }, { label: 'Кейсы', href: '/keysy' }, { label: (caseData as any).client ?? caseData.title }]} />
           <div className="tags">
             {(caseData.tags ?? []).map((t: string, i: number) => (
               <span key={i} className="t">{t}</span>
@@ -227,7 +250,7 @@ export default async function CasePage({ params }: { params: { slug: string } })
       <section className="cd-body">
         <div className="shell cd-grid">
           <aside className="cd-aside">
-            <div className="row"><div className="k">Клиент</div><div className="v">{caseData.client}</div></div>
+            <div className="row"><div className="k">Клиент</div><div className="v">{(caseData as any).client}</div></div>
             <div className="row"><div className="k">Направление</div><div className="v">{caseData.direction}</div></div>
             <div className="row"><div className="k">Год</div><div className="v">{caseData.year}</div></div>
             <div className="row"><div className="k">Срок</div><div className="v">{caseData.term}</div></div>
@@ -261,21 +284,92 @@ export default async function CasePage({ params }: { params: { slug: string } })
               ))}
             </div>
             {caseData.closing && <p>{caseData.closing}</p>}
+
+            {/* VIDEO BLOCK */}
+            {videoEmbed && (
+              <div className="cd-video" style={{ marginTop: 48 }}>
+                <h2>Видео о проекте</h2>
+                {isYoutube ? (
+                  <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, borderRadius: 12, overflow: 'hidden', background: '#14181F' }}>
+                    <iframe
+                      src={videoEmbed}
+                      title="Видео о проекте"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
+                    />
+                  </div>
+                ) : (
+                  // eslint-disable-next-line jsx-a11y/media-has-caption
+                  <video
+                    src={videoEmbed}
+                    controls
+                    style={{ width: '100%', borderRadius: 12, background: '#14181F' }}
+                  />
+                )}
+              </div>
+            )}
+
+            {/* GALLERY BLOCK */}
+            {caseData.gallery && caseData.gallery.length > 0 && (
+              <div className="cd-gallery" style={{ marginTop: 48 }}>
+                <h2>Скриншоты проекта</h2>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 12 }}>
+                  {caseData.gallery.map((url: string, i: number) => (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      key={i}
+                      src={url}
+                      alt={`Скриншот ${i + 1}`}
+                      style={{ width: '100%', borderRadius: 8, border: '1px solid rgba(255,255,255,0.07)', display: 'block' }}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* TESTIMONIAL BLOCK */}
+            {(caseData.testimonialText || caseData.testimonialImage) && (
+              <div className="cd-testimonial" style={{ marginTop: 48 }}>
+                <h2>Благодарственное письмо</h2>
+                <div style={{ display: 'grid', gridTemplateColumns: caseData.testimonialImage ? '1fr 1fr' : '1fr', gap: 24, alignItems: 'start' }}>
+                  {caseData.testimonialText && (
+                    <div style={{
+                      background: 'var(--surface, #14181F)',
+                      border: '1px solid rgba(255,255,255,0.07)',
+                      borderRadius: 12,
+                      padding: '24px 28px',
+                      borderLeft: '3px solid #E2553A',
+                    }}>
+                      <p style={{ margin: 0, lineHeight: 1.8, fontSize: 15, whiteSpace: 'pre-wrap' }}>{caseData.testimonialText}</p>
+                    </div>
+                  )}
+                  {caseData.testimonialImage && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={caseData.testimonialImage}
+                      alt="Благодарственное письмо"
+                      style={{ width: '100%', borderRadius: 8, border: '1px solid rgba(255,255,255,0.07)', display: 'block' }}
+                    />
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
         <div className="shell">
           <div className="cd-nav">
-            {caseData.prev ? (
-              <Link href={`/keysy/${caseData.prev.slug}`} className="prev">
+            {(caseData as any).prev ? (
+              <Link href={`/keysy/${(caseData as any).prev.slug}`} className="prev">
                 <div className="d">← Предыдущий кейс</div>
-                <div className="nm">{caseData.prev.title}</div>
+                <div className="nm">{(caseData as any).prev.title}</div>
               </Link>
             ) : <div />}
-            {caseData.next ? (
-              <Link href={`/keysy/${caseData.next.slug}`} className="next">
+            {(caseData as any).next ? (
+              <Link href={`/keysy/${(caseData as any).next.slug}`} className="next">
                 <div className="d">Следующий кейс →</div>
-                <div className="nm">{caseData.next.title}</div>
+                <div className="nm">{(caseData as any).next.title}</div>
               </Link>
             ) : <div />}
           </div>
@@ -286,8 +380,8 @@ export default async function CasePage({ params }: { params: { slug: string } })
         <PatternField psize={26} pgap={30} pbase="rgba(244,241,235,0.06)" paccent="#E2553A" />
         <div className="shell inner">
           <div className="eyebrow center">Похожая задача?</div>
-          <h2>{caseData.ctaTitle}</h2>
-          <p>{caseData.ctaDesc}</p>
+          <h2>{(caseData as any).ctaTitle}</h2>
+          <p>{(caseData as any).ctaDesc}</p>
           <div className="cta-row">
             <Link href="/kontakty" className="btn btn-primary">Обсудить проект <span className="arr">→</span></Link>
             <Link href="/keysy" className="btn btn-ghost">Все кейсы</Link>
