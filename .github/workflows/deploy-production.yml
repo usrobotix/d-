@@ -1,0 +1,25 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to production
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script: |
+            set -e
+            cd /var/www/dplus.seoservice.su
+            git pull origin main
+            pnpm install --frozen-lockfile
+            pnpm --filter web build
+            pm2 restart dplus-api
+            pm2 restart dplus-web
+            echo "Production deploy OK: $(date)"

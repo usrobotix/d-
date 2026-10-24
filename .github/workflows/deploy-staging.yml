@@ -1,0 +1,25 @@
+name: Deploy to Staging
+
+on:
+  push:
+    branches: [staging]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to staging
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script: |
+            set -e
+            cd /var/www/dplus-staging
+            git pull origin staging
+            pnpm install --frozen-lockfile
+            pnpm --filter web build
+            pm2 restart dplus-staging-api
+            pm2 restart dplus-staging-web
+            echo "Staging deploy OK: $(date)"
